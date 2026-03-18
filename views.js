@@ -137,56 +137,13 @@ export async function renderHome() {
             </div>
         </section>
 
-        ${ window.innerWidth >= 768 ? `
-                <!-- DESKTOP -->
-                <div>
-                    <div style="display:flex; align-items:flex-start;">
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="position:absolute; top:21px; left:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
-                            <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">7:30 – 9:00</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Accoglienza</div>
-                        </div>
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="position:absolute; top:21px; left:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
-                            <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">9:00 – 11:30</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Attività</div>
-                        </div>
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="width:42px; height:42px; border-radius:50%; background:#F5A623; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">11:30 – 12:30</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Pranzo</div>
-                        </div>
-                    </div>
-                    <div style="position:relative; height:80px;">
-                        <svg width="100%" height="80" preserveAspectRatio="none" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 250 0 Q 250 40 234 40 L 66 40 Q 50 40 50 80" fill="none" stroke="#c8e6da" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div style="display:flex; align-items:flex-start;">
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="position:absolute; top:21px; left:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
-                            <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M17 18a5 5 0 00-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><polyline points="8,6 12,2 16,6"/></svg></div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">12:30 – 14:30</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Riposo</div>
-                        </div>
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="position:absolute; top:21px; left:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
-                            <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">14:30 – 16:00</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Pomeriggio</div>
-                        </div>
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="width:42px; height:42px; border-radius:50%; background:#F5A623; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">16:00 – 18:00</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Uscita</div>
-                        </div>
-                    </div>
+      <section class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-xl mb-16">
+                    <h2 class="text-4xl font-playfair font-bold text-[#1A6B5A] mb-6">Una giornata con noi</h2>
+                    <p class="text-gray-500">I momenti che scandiscono la crescita dei nostri piccoli.</p>
                 </div>
-                ` : `
-                <!-- MOBILE -->
-                <div>
+                <div style="max-width:400px;">
                     <div style="display:flex; align-items:flex-start; gap:16px;">
                         <div style="display:flex; flex-direction:column; align-items:center; flex-shrink:0;">
                             <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
@@ -229,35 +186,8 @@ export async function renderHome() {
                         <div style="padding-top:10px;"><div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:2px;">16:00 – 18:00</div><div style="font-size:14px; font-weight:600; color:#2D3436;">Uscita</div></div>
                     </div>
                 </div>
-                `}
-        <section class="py-24 bg-[#FCF9F5]">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-playfair font-bold text-[#1A6B5A] mb-8">Genitori Attivi</h2>
-                <p class="max-w-2xl mx-auto mb-12 text-gray-600 text-lg">La scuola è una comunità. Il coinvolgimento dei genitori è il cuore pulsante delle nostre iniziative extra-didattiche.</p>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-[#1A6B5A]/10 w-full md:w-auto min-w-[280px]">
-                        <h4 class="text-2xl font-playfair font-bold text-[#1A6B5A] mb-4">Gruppo Mamme</h4>
-                        <p class="text-sm text-gray-500 mb-6">Sostegno reciproco, laboratori e mercatini solidali.</p>
-                        <a href="tel:044274383" class="inline-block border border-[#1A6B5A] text-[#1A6B5A] px-6 py-2 rounded-full text-sm font-bold hover:bg-[#1A6B5A] hover:text-white transition-all">Unisciti</a>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-[#1A6B5A]/10 w-full md:w-auto min-w-[280px]">
-                        <h4 class="text-2xl font-playfair font-bold text-[#1A6B5A] mb-4">Gruppo Papà</h4>
-                        <p class="text-sm text-gray-500 mb-6">Manutenzione creativa degli spazi e gite comunitarie.</p>
-                        <a href="tel:044274383" class="inline-block border border-[#1A6B5A] text-[#1A6B5A] px-6 py-2 rounded-full text-sm font-bold hover:bg-[#1A6B5A] hover:text-white transition-all">Unisciti</a>
-                    </div>
-                </div>
             </div>
         </section>
-
-        <section class="py-24 bg-[#1A6B5A] text-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-playfair font-bold mb-8">Vuoi vedere la scuola di persona?</h2>
-                <p class="max-w-2xl mx-auto mb-12 opacity-90 text-lg">Prenota una visita gratuita e senza impegno. Ti accompagniamo in ogni spazio per farti respirare il nostro metodo.</p>
-                ${renderContactButtons()}
-            </div>
-        </section>
-    `}
-}
 
 export async function renderMetodo() {
     const data = await fetchData();
