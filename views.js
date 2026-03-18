@@ -137,7 +137,7 @@ export async function renderHome() {
             </div>
         </section>
 
-        <section class="py-24 bg-white">
+        <section class="py-24 bg-white" style="overflow-x:hidden;">
             <div class="container mx-auto px-6">
                 <div class="max-w-xl mb-16">
                     <h2 class="text-4xl font-playfair font-bold text-[#1A6B5A] mb-6">Una giornata con noi</h2>
