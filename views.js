@@ -185,6 +185,7 @@ export async function renderHome() {
                     <!-- Riga 2 -->
                     <div style="display:flex; align-items:flex-start;">
                         <div style="flex:1; text-align:center; position:relative;">
+                        <div style="position:absolute; top:21px; left:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
                             <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;">
                                 <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M17 18a5 5 0 00-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><polyline points="8,6 12,2 16,6"/></svg>
                             </div>
