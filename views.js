@@ -139,13 +139,17 @@ export async function renderHome() {
 
         <section class="py-24 bg-white" style="overflow-x:hidden;">
             <div class="container mx-auto px-6">
+            <style>
+                @media(max-width:767px){ #tl-desktop{display:none;} #tl-mobile{display:block;} }
+                @media(min-width:768px){ #tl-desktop{display:block;} #tl-mobile{display:none;} }
+            </style>
                 <div class="max-w-xl mb-16">
                     <h2 class="text-4xl font-playfair font-bold text-[#1A6B5A] mb-6">Una giornata con noi</h2>
                     <p class="text-gray-500">I momenti che scandiscono la crescita dei nostri piccoli.</p>
                 </div>
 
                 <!-- DESKTOP -->
-                <div class="hidden md:block">
+                <div id="tl-desktop">
                     <!-- Riga 1 -->
                     <div style="display:flex; align-items:flex-start;">
                         <div style="flex:1; text-align:center; position:relative;">
@@ -207,7 +211,7 @@ export async function renderHome() {
                 </div>
 
                 <!-- MOBILE: verticale -->
-                <div class="md:hidden">
+                <div id="tl-mobile">
                     <div style="display:flex; align-items:flex-start; gap:16px;">
                         <div style="display:flex; flex-direction:column; align-items:center; flex-shrink:0;">
                             <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center;">
