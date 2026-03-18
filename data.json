@@ -43,7 +43,7 @@
     { "icon": "activity", "title": "Psicomotricità", "age": "Sviluppo", "desc": "Consapevolezza del corpo e del movimento.", "hours": "Settimanale" },
     { "icon": "bus", "title": "Uscite Didattiche", "age": "Scoperta", "desc": "Esplorazione del territorio, inclusi viaggi a Milano, Rovigo, mare e lago.", "hours": "Periodiche" },
     { "icon": "leaf", "title": "Ecologia", "age": "Valori", "desc": "Educazione al rispetto della natura e orto didattico.", "hours": "Costante" },
-    { "icon": "church", "title": "IRC", "age": "Insegnamento", "desc": "Progetto di religione cattolica integrato.", "hours": "Opzionale" },
+    { "icon": "church", "title": "IRC", "age": "Insegnamento", "desc": "Progetto di religione cattolica integrato.", "hours": "Settimanale" },
     { "icon": "baby", "title": "Nido", "age": "0-2 anni", "desc": "Servizio nido in fase di attivazione.", "hours": "Prossimamente", "isNew": true }
   ],
   "team": [
