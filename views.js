@@ -30,7 +30,7 @@ export async function renderHome() {
                     <h1 class="text-5xl md:text-7xl font-playfair font-bold text-[#1A6B5A] leading-tight mb-6 reveal">
                         Dove il bambino impara ad essere <span class="text-[#F5A623] italic">se stesso.</span>
                     </h1>
-                    <p class="text-xl text-gray-600 mb-10 leading-relaxed reveal">Scuola dell'infanzia paritaria FISM dal 2000, con te, per loro.</p>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed reveal">Scuola dell'infanzia paritaria FISM — dal 2000, con te, per loro.</p>
                     <div class="flex flex-wrap gap-4 reveal">
                         <a href="tel:044274383" class="bg-[#1A6B5A] text-white px-8 py-4 rounded-full text-lg font-medium shadow-xl hover:bg-[#135245] transition-all">Chiama per informazioni</a>
                         <a href="#/metodo" class="border-2 border-[#1A6B5A] text-[#1A6B5A] px-8 py-4 rounded-full text-lg font-medium hover:bg-[#1A6B5A] hover:text-white transition-all">Scopri il metodo</a>
@@ -39,7 +39,7 @@ export async function renderHome() {
                 <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 reveal text-[#1A6B5A]">
                     <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Iscritta FISM</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="award" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Paritaria MIUR</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Calendario ministeriale</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Dal 2000</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="heart" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Cucina Interna</span></div>
                 </div>
             </div>
@@ -96,10 +96,12 @@ export async function renderHome() {
                         <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
                             <div class="text-left">
                                 <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2024</span>
-                                <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
-                                <p class="text-sm opacity-70 mt-0.5">€ 164.478,64</p>
+                                <p class="font-medium mt-1">MIUR — Contributo scuola paritaria</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
                             </div>
-                           <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
+                            <a href="URL_DEL_PDF_2024" target="_blank" class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
+                                <i data-lucide="download" class="w-4 h-4"></i> Scarica PDF
+                            </a>
                         </div>
 
                         <!-- ANNO 2022 -->
@@ -107,9 +109,11 @@ export async function renderHome() {
                             <div class="text-left">
                                 <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2022</span>
                                 <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
-                                <p class="text-sm opacity-70 mt-0.5">€ 128.663,43</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
                             </div>
-                            <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
+                            <a href="URL_DEL_PDF_2022" target="_blank" class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
+                                <i data-lucide="download" class="w-4 h-4"></i> Scarica PDF
+                            </a>
                         </div>
 
                         <!-- ANNO 2021 -->
@@ -117,7 +121,7 @@ export async function renderHome() {
                             <div class="text-left">
                                 <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
                                 <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
-                                <p class="text-sm opacity-70 mt-0.5">€ 129.741,51</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
                             </div>
                             <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                         </div>
@@ -127,7 +131,7 @@ export async function renderHome() {
                             <div class="text-left">
                                 <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2020</span>
                                 <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
-                                <p class="text-sm opacity-70 mt-0.5">€ 105.714,44</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
                             </div>
                             <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                         </div>
@@ -143,54 +147,26 @@ export async function renderHome() {
                     <h2 class="text-4xl font-playfair font-bold text-[#1A6B5A] mb-6">Una giornata con noi</h2>
                     <p class="text-gray-500">I momenti che scandiscono la crescita dei nostri piccoli.</p>
                 </div>
-                <div>
-
-                    <!-- Riga 1 -->
-                    <div style="display:flex; align-items:flex-start;">
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="position:absolute; top:21px; left:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
-                            <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    ${[
+                        {t: 'Accoglienza', h: '7:30 - 9:00', img: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=400&fit=crop'},
+                        {t: 'Attività', h: '9:00 - 11:30', img: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop'},
+                        {t: 'Pranzo', h: '11:30 - 12:30', img: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=400&h=400&fit=crop'},
+                        {t: 'Riposo', h: '12:30 - 14:30', img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop'},
+                        {t: 'Pomeriggio', h: '14:30 - 16:00', img: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=400&h=400&fit=crop'},
+                        {t: 'Uscita', h: '16:00 - 18:00', img: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=400&h=400&fit=crop'}
+                    ].map(m => `
+                        <div class="reveal group relative aspect-square overflow-hidden rounded-2xl">
+                            <img src="${m.img}" class="w-full h-full object-cover transition-transform group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity text-center px-4">
+                                <span class="text-white font-bold text-sm mb-1">${m.t}</span>
+                                <span class="text-[#F5A623] text-xs font-medium">${m.h}</span>
                             </div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">7:30 – 9:00</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Accoglienza</div>
                         </div>
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="position:absolute; top:21px; left:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
-                            <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            </div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">9:00 – 11:30</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Attività</div>
-                        </div>
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="width:42px; height:42px; border-radius:50%; background:#F5A623; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-                            </div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">11:30 – 12:30</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Pranzo</div>
-                        </div>
-                    </div>
-
-                    <!-- Connettore serpentina -->
-                    <div style="position:relative; height:80px;">
-                        <svg width="100%" height="80" preserveAspectRatio="none" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 250 0 Q 250 40 234 40 L 66 40 Q 50 40 50 80" fill="none" stroke="#c8e6da" stroke-width="2"/>
-                        </svg>
-                    </div>
-
-                    <!-- Riga 2 -->
-                    <div style="display:flex; align-items:flex-start;">
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="width:42px; height:42px; border-radius:50%; background:#1A6B5A; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; position:relative; z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M17 18a5 5 0 00-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><polyline points="8,6 12,2 16,6"/></svg>
-                            </div>
-                            <div style="font-size:11px; color:#F5A623; font-weight:500; margin-bottom:3px;">12:30 – 14:30</div>
-                            <div style="font-size:13px; font-weight:600; color:#2D3436;">Riposo</div>
-                        </div>
-                        <div style="flex:1; text-align:center; position:relative;">
-                            <div style="position:absolute; top:21px; right:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
-                            <div style="position:absolute; top:21px; left:50%; width:100%; height:2px; background:#c8e6da; z-index:0;"></div>
+                    `).join('')}
+                </div>
+            </div>
+        </section>
 
         <section class="py-24 bg-[#FCF9F5]">
             <div class="container mx-auto px-6 text-center">
