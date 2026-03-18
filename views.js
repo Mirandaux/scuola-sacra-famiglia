@@ -62,7 +62,8 @@ export async function renderHome() {
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl font-playfair font-bold mb-8">I contributi che ci sostengono</h2>
                 <p class="max-w-3xl mx-auto mb-16 text-lg opacity-90 italic">Il nostro impegno è reso possibile anche grazie al supporto delle istituzioni che credono nel valore dell'educazione paritaria.</p>
-                <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+
+                <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-20">
                     <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
                         <i data-lucide="landmark" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
                         <h4 class="font-bold text-xl mb-3">MIUR</h4>
@@ -77,6 +78,64 @@ export async function renderHome() {
                         <i data-lucide="users" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
                         <h4 class="font-bold text-xl mb-3">Enti Locali</h4>
                         <p class="text-sm opacity-80 leading-relaxed">Progetti specifici per l'inclusione e il benessere infantile.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-3xl mx-auto border border-white/20 rounded-3xl bg-white/5 overflow-hidden reveal">
+                    <div class="px-8 py-5 border-b border-white/10">
+                        <h3 class="font-bold text-lg tracking-wide">Erogazioni pubbliche — Legge n.124/2017, art.1 commi 125-129</h3>
+                    </div>
+                    <div class="divide-y divide-white/10">
+
+                        <!-- =============================================
+                             AGGIORNA QUI OGNI ANNO
+                             Copia un blocco e aggiorna anno, ente, importo e URL PDF
+                             ============================================= -->
+
+                        <!-- ANNO 2024 -->
+                        <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                            <div class="text-left">
+                                <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2024</span>
+                                <p class="font-medium mt-1">MIUR — Contributo scuola paritaria</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
+                            </div>
+                            <a href="URL_DEL_PDF_2024" target="_blank" class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
+                                <i data-lucide="download" class="w-4 h-4"></i> Scarica PDF
+                            </a>
+                        </div>
+
+                        <!-- ANNO 2022 -->
+                        <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                            <div class="text-left">
+                                <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2022</span>
+                                <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
+                            </div>
+                            <a href="URL_DEL_PDF_2022" target="_blank" class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
+                                <i data-lucide="download" class="w-4 h-4"></i> Scarica PDF
+                            </a>
+                        </div>
+
+                        <!-- ANNO 2021 -->
+                        <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                            <div class="text-left">
+                                <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
+                                <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
+                            </div>
+                            <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
+                        </div>
+
+                        <!-- ANNO 2020 -->
+                        <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                            <div class="text-left">
+                                <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2020</span>
+                                <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
+                            </div>
+                            <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
+                        </div>
+
                     </div>
                 </div>
             </div>
