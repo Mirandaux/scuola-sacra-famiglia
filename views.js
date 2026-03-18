@@ -97,8 +97,8 @@ export async function renderHome() {
                 <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
                     <div class="text-left">
                         <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2024</span>
-                        <p class="font-medium mt-1">MIUR — Contributo scuola paritaria</p>
-                        <p class="text-sm opacity-70 mt-0.5">€ 12.450,00</p>
+                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
+                        <p class="text-sm opacity-70 mt-0.5">€ 170.563,09</p>
                     </div>
                     <a href="URL_DEL_PDF_2024.pdf" target="_blank"
                        class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
@@ -111,22 +111,31 @@ export async function renderHome() {
                 <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
                     <div class="text-left">
                         <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2022</span>
-                        <p class="font-medium mt-1">Comune di Roverchiara — Convenzione territoriale</p>
-                        <p class="text-sm opacity-70 mt-0.5">€ 3.200,00</p>
+                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
+                        <p class="text-sm opacity-70 mt-0.5">€ 128.663,43</p>
                     </div>
-                    <a href="URL_DEL_PDF_2022.pdf" target="_blank"
-                       class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
-                        <i data-lucide="download" class="w-4 h-4"></i>
-                        Scarica PDF
-                    </a>
+                    <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                 </div>
 
                 <!-- ANNO 2021 — senza PDF -->
                 <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
                     <div class="text-left">
                         <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
-                        <p class="font-medium mt-1">MIUR — Contributo scuola paritaria</p>
-                        <p class="text-sm opacity-70 mt-0.5">€ 11.800,00</p>
+                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
+                        <p class="text-sm opacity-70 mt-0.5">€ 129.741,51</p>
+                    </div>
+                    <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
+                </div>
+
+            </div>
+        </div>
+        
+         <!-- ANNO 2020 — senza PDF -->
+                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                    <div class="text-left">
+                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
+                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
+                        <p class="text-sm opacity-70 mt-0.5">€ 105.714,44</p>
                     </div>
                     <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                 </div>
