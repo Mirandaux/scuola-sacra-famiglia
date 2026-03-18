@@ -90,7 +90,7 @@ export async function renderHome() {
                 </div>
 
                 <!-- Desktop: serpentina -->
-                <div class="hidden md:block">
+                <div class="hidden md:block" style="overflow:hidden;">
                     <div style="display:flex;align-items:flex-start;">
                         <div style="flex:1;text-align:center;position:relative;">
                             <div style="position:absolute;top:21px;left:50%;width:100%;height:2px;background:#c8e6da;z-index:0;"></div>
