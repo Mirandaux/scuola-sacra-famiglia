@@ -92,6 +92,19 @@ export async function renderHome() {
                      AGGIORNA QUI OGNI ANNO
                      Copia e incolla un blocco <div> per ogni voce
                      ============================================= -->
+                <!-- ANNO 2025 -->
+                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                    <div class="text-left">
+                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2025</span>
+                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
+                        <p class="text-sm opacity-70 mt-0.5">Somma in arrivo post approvazione del bilancio</p>
+                    </div>
+                    <a href="URL_DEL_PDF_2024.pdf" target="_blank"
+                       class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Scarica PDF
+                    </a>
+                </div>
 
                 <!-- ANNO 2024 -->
                 <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
@@ -123,19 +136,6 @@ export async function renderHome() {
                         <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
                         <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
                         <p class="text-sm opacity-70 mt-0.5">€ 129.741,51</p>
-                    </div>
-                    <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
-                </div>
-
-            </div>
-        </div>
-        
-         <!-- ANNO 2020 — senza PDF -->
-                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
-                    <div class="text-left">
-                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
-                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
-                        <p class="text-sm opacity-70 mt-0.5">€ 105.714,44</p>
                     </div>
                     <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                 </div>
