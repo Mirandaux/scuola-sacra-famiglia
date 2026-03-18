@@ -1,11 +1,11 @@
 import { renderHome, renderMetodo, renderServizi, renderTeam, renderIscrizioni, renderFAQ, renderContatti } from './views.js';
 
 const routes = {
-    '/': { render: renderHome, title: 'Home | Scuola Materna Sacra Famiglia', desc: 'Scuola dell\'infanzia paritaria a Roverchiara (VR). Dove il bambino impara ad essere se stesso.' },
+    '/': { render: renderHome, title: 'Home | Scuola Infanzia Paritaria Sacra Famiglia', desc: 'Scuola dell\'infanzia paritaria a Roverchiara (VR). Dove il bambino impara ad essere se stesso.' },
     '/metodo': { render: renderMetodo, title: 'Il Metodo | Scuola Materna Sacra Famiglia', desc: 'Il nostro approccio pedagogico: gioco destrutturato e bambino al centro.' },
     '/servizi': { render: renderServizi, title: 'Servizi | Scuola Materna Sacra Famiglia', desc: 'Sezione primavera, mensa interna, post-orario e laboratori.' },
     '/team': { render: renderTeam, title: 'Il Team | Scuola Materna Sacra Famiglia', desc: 'Le educatrici che accompagnano i vostri figli con passione e stabilità.' },
-    '/iscrizioni': { render: renderIscrizioni, title: 'Iscrizioni | Scuola Materna Sacra Famiglia', desc: 'Informazioni su rette ISEE e procedura di iscrizione.' },
+    '/iscrizioni': { render: renderIscrizioni, title: 'Iscrizioni | Scuola Materna Sacra Famiglia', desc: 'Informazioni su rette e procedura di iscrizione.' },
     '/faq': { render: renderFAQ, title: 'FAQ | Scuola Materna Sacra Famiglia', desc: 'Domande frequenti per i genitori.' },
     '/contatti': { render: renderContatti, title: 'Contatti | Scuola Materna Sacra Famiglia', desc: 'Contattaci o vieni a trovarci a Roverchiara.' }
 };
