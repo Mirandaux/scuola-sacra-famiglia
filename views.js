@@ -30,7 +30,7 @@ export async function renderHome() {
                     <h1 class="text-5xl md:text-7xl font-playfair font-bold text-[#1A6B5A] leading-tight mb-6 reveal">
                         Dove il bambino impara ad essere <span class="text-[#F5A623] italic">se stesso.</span>
                     </h1>
-                    <p class="text-xl text-gray-600 mb-10 leading-relaxed reveal">Scuola dell'infanzia paritaria FISM — dal 2000, con te, per loro.</p>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed reveal">Scuola dell'infanzia paritaria FISM dal 2000, con te, per loro.</p>
                     <div class="flex flex-wrap gap-4 reveal">
                         <a href="tel:044274383" class="bg-[#1A6B5A] text-white px-8 py-4 rounded-full text-lg font-medium shadow-xl hover:bg-[#135245] transition-all">Chiama per informazioni</a>
                         <a href="#/metodo" class="border-2 border-[#1A6B5A] text-[#1A6B5A] px-8 py-4 rounded-full text-lg font-medium hover:bg-[#1A6B5A] hover:text-white transition-all">Scopri il metodo</a>
@@ -39,7 +39,7 @@ export async function renderHome() {
                 <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 reveal text-[#1A6B5A]">
                     <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Iscritta FISM</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="award" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Paritaria MIUR</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Dal 2000</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Calendario ministeriale</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="heart" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Cucina Interna</span></div>
                 </div>
             </div>
@@ -96,12 +96,10 @@ export async function renderHome() {
                         <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
                             <div class="text-left">
                                 <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2024</span>
-                                <p class="font-medium mt-1">MIUR — Contributo scuola paritaria</p>
-                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
+                                <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 170.563,09</p>
                             </div>
-                            <a href="URL_DEL_PDF_2024" target="_blank" class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
-                                <i data-lucide="download" class="w-4 h-4"></i> Scarica PDF
-                            </a>
+                            <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                         </div>
 
                         <!-- ANNO 2022 -->
@@ -109,11 +107,9 @@ export async function renderHome() {
                             <div class="text-left">
                                 <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2022</span>
                                 <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
-                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 128.663,43</p>
                             </div>
-                            <a href="URL_DEL_PDF_2022" target="_blank" class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
-                                <i data-lucide="download" class="w-4 h-4"></i> Scarica PDF
-                            </a>
+                            <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                         </div>
 
                         <!-- ANNO 2021 -->
@@ -121,7 +117,7 @@ export async function renderHome() {
                             <div class="text-left">
                                 <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
                                 <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
-                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 129.741,51</p>
                             </div>
                             <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                         </div>
@@ -131,7 +127,7 @@ export async function renderHome() {
                             <div class="text-left">
                                 <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2020</span>
                                 <p class="font-medium mt-1">Enti pubblici — Legge n.124-2017</p>
-                                <p class="text-sm opacity-70 mt-0.5">€ 00.000,00</p>
+                                <p class="text-sm opacity-70 mt-0.5">€ 105.714,44</p>
                             </div>
                             <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
                         </div>
