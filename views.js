@@ -30,7 +30,7 @@ export async function renderHome() {
                     <h1 class="text-5xl md:text-7xl font-playfair font-bold text-[#1A6B5A] leading-tight mb-6 reveal">
                         Dove il bambino impara ad essere <span class="text-[#F5A623] italic">se stesso.</span>
                     </h1>
-                    <p class="text-xl text-gray-600 mb-10 leading-relaxed reveal">Scuola dell'infanzia paritaria FISM — dal 2000, con te, per loro.</p>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed reveal">Scuola dell'infanzia paritaria FISM dal 2000, con te, per loro.</p>
                     <div class="flex flex-wrap gap-4 reveal">
                         <a href="tel:044274383" class="bg-[#1A6B5A] text-white px-8 py-4 rounded-full text-lg font-medium shadow-xl hover:bg-[#135245] transition-all">Chiama per informazioni</a>
                         <a href="#/metodo" class="border-2 border-[#1A6B5A] text-[#1A6B5A] px-8 py-4 rounded-full text-lg font-medium hover:bg-[#1A6B5A] hover:text-white transition-all">Scopri il metodo</a>
@@ -39,7 +39,7 @@ export async function renderHome() {
                 <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 reveal text-[#1A6B5A]">
                     <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Iscritta FISM</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="award" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Paritaria MIUR</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Dal 2000</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Calendario ministeriale</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="heart" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Cucina Interna</span></div>
                 </div>
             </div>
@@ -59,28 +59,83 @@ export async function renderHome() {
         </section>
 
         <section class="py-24 bg-[#1A6B5A] text-white border-t border-white/10">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-playfair font-bold mb-8">I contributi che ci sostengono</h2>
-                <p class="max-w-3xl mx-auto mb-16 text-lg opacity-90 italic">Il nostro impegno è reso possibile anche grazie al supporto delle istituzioni che credono nel valore dell'educazione paritaria.</p>
-                <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-                    <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
-                        <i data-lucide="landmark" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
-                        <h4 class="font-bold text-xl mb-3">MIUR</h4>
-                        <p class="text-sm opacity-80 leading-relaxed">Contributi statali per le scuole paritarie riconosciute.</p>
-                    </div>
-                    <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
-                        <i data-lucide="home" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
-                        <h4 class="font-bold text-xl mb-3">Comune Roverchiara</h4>
-                        <p class="text-sm opacity-80 leading-relaxed">Convenzioni territoriali per il sostegno alle famiglie.</p>
-                    </div>
-                    <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
-                        <i data-lucide="users" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
-                        <h4 class="font-bold text-xl mb-3">Enti Locali</h4>
-                        <p class="text-sm opacity-80 leading-relaxed">Progetti specifici per l'inclusione e il benessere infantile.</p>
-                    </div>
-                </div>
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-playfair font-bold mb-8">I contributi che ci sostengono</h2>
+        <p class="max-w-3xl mx-auto mb-16 text-lg opacity-90 italic">Il nostro impegno è reso possibile anche grazie al supporto delle istituzioni che credono nel valore dell'educazione paritaria.</p>
+        
+        <!-- Le tre card fisse -->
+        <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-20">
+            <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
+                <i data-lucide="landmark" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
+                <h4 class="font-bold text-xl mb-3">MIUR</h4>
+                <p class="text-sm opacity-80 leading-relaxed">Contributi statali per le scuole paritarie riconosciute.</p>
             </div>
-        </section>
+            <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
+                <i data-lucide="home" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
+                <h4 class="font-bold text-xl mb-3">Comune Roverchiara</h4>
+                <p class="text-sm opacity-80 leading-relaxed">Convenzioni territoriali per il sostegno alle famiglie.</p>
+            </div>
+            <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
+                <i data-lucide="users" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
+                <h4 class="font-bold text-xl mb-3">Enti Locali</h4>
+                <p class="text-sm opacity-80 leading-relaxed">Progetti specifici per l'inclusione e il benessere infantile.</p>
+            </div>
+        </div>
+
+        <!-- Tabella contributi annuali - aggiorna solo questa parte ogni anno -->
+        <div class="max-w-3xl mx-auto border border-white/20 rounded-3xl bg-white/5 overflow-hidden">
+            <div class="px-8 py-5 border-b border-white/10">
+                <h3 class="font-bold text-lg tracking-wide">Erogazioni pubbliche — Legge n.124/2017, art.1 commi 125-129</h3>
+            </div>
+            <div class="divide-y divide-white/10" id="contributi-list">
+                <!-- =============================================
+                     AGGIORNA QUI OGNI ANNO
+                     Copia e incolla un blocco <div> per ogni voce
+                     ============================================= -->
+
+                <!-- ANNO 2024 -->
+                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                    <div class="text-left">
+                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2024</span>
+                        <p class="font-medium mt-1">MIUR — Contributo scuola paritaria</p>
+                        <p class="text-sm opacity-70 mt-0.5">€ 12.450,00</p>
+                    </div>
+                    <a href="URL_DEL_PDF_2024.pdf" target="_blank"
+                       class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Scarica PDF
+                    </a>
+                </div>
+
+                <!-- ANNO 2022 -->
+                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                    <div class="text-left">
+                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2022</span>
+                        <p class="font-medium mt-1">Comune di Roverchiara — Convenzione territoriale</p>
+                        <p class="text-sm opacity-70 mt-0.5">€ 3.200,00</p>
+                    </div>
+                    <a href="URL_DEL_PDF_2022.pdf" target="_blank"
+                       class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Scarica PDF
+                    </a>
+                </div>
+
+                <!-- ANNO 2021 — senza PDF -->
+                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
+                    <div class="text-left">
+                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
+                        <p class="font-medium mt-1">MIUR — Contributo scuola paritaria</p>
+                        <p class="text-sm opacity-70 mt-0.5">€ 11.800,00</p>
+                    </div>
+                    <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
 
         <section class="py-24 bg-white">
             <div class="container mx-auto px-6">
