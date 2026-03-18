@@ -543,11 +543,11 @@ export async function renderIscrizioni() {
                     <div class="bg-[#1A6B5A] text-white p-10 rounded-[3rem]">
                         <h3 class="text-2xl font-playfair font-bold mb-6">Quanto costa?</h3>
                         <div class="space-y-4 text-sm opacity-90 leading-relaxed">
-                            <p>Crediamo nell'accessibilità: applichiamo <strong>rette modulate in base all'ISEE</strong> per venire incontro alle esigenze di ogni famiglia.</p>
+                            <p>Crediamo nell'accessibilità: applichiamo <strong>rette calmierate</strong> grazie ai contributi pubblici per venire incontro alle esigenze di ogni famiglia.</p>
                             <p>La retta include il servizio mensa interna e tutti i laboratori standard (inglese, psicomotricità).</p>
                         </div>
                         <div class="mt-8 pt-6 border-t border-white/20">
-                            <p class="text-xs italic opacity-80">Contattaci per una simulazione personalizzata basata sulla tua fascia ISEE.</p>
+                            <p class="text-xs italic opacity-80">Contattaci per avere tutte le informazioni necessarie.</p>
                         </div>
                     </div>
                 </div>
