@@ -21,7 +21,6 @@ Sito statico, **senza build step**: si pubblica su Vercel così com'è.
 | `router.js` | Routing hash-based + animazioni |
 | `views.js` | Rendering delle pagine |
 | `navigation.js` | Menu mobile |
-| `form_handler.js` | Invio form contatti (Formspree) |
 | `vercel.json` | Configurazione di hosting |
 
 ## Pagine
@@ -40,15 +39,10 @@ Quasi tutto si modifica in **`data.json`** senza toccare il codice:
 - **Contributi pubblici (Legge 124/2017)** → `contributi`
   (aggiorna importo e, quando disponibile, l'URL del PDF nel campo `pdf`)
 
-## Attivare il form contatti (Formspree)
+## Contatti
 
-Il form nella pagina Contatti usa [Formspree](https://formspree.io) (piano gratuito):
-
-1. Crea un form su Formspree indicando come destinatario `sacrafami.roverchi@libero.it`.
-2. Copia l'**ID del form** (es. `xldbzabc`).
-3. In `form_handler.js` sostituisci `your-form-id` con il tuo ID.
-
-Finché non è configurato, il form invita a contattare la scuola via email/telefono.
+La pagina Contatti invita a chiamare la scuola (**0442 74383**) o a scrivere
+via email (`sacrafami.roverchi@libero.it`). Non è previsto un form da compilare.
 
 ## Pubblicare su Vercel
 

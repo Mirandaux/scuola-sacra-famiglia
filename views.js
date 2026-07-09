@@ -546,7 +546,7 @@ export async function renderContatti() {
                         <div class="reveal mb-10">
                             <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Contatti</span>
                             <h1 class="text-5xl font-display font-bold text-sage mb-5">Mettiamoci in contatto</h1>
-                            <p class="text-ink/60 text-lg">La nostra porta è sempre aperta. Passa a trovarci, chiamaci o scrivici usando il form: ti risponderemo al più presto.</p>
+                            <p class="text-ink/60 text-lg">La nostra porta è sempre aperta. Passa a trovarci o chiamaci: saremo felici di rispondere a ogni tua domanda.</p>
                         </div>
                         <div class="grid sm:grid-cols-2 gap-4 mb-8">
                             ${infoCards.map(c => `
@@ -564,34 +564,35 @@ export async function renderContatti() {
                     </div>
 
                     <div class="lg:sticky lg:top-28 reveal">
-                        <div class="bg-cream p-8 md:p-10 rounded-[2.5rem] border border-sage/10 shadow-sm">
-                            <h3 class="text-2xl font-display font-bold text-sage mb-2">Scrivici un messaggio</h3>
-                            <p class="text-ink/55 text-sm mb-8">Compila il form e ti ricontatteremo. I campi con * sono obbligatori.</p>
-                            <form id="contact-form" class="space-y-5" novalidate>
-                                <div>
-                                    <label for="cf-name" class="block text-sm font-semibold text-sage mb-2">Nome e cognome *</label>
-                                    <input id="cf-name" name="nome" type="text" required autocomplete="name" class="field w-full px-5 py-3.5 rounded-2xl border border-sage/15 bg-white/70 placeholder:text-ink/30" placeholder="Il tuo nome">
-                                </div>
-                                <div class="grid sm:grid-cols-2 gap-5">
-                                    <div>
-                                        <label for="cf-email" class="block text-sm font-semibold text-sage mb-2">Email *</label>
-                                        <input id="cf-email" name="email" type="email" required autocomplete="email" class="field w-full px-5 py-3.5 rounded-2xl border border-sage/15 bg-white/70 placeholder:text-ink/30" placeholder="tu@email.it">
-                                    </div>
-                                    <div>
-                                        <label for="cf-phone" class="block text-sm font-semibold text-sage mb-2">Telefono</label>
-                                        <input id="cf-phone" name="telefono" type="tel" autocomplete="tel" class="field w-full px-5 py-3.5 rounded-2xl border border-sage/15 bg-white/70 placeholder:text-ink/30" placeholder="Facoltativo">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="cf-msg" class="block text-sm font-semibold text-sage mb-2">Messaggio *</label>
-                                    <textarea id="cf-msg" name="messaggio" rows="4" required class="field w-full px-5 py-3.5 rounded-2xl border border-sage/15 bg-white/70 placeholder:text-ink/30 resize-none" placeholder="Come possiamo aiutarti?"></textarea>
-                                </div>
-                                <button type="submit" class="w-full bg-sage text-white py-4 rounded-2xl font-bold shadow-lg shadow-sage/20 hover:bg-sage-dark transition-all flex items-center justify-center gap-2">
-                                    <i data-lucide="send" class="w-5 h-5"></i> Invia messaggio
-                                </button>
-                                <p class="form-status hidden"></p>
-                                <p class="text-xs text-ink/40 text-center">Inviando accetti di essere ricontattato. Non condividiamo i tuoi dati con terzi.</p>
-                            </form>
+                        <div class="bg-sage text-white p-8 md:p-10 rounded-[2.5rem] shadow-xl shadow-sage/20 relative overflow-hidden">
+                            <div class="blob w-56 h-56 bg-gold/25 -top-10 -right-10"></div>
+                            <div class="relative z-10">
+                                <span class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-6">
+                                    <i data-lucide="phone-call" class="w-7 h-7 text-gold"></i>
+                                </span>
+                                <h3 class="text-2xl font-display font-bold mb-3">Chiamaci, siamo qui per te</h3>
+                                <p class="text-white/80 text-sm mb-8 leading-relaxed">Il modo più veloce per avere informazioni, prenotare una visita o parlare con la coordinatrice. Ti aspettiamo!</p>
+
+                                <a href="tel:044274383" class="flex items-center gap-4 bg-white text-sage rounded-3xl p-5 mb-4 hover:scale-[1.02] transition-transform shadow-lg">
+                                    <span class="w-12 h-12 rounded-2xl bg-gold/15 text-gold flex items-center justify-center shrink-0"><i data-lucide="phone" class="w-6 h-6"></i></span>
+                                    <span>
+                                        <span class="block text-xs uppercase tracking-widest text-ink/40 font-bold">Telefono</span>
+                                        <span class="block text-2xl font-display font-bold">0442 74383</span>
+                                    </span>
+                                </a>
+
+                                <a href="mailto:sacrafami.roverchi@libero.it" class="flex items-center gap-4 bg-white/10 rounded-3xl p-5 hover:bg-white/15 transition-colors">
+                                    <span class="w-12 h-12 rounded-2xl bg-white/10 text-gold flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-6 h-6"></i></span>
+                                    <span class="min-w-0">
+                                        <span class="block text-xs uppercase tracking-widest text-white/50 font-bold">Email</span>
+                                        <span class="block font-semibold break-all">sacrafami.roverchi@libero.it</span>
+                                    </span>
+                                </a>
+
+                                <p class="flex items-center gap-2 text-white/70 text-sm mt-8">
+                                    <i data-lucide="clock" class="w-4 h-4 text-gold shrink-0"></i> Segreteria: Lun-Ven 09:00 - 12:00
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

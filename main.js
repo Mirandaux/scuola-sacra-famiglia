@@ -1,6 +1,5 @@
 import { initRouter } from './router.js';
 import { setupNavigation } from './navigation.js';
-import { handleForms } from './form_handler.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Icons in the static shell (nav / footer / floating buttons)
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupNavigation();
     initRouter();
-    handleForms();
 
     setupScrollEffects();
 });
