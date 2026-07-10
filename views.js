@@ -1,645 +1,598 @@
+let _data = null;
 async function fetchData() {
+    if (_data) return _data;
     const res = await fetch('data.json');
-    return await res.json();
+    _data = await res.json();
+    return _data;
 }
 
-function renderContactButtons() {
+/* ---------- Shared building blocks ---------- */
+
+function contactButtons() {
     return `
         <div class="flex flex-wrap gap-4 justify-center">
-            <a href="tel:044274383" class="bg-[#1A6B5A] text-white px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform flex items-center gap-2">
-                <i data-lucide="phone" class="w-5 h-5"></i> Chiama: 0442 74383
+            <a href="tel:044274383" class="bg-white text-sage px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform flex items-center gap-2">
+                <i data-lucide="phone" class="w-5 h-5"></i> 0442 74383
             </a>
-            <a href="mailto:sacrafami.roverchi@libero.it" class="bg-[#F5A623] text-white px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform flex items-center gap-2">
-                <i data-lucide="mail" class="w-5 h-5"></i> Email: sacrafami.roverchi@libero.it
+            <a href="mailto:sacrafami.roverchi@libero.it" class="bg-gold text-white px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform flex items-center gap-2">
+                <i data-lucide="mail" class="w-5 h-5"></i> Scrivici una mail
             </a>
-        </div>
-    `;
+        </div>`;
 }
+
+function sectionHeading(eyebrow, title, sub, dark = false) {
+    const titleColor = dark ? 'text-white' : 'text-sage';
+    const subColor = dark ? 'text-white/80' : 'text-ink/50';
+    return `
+        <div class="max-w-2xl mx-auto text-center mb-16 reveal">
+            <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">${eyebrow}</span>
+            <h2 class="text-3xl md:text-5xl font-display font-bold ${titleColor} mb-5">${title}</h2>
+            ${sub ? `<p class="${subColor} text-lg leading-relaxed">${sub}</p>` : ''}
+        </div>`;
+}
+
+function ctaBanner(title, sub) {
+    return `
+        <section class="py-24 bg-sage relative overflow-hidden">
+            <div class="blob w-72 h-72 bg-gold/30 -top-10 -right-10"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-6 reveal">${title}</h2>
+                <p class="max-w-2xl mx-auto mb-10 text-white/85 text-lg reveal">${sub}</p>
+                <div class="reveal">${contactButtons()}</div>
+            </div>
+        </section>`;
+}
+
+/* ---------- HOME ---------- */
 
 export async function renderHome() {
     const data = await fetchData();
+
+    const trustItems = ['Iscritta FISM', 'Paritaria MIUR', 'Cucina Interna', 'Calendario Ministeriale', 'Post-orario 18:00', 'Sezione Primavera'];
+    const marquee = trustItems.concat(trustItems).map(t => `
+        <span class="flex items-center gap-2 text-sage/80 font-semibold whitespace-nowrap">
+            <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i> ${t}
+        </span>`).join('');
+
+    const counters = data.counters.map(c => `
+        <div class="reveal">
+            <i data-lucide="${c.icon}" class="w-7 h-7 text-gold mx-auto mb-3"></i>
+            <div class="text-4xl md:text-5xl font-display font-bold mb-2 counter-val" data-target="${c.val}" data-suffix="${c.suffix}">0</div>
+            <p class="text-xs md:text-sm opacity-80 uppercase tracking-widest">${c.label}</p>
+        </div>`).join('');
+
     return `
-        <section class="relative min-h-[90vh] pt-32 pb-20 flex items-center overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1510531704581-5b2870972060?q=80&w=2070" class="w-full h-full object-cover opacity-20">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#FCF9F5]/80 to-[#FCF9F5]"></div>
-            </div>
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="max-w-3xl">
-                    <span class="inline-block px-4 py-1 rounded-full bg-[#1A6B5A]/10 text-[#1A6B5A] text-sm font-semibold mb-6 reveal">Paritaria FISM dal 2000</span>
-                    <h1 class="text-5xl md:text-7xl font-playfair font-bold text-[#1A6B5A] leading-tight mb-6 reveal">
-                        Dove il bambino impara ad essere <span class="text-[#F5A623] italic">se stesso.</span>
+        <!-- HERO -->
+        <section class="relative min-h-[92vh] flex items-center pt-32 pb-20 overflow-hidden">
+            <div class="blob w-[28rem] h-[28rem] bg-sage/20 -top-20 -left-24"></div>
+            <div class="blob w-[24rem] h-[24rem] bg-gold/20 top-40 right-0" style="animation-delay:-5s"></div>
+            <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage/10 text-sage text-sm font-semibold mb-6 reveal">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-gold"></i> Paritaria FISM dal 2000
+                    </span>
+                    <h1 class="text-5xl md:text-7xl font-display font-bold text-sage leading-[1.05] mb-6 reveal">
+                        Dove il bambino impara ad essere <span class="hero-highlight text-gold italic">se stesso.</span>
                     </h1>
-                    <p class="text-xl text-gray-600 mb-10 leading-relaxed reveal">Scuola dell'infanzia paritaria FISM dal 2000, con te, per loro.</p>
+                    <p class="text-lg md:text-xl text-ink/70 mb-10 leading-relaxed max-w-xl reveal">
+                        Scuola dell'infanzia paritaria FISM a Roverchiara. Un ambiente caldo e familiare, dove il gioco diventa scoperta e ogni giornata è pensata su misura per crescere sereni.
+                    </p>
                     <div class="flex flex-wrap gap-4 reveal">
-                        <a href="tel:044274383" class="bg-[#1A6B5A] text-white px-8 py-4 rounded-full text-lg font-medium shadow-xl hover:bg-[#135245] transition-all">Chiama per informazioni</a>
-                        <a href="#/metodo" class="border-2 border-[#1A6B5A] text-[#1A6B5A] px-8 py-4 rounded-full text-lg font-medium hover:bg-[#1A6B5A] hover:text-white transition-all">Scopri il metodo</a>
+                        <a href="#/iscrizioni" class="bg-sage text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl shadow-sage/20 hover:bg-sage-dark hover:scale-105 transition-all flex items-center gap-2">
+                            Prenota una visita <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#/metodo" class="border-2 border-sage/20 text-sage px-8 py-4 rounded-full text-lg font-semibold hover:border-sage hover:bg-sage hover:text-white transition-all">
+                            Scopri il metodo
+                        </a>
                     </div>
                 </div>
-                <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 reveal text-[#1A6B5A]">
-                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Iscritta FISM</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="award" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Paritaria MIUR</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Calendario ministeriale</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="heart" class="text-[#F5A623]"></i> <span class="font-medium text-sm uppercase tracking-wider">Cucina Interna</span></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20 bg-[#1A6B5A] text-white">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-                    ${data.counters.map(c => `
-                        <div>
-                            <div class="text-4xl md:text-5xl font-playfair font-bold mb-2 counter-val" data-target="${c.val}">0</div>
-                            <p class="text-sm opacity-80 uppercase tracking-widest">${c.label}</p>
+                <div class="lg:col-span-5 reveal">
+                    <div class="relative">
+                        <div class="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5] rotate-2 hover:rotate-0 transition-transform duration-700">
+                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1000&auto=format&fit=crop" alt="Bambini che giocano" class="w-full h-full object-cover" loading="eager">
                         </div>
-                    `).join('')}
+                        <div class="absolute -bottom-6 -left-6 bg-white rounded-3xl shadow-xl p-5 flex items-center gap-4 max-w-[15rem]">
+                            <span class="w-12 h-12 rounded-2xl bg-gold/15 text-gold flex items-center justify-center shrink-0">
+                                <i data-lucide="utensils"></i>
+                            </span>
+                            <p class="text-sm font-semibold text-sage leading-snug">Cucina interna con menu freschi ogni giorno</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- TRUST MARQUEE -->
+        <div class="marquee overflow-hidden border-y border-sage/10 bg-white/60 py-5">
+            <div class="marquee-track">${marquee}</div>
+        </div>
+
+        <!-- COUNTERS -->
+        <section class="py-20 bg-sage text-white relative overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+                    ${counters}
+                </div>
+            </div>
+        </section>
+
+        <!-- UNA GIORNATA CON NOI -->
         <section class="py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="max-w-xl mb-16">
-                    <h2 class="text-4xl font-playfair font-bold text-[#1A6B5A] mb-6">Una giornata con noi</h2>
-                    <p class="text-gray-500">I momenti che scandiscono la crescita dei nostri piccoli.</p>
-                </div>
-
-                <!-- Desktop: serpentina -->
-                <div class="hidden md:block" style="overflow:hidden;">
-                    <div style="display:flex;align-items:flex-start;">
-                        <div style="flex:1;text-align:center;position:relative;">
-                            <div style="position:absolute;top:21px;left:50%;width:100%;height:2px;background:#c8e6da;z-index:0;"></div>
-                            <div style="width:42px;height:42px;border-radius:50%;background:#1A6B5A;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-                            </div>
-                            <div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:3px;">7:30 - 9:00</div>
-                            <div style="font-size:13px;font-weight:600;color:#2D3436;">Accoglienza</div>
-                        </div>
-                        <div style="flex:1;text-align:center;position:relative;">
-                            <div style="position:absolute;top:21px;left:50%;width:100%;height:2px;background:#c8e6da;z-index:0;"></div>
-                            <div style="width:42px;height:42px;border-radius:50%;background:#1A6B5A;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                            </div>
-                            <div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:3px;">9:00 - 11:30</div>
-                            <div style="font-size:13px;font-weight:600;color:#2D3436;">Attività</div>
-                        </div>
-                        <div style="flex:1;text-align:center;position:relative;">
-                            <div style="width:42px;height:42px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-                            </div>
-                            <div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:3px;">11:30 - 12:30</div>
-                            <div style="font-size:13px;font-weight:600;color:#2D3436;">Pranzo</div>
-                        </div>
-                    </div>
-                    <div style="position:relative;height:80px;">
-                        <svg width="100%" height="80" preserveAspectRatio="none" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 250 0 Q 250 40 234 40 L 66 40 Q 50 40 50 80" fill="none" stroke="#c8e6da" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;">
-                        <div style="flex:1;text-align:center;position:relative;">
-                            <div style="position:absolute;top:21px;left:50%;width:100%;height:2px;background:#c8e6da;z-index:0;"></div>
-                            <div style="width:42px;height:42px;border-radius:50%;background:#1A6B5A;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M17 18a5 5 0 00-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><polyline points="8,6 12,2 16,6"/></svg>
-                            </div>
-                            <div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:3px;">12:30 - 14:30</div>
-                            <div style="font-size:13px;font-weight:600;color:#2D3436;">Riposo</div>
-                        </div>
-                        <div style="flex:1;text-align:center;position:relative;">
-                            <div style="position:absolute;top:21px;left:50%;width:100%;height:2px;background:#c8e6da;z-index:0;"></div>
-                            <div style="width:42px;height:42px;border-radius:50%;background:#1A6B5A;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-                            </div>
-                            <div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:3px;">14:30 - 16:00</div>
-                            <div style="font-size:13px;font-weight:600;color:#2D3436;">Pomeriggio</div>
-                        </div>
-                        <div style="flex:1;text-align:center;position:relative;">
-                            <div style="width:42px;height:42px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1;">
-                                <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                            </div>
-                            <div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:3px;">16:00 - 18:00</div>
-                            <div style="font-size:13px;font-weight:600;color:#2D3436;">Uscita</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mobile: verticale -->
-                <div class="md:hidden" style="max-width:360px;">
-                    <div style="display:flex;align-items:flex-start;gap:16px;">
-                        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-                            <div style="width:42px;height:42px;border-radius:50%;background:#1A6B5A;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
-                            <div style="width:2px;height:32px;background:#c8e6da;"></div>
-                        </div>
-                        <div style="padding-top:10px;padding-bottom:16px;"><div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:2px;">7:30 - 9:00</div><div style="font-size:14px;font-weight:600;color:#2D3436;">Accoglienza</div></div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:16px;">
-                        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-                            <div style="width:42px;height:42px;border-radius:50%;background:#1A6B5A;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div>
-                            <div style="width:2px;height:32px;background:#c8e6da;"></div>
-                        </div>
-                        <div style="padding-top:10px;padding-bottom:16px;"><div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:2px;">9:00 - 11:30</div><div style="font-size:14px;font-weight:600;color:#2D3436;">Attività</div></div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:16px;">
-                        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-                            <div style="width:42px;height:42px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-                            <div style="width:2px;height:32px;background:#c8e6da;"></div>
-                        </div>
-                        <div style="padding-top:10px;padding-bottom:16px;"><div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:2px;">11:30 - 12:30</div><div style="font-size:14px;font-weight:600;color:#2D3436;">Pranzo</div></div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:16px;">
-                        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-                            <div style="width:42px;height:42px;border-radius:50%;background:#1A6B5A;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M17 18a5 5 0 00-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><polyline points="8,6 12,2 16,6"/></svg></div>
-                            <div style="width:2px;height:32px;background:#c8e6da;"></div>
-                        </div>
-                        <div style="padding-top:10px;padding-bottom:16px;"><div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:2px;">12:30 - 14:30</div><div style="font-size:14px;font-weight:600;color:#2D3436;">Riposo</div></div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:16px;">
-                        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-                            <div style="width:42px;height:42px;border-radius:50%;background:#1A6B5A;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
-                            <div style="width:2px;height:32px;background:#c8e6da;"></div>
-                        </div>
-                        <div style="padding-top:10px;padding-bottom:16px;"><div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:2px;">14:30 - 16:00</div><div style="font-size:14px;font-weight:600;color:#2D3436;">Pomeriggio</div></div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:16px;">
-                        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-                            <div style="width:42px;height:42px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-                        </div>
-                        <div style="padding-top:10px;"><div style="font-size:11px;color:#F5A623;font-weight:500;margin-bottom:2px;">16:00 - 18:00</div><div style="font-size:14px;font-weight:600;color:#2D3436;">Uscita</div></div>
-                    </div>
-                </div>
-
+                ${sectionHeading('Il ritmo dei giorni', 'Una giornata con noi', 'I momenti che scandiscono la crescita dei nostri piccoli, dall\'accoglienza al saluto.')}
+                ${dayTimeline(data.day)}
             </div>
         </section>
 
-        <section class="py-24 bg-[#FCF9F5]">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-playfair font-bold text-[#1A6B5A] mb-8">Genitori Attivi</h2>
-                <p class="max-w-2xl mx-auto mb-12 text-gray-600 text-lg">La scuola è una comunità. Il coinvolgimento dei genitori è il cuore pulsante delle nostre iniziative extra-didattiche.</p>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-[#1A6B5A]/10 w-full md:w-auto min-w-[280px]">
-                        <h4 class="text-2xl font-playfair font-bold text-[#1A6B5A] mb-4">Gruppo Mamme</h4>
-                        <p class="text-sm text-gray-500 mb-6">Sostegno reciproco, laboratori e mercatini solidali.</p>
-                        <a href="tel:044274383" class="inline-block border border-[#1A6B5A] text-[#1A6B5A] px-6 py-2 rounded-full text-sm font-bold hover:bg-[#1A6B5A] hover:text-white transition-all">Unisciti</a>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-[#1A6B5A]/10 w-full md:w-auto min-w-[280px]">
-                        <h4 class="text-2xl font-playfair font-bold text-[#1A6B5A] mb-4">Gruppo Papà</h4>
-                        <p class="text-sm text-gray-500 mb-6">Manutenzione creativa degli spazi e gite comunitarie.</p>
-                        <a href="tel:044274383" class="inline-block border border-[#1A6B5A] text-[#1A6B5A] px-6 py-2 rounded-full text-sm font-bold hover:bg-[#1A6B5A] hover:text-white transition-all">Unisciti</a>
-                    </div>
+        <!-- GENITORI ATTIVI -->
+        <section class="py-24 bg-cream">
+            <div class="container mx-auto px-6">
+                ${sectionHeading('Comunità', 'Genitori Attivi', 'La scuola è una comunità: il coinvolgimento dei genitori è il cuore pulsante delle nostre iniziative extra-didattiche.')}
+                <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                    ${data.parents.map(p => `
+                        <div class="reveal lift bg-white p-10 rounded-4xl border border-sage/10 text-center">
+                            <div class="w-16 h-16 mx-auto rounded-2xl bg-sage/10 text-gold flex items-center justify-center mb-6">
+                                <i data-lucide="${p.icon}" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="text-2xl font-display font-bold text-sage mb-3">${p.title}</h4>
+                            <p class="text-ink/60 mb-6 leading-relaxed">${p.text}</p>
+                            <a href="tel:044274383" class="inline-flex items-center gap-2 border border-sage/20 text-sage px-6 py-2.5 rounded-full text-sm font-bold hover:bg-sage hover:text-white transition-all">
+                                <i data-lucide="hand-heart" class="w-4 h-4"></i> Unisciti
+                            </a>
+                        </div>`).join('')}
                 </div>
             </div>
         </section>
-        
- <section class="py-24 bg-[#1A6B5A] text-white border-t border-white/10">
-     <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-playfair font-bold mb-8">I contributi che ci sostengono</h2>
-        <p class="max-w-3xl mx-auto mb-16 text-lg opacity-90 italic">Il nostro impegno è reso possibile anche grazie al supporto delle istituzioni che credono nel valore dell'educazione paritaria.</p>
-        
-        <!-- Le tre card fisse -->
-        <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-20">
-            <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
-                <i data-lucide="landmark" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
-                <h4 class="font-bold text-xl mb-3">MIUR</h4>
-                <p class="text-sm opacity-80 leading-relaxed">Contributi statali per le scuole paritarie riconosciute.</p>
-            </div>
-            <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
-                <i data-lucide="home" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
-                <h4 class="font-bold text-xl mb-3">Comune Roverchiara</h4>
-                <p class="text-sm opacity-80 leading-relaxed">Convenzioni territoriali per il sostegno alle famiglie.</p>
-            </div>
-            <div class="p-8 border border-white/20 rounded-3xl bg-white/5 reveal">
-                <i data-lucide="users" class="w-12 h-12 text-[#F5A623] mx-auto mb-6"></i>
-                <h4 class="font-bold text-xl mb-3">Enti Locali</h4>
-                <p class="text-sm opacity-80 leading-relaxed">Progetti specifici per l'inclusione e il benessere infantile.</p>
-            </div>
-        </div>
 
-        <!-- Tabella contributi annuali - aggiorna solo questa parte ogni anno -->
-        <div class="max-w-3xl mx-auto border border-white/20 rounded-3xl bg-white/5 overflow-hidden">
-            <div class="px-8 py-5 border-b border-white/10">
-                <h3 class="font-bold text-lg tracking-wide">Erogazioni pubbliche — Legge n.124/2017, art.1 commi 125-129</h3>
-            </div>
-            <div class="divide-y divide-white/10" id="contributi-list">
-                <!-- =============================================
-                     AGGIORNA QUI OGNI ANNO
-                     Copia e incolla un blocco <div> per ogni voce
-                     ============================================= -->
-                <!-- ANNO 2025 -->
-                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
-                    <div class="text-left">
-                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2025</span>
-                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
-                        <p class="text-sm opacity-70 mt-0.5">Somma in arrivo post approvazione del bilancio</p>
-                    </div>
-                    <a href="URL_DEL_PDF_2024.pdf" target="_blank"
-                       class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
-                        <i data-lucide="download" class="w-4 h-4"></i>
-                        Scarica PDF
-                    </a>
+        <!-- CONTRIBUTI -->
+        <section class="py-24 bg-sage text-white relative overflow-hidden">
+            <div class="blob w-80 h-80 bg-gold/20 bottom-0 -left-20"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                ${sectionHeading('Trasparenza', 'I contributi che ci sostengono', 'Il nostro impegno è reso possibile anche grazie al supporto delle istituzioni che credono nel valore dell\'educazione paritaria.', true)}
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                    ${data.contribCards.map(c => `
+                        <div class="reveal lift p-8 border border-white/15 rounded-4xl bg-white/5 text-center backdrop-blur-sm">
+                            <i data-lucide="${c.icon}" class="w-11 h-11 text-gold mx-auto mb-5"></i>
+                            <h4 class="font-bold text-xl mb-3">${c.title}</h4>
+                            <p class="text-sm text-white/75 leading-relaxed">${c.text}</p>
+                        </div>`).join('')}
                 </div>
-
-                <!-- ANNO 2024 -->
-                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
-                    <div class="text-left">
-                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2024</span>
-                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
-                        <p class="text-sm opacity-70 mt-0.5">€ 170.563,09</p>
-                    </div>
-                    <a href="URL_DEL_PDF_2024.pdf" target="_blank"
-                       class="flex items-center gap-2 text-[#F5A623] text-sm font-semibold hover:opacity-80 transition-opacity ml-4 shrink-0">
-                        <i data-lucide="download" class="w-4 h-4"></i>
-                        Scarica PDF
-                    </a>
-                </div>
-
-                <!-- ANNO 2022 -->
-                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
-                    <div class="text-left">
-                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2022</span>
-                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
-                        <p class="text-sm opacity-70 mt-0.5">€ 128.663,43</p>
-                    </div>
-                    <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
-                </div>
-
-                <!-- ANNO 2021 — senza PDF -->
-                <div class="flex items-center justify-between px-8 py-5 hover:bg-white/5 transition-colors">
-                    <div class="text-left">
-                        <span class="text-[#F5A623] font-bold text-sm uppercase tracking-wider">2021</span>
-                        <p class="font-medium mt-1">Legge n. 124/2017, comma 125-129 dell’art. 1</p>
-                        <p class="text-sm opacity-70 mt-0.5">€ 129.741,51</p>
-                    </div>
-                    <span class="text-sm opacity-40 ml-4 shrink-0">PDF non disponibile</span>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</section>
-
-        <section class="py-24 bg-[#1A6B5A] text-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-playfair font-bold mb-8">Vuoi vedere la scuola di persona?</h2>
-                <p class="max-w-2xl mx-auto mb-12 opacity-90 text-lg">Prenota una visita gratuita e senza impegno. Ti accompagniamo in ogni spazio per farti respirare il nostro metodo.</p>
-                ${renderContactButtons()}
+                ${contributiTable(data.contributi)}
             </div>
         </section>
+
+        ${ctaBanner('Vuoi vedere la scuola di persona?', 'Prenota una visita gratuita e senza impegno. Ti accompagniamo in ogni spazio per farti respirare il nostro metodo.')}
     `;
 }
+
+/* ---------- Timeline helper ---------- */
+
+function dayTimeline(day) {
+    const goldIdx = new Set([2, 5]); // Pranzo & Uscita as milestones
+
+    const node = (item, i) => {
+        const gold = goldIdx.has(i);
+        const bg = gold ? 'bg-gold' : 'bg-sage';
+        return `
+            <div class="timeline-node text-center relative reveal">
+                <div class="timeline-dot w-14 h-14 mx-auto rounded-2xl ${bg} text-white flex items-center justify-center shadow-lg relative z-10">
+                    <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                </div>
+                <div class="text-xs font-bold text-gold mt-4">${item.time}</div>
+                <div class="font-display font-bold text-sage mt-1">${item.label}</div>
+                <div class="text-xs text-ink/50 mt-1 max-w-[190px] mx-auto leading-relaxed">${item.desc}</div>
+            </div>`;
+    };
+
+    const row = (items, offset) => `
+        <div class="grid grid-cols-3 gap-8 relative">
+            <div class="absolute top-7 left-[16.66%] right-[16.66%] h-0.5 timeline-line"></div>
+            ${items.map((it, i) => node(it, offset + i)).join('')}
+        </div>`;
+
+    const mobile = day.map((item, i) => {
+        const gold = goldIdx.has(i);
+        const bg = gold ? 'bg-gold' : 'bg-sage';
+        const last = i === day.length - 1;
+        return `
+            <div class="flex gap-5 reveal">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-2xl ${bg} text-white flex items-center justify-center shadow-md shrink-0">
+                        <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+                    </div>
+                    ${last ? '' : '<div class="w-0.5 flex-1 bg-[#c8e6da] my-1"></div>'}
+                </div>
+                <div class="pb-8 pt-1">
+                    <div class="text-xs font-bold text-gold">${item.time}</div>
+                    <div class="font-display font-bold text-sage text-lg">${item.label}</div>
+                    <div class="text-sm text-ink/50 mt-0.5">${item.desc}</div>
+                </div>
+            </div>`;
+    }).join('');
+
+    return `
+        <div class="hidden md:block space-y-16 max-w-5xl mx-auto">
+            ${row(day.slice(0, 3), 0)}
+            ${row(day.slice(3, 6), 3)}
+        </div>
+        <div class="md:hidden max-w-sm mx-auto">${mobile}</div>`;
+}
+
+/* ---------- Contributi table helper ---------- */
+
+function contributiTable(rows) {
+    const body = rows.map(r => `
+        <div class="flex items-center justify-between gap-4 px-6 md:px-8 py-5 hover:bg-white/5 transition-colors">
+            <div class="text-left">
+                <span class="text-gold font-bold text-sm uppercase tracking-wider">${r.year}</span>
+                <p class="font-medium mt-1 text-sm md:text-base">${r.law}</p>
+                <p class="text-sm text-white/70 mt-0.5">${r.amount}</p>
+            </div>
+            ${r.pdf
+                ? `<a href="${r.pdf}" target="_blank" rel="noopener" class="flex items-center gap-2 text-gold text-sm font-semibold hover:opacity-80 transition-opacity shrink-0">
+                       <i data-lucide="download" class="w-4 h-4"></i> <span class="hidden sm:inline">Scarica</span> PDF
+                   </a>`
+                : `<span class="text-xs text-white/40 shrink-0">PDF non disponibile</span>`}
+        </div>`).join('');
+
+    return `
+        <div class="max-w-3xl mx-auto border border-white/15 rounded-4xl bg-white/5 overflow-hidden reveal">
+            <div class="px-6 md:px-8 py-5 border-b border-white/10 flex items-center gap-3">
+                <i data-lucide="scale" class="w-5 h-5 text-gold"></i>
+                <h3 class="font-bold text-base md:text-lg tracking-wide text-left">Erogazioni pubbliche — Legge n. 124/2017, art. 1 commi 125-129</h3>
+            </div>
+            <div class="divide-y divide-white/10">${body}</div>
+        </div>`;
+}
+
+/* ---------- IL METODO ---------- */
 
 export async function renderMetodo() {
     const data = await fetchData();
     return `
-        <section class="pt-40 pb-20 bg-white">
-            <div class="container mx-auto px-6 text-center max-w-4xl">
-                <h1 class="text-5xl md:text-6xl font-playfair font-bold text-[#1A6B5A] mb-8">Pedagogia Viva</h1>
-                <div class="space-y-6 text-lg text-gray-600 leading-relaxed text-left">
-                    <p>Alla Scuola Sacra Famiglia l'educazione non è un travaso di nozioni, ma l'accensione di un fuoco. Ci ispiriamo ai principi della <strong>pedagogia attiva</strong>, dove l'ambiente è il "terzo educatore".</p>
+        <section class="pt-40 pb-20 bg-white relative overflow-hidden">
+            <div class="blob w-80 h-80 bg-sage/10 -top-10 right-0"></div>
+            <div class="container mx-auto px-6 max-w-4xl relative z-10">
+                <div class="text-center mb-12 reveal">
+                    <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Il nostro metodo</span>
+                    <h1 class="text-5xl md:text-6xl font-display font-bold text-sage">Pedagogia Viva</h1>
+                </div>
+                <div class="space-y-6 text-lg text-ink/70 leading-relaxed reveal">
+                    <p>Alla Scuola Sacra Famiglia l'educazione non è un travaso di nozioni, ma l'accensione di un fuoco. Ci ispiriamo ai principi della <strong class="text-sage">pedagogia attiva</strong>, dove l'ambiente è il "terzo educatore".</p>
                     <p>Rifiutiamo l'approccio standardizzato. Ogni bambino ha un "linguaggio" diverso: c'è chi apprende osservando, chi toccando, chi muovendosi. La nostra programmazione è flessibile e si adatta al gruppo.</p>
                     <p>La relazione scuola-famiglia è il nostro pilastro. Non siamo un semplice servizio di custodia, ma un partner nel percorso di crescita di tuo figlio.</p>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-[#FCF9F5]">
+        <section class="py-24 bg-cream">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-playfair font-bold text-[#1A6B5A] text-center mb-16">I Nostri Valori Fondanti</h2>
-                <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
+                ${sectionHeading('Valori', 'I nostri principi fondanti', 'Cinque pilastri che guidano ogni scelta educativa.')}
+                <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
                     ${data.method.map(m => `
-                        <div class="reveal p-8 bg-white rounded-3xl shadow-sm hover:shadow-md transition-all">
-                            <div class="w-12 h-12 bg-[#1A6B5A]/10 rounded-xl flex items-center justify-center text-[#F5A623] mb-6">
+                        <div class="reveal lift p-8 bg-white rounded-4xl border border-sage/10">
+                            <div class="w-12 h-12 bg-sage/10 rounded-2xl flex items-center justify-center text-gold mb-6">
                                 <i data-lucide="${m.icon}"></i>
                             </div>
-                            <h3 class="font-playfair font-bold text-xl text-[#1A6B5A] mb-4">${m.title}</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed">${m.text}</p>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        </section>
-
-        <!-- New Section: Progetti in itinere -->
-        <section class="py-24 bg-[#FAF9F6]">
-            <div class="container mx-auto px-6 max-w-5xl reveal">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-playfair font-bold text-[#1A6B5A] mb-4">Progetti in itinere: l'educazione che nasce dall'ascolto</h2>
-                    <p class="text-gray-600 italic">Non seguiamo binari prestabiliti: costruiamo il percorso insieme ai bambini.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-12">
-                    <div class="text-center space-y-4">
-                        <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm text-[#F5A623]">
-                            <i data-lucide="eye" class="w-8 h-8"></i>
-                        </div>
-                        <h4 class="font-bold text-[#1A6B5A] text-lg">Osservazione</h4>
-                        <p class="text-sm text-gray-500">L'insegnante osserva gli interessi emergenti del gruppo durante il gioco libero.</p>
-                    </div>
-                    <div class="text-center space-y-4">
-                        <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm text-[#F5A623]">
-                            <i data-lucide="sparkles" class="w-8 h-8"></i>
-                        </div>
-                        <h4 class="font-bold text-[#1A6B5A] text-lg">Trasformazione</h4>
-                        <p class="text-sm text-gray-500">L'interesse diventa progetto: si allestiscono spazi e materiali per approfondire la scoperta.</p>
-                    </div>
-                    <div class="text-center space-y-4">
-                        <div class="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm text-[#F5A623]">
-                            <i data-lucide="share-2" class="w-8 h-8"></i>
-                        </div>
-                        <h4 class="font-bold text-[#1A6B5A] text-lg">Condivisione</h4>
-                        <p class="text-sm text-gray-500">L'esperienza viene documentata e condivisa con le famiglie per valorizzare il fare del bambino.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- New Section: Lo spazio come terzo educatore -->
-        <section class="py-24 bg-[#E8F5F1] border-y border-[#1A6B5A]/10 reveal">
-            <div class="container mx-auto px-6 max-w-5xl">
-                <div class="text-center mb-16">
-                    <blockquote class="text-2xl md:text-3xl font-playfair italic text-[#1A6B5A] leading-relaxed">
-                        "Lo spazio è un contenitore che si lascia plasmare e abitare dai bambini."
-                        <footer class="text-sm font-bold uppercase tracking-widest mt-4 opacity-60">— Loris Malaguzzi</footer>
-                    </blockquote>
-                </div>
-                <div class="grid md:grid-cols-2 gap-12 mb-16">
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold text-[#1A6B5A]">Intenzione</h4>
-                        <p class="text-gray-600 leading-relaxed">Ogni angolo della nostra scuola è pensato con cura. Gli arredi non sono semplici mobili, ma inviti all'esplorazione e alla concentrazione.</p>
-                    </div>
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold text-[#1A6B5A]">Pratica</h4>
-                        <p class="text-gray-600 leading-relaxed">Usiamo materiali "intelligenti" e destrutturati che permettono mille usi diversi, stimolando il problem-solving e la creatività infinita.</p>
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-[#1A6B5A]/10 text-center shadow-sm">
-                        <i data-lucide="sun" class="w-6 h-6 mx-auto mb-3 text-[#F5A623]"></i>
-                        <span class="text-sm font-bold text-[#1A6B5A]">Luce naturale</span>
-                    </div>
-                    <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-[#1A6B5A]/10 text-center shadow-sm">
-                        <i data-lucide="tree-pine" class="w-6 h-6 mx-auto mb-3 text-[#F5A623]"></i>
-                        <span class="text-sm font-bold text-[#1A6B5A]">Materiali naturali</span>
-                    </div>
-                    <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-[#1A6B5A]/10 text-center shadow-sm">
-                        <i data-lucide="maximize" class="w-6 h-6 mx-auto mb-3 text-[#F5A623]"></i>
-                        <span class="text-sm font-bold text-[#1A6B5A]">Libertà di movimento</span>
-                    </div>
+                            <h3 class="font-display font-bold text-xl text-sage mb-3">${m.title}</h3>
+                            <p class="text-ink/55 text-sm leading-relaxed">${m.text}</p>
+                        </div>`).join('')}
                 </div>
             </div>
         </section>
 
         <section class="py-24 bg-white">
             <div class="container mx-auto px-6 max-w-5xl">
-                <h2 class="text-3xl font-playfair font-bold text-[#1A6B5A] text-center mb-16">In cosa ci differenziamo</h2>
+                ${sectionHeading('Come lavoriamo', 'Progetti in itinere', 'Non seguiamo binari prestabiliti: costruiamo il percorso insieme ai bambini, partendo dall\'ascolto.')}
+                <div class="grid md:grid-cols-3 gap-10">
+                    ${[
+                        { icon: 'eye', t: 'Osservazione', d: "L'insegnante osserva gli interessi emergenti del gruppo durante il gioco libero." },
+                        { icon: 'sparkles', t: 'Trasformazione', d: "L'interesse diventa progetto: si allestiscono spazi e materiali per approfondire la scoperta." },
+                        { icon: 'share-2', t: 'Condivisione', d: "L'esperienza viene documentata e condivisa con le famiglie per valorizzare il fare del bambino." }
+                    ].map((s, i) => `
+                        <div class="text-center reveal">
+                            <div class="w-16 h-16 mx-auto bg-cream rounded-full flex items-center justify-center shadow-sm text-gold mb-5 relative">
+                                <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-sage text-white text-xs font-bold flex items-center justify-center">${i + 1}</span>
+                                <i data-lucide="${s.icon}" class="w-7 h-7"></i>
+                            </div>
+                            <h4 class="font-bold text-sage text-lg mb-2">${s.t}</h4>
+                            <p class="text-sm text-ink/55 leading-relaxed">${s.d}</p>
+                        </div>`).join('')}
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-sage-light border-y border-sage/10">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <blockquote class="text-center mb-16 reveal">
+                    <p class="text-2xl md:text-3xl font-display italic text-sage leading-relaxed">"Lo spazio è un contenitore che si lascia plasmare e abitare dai bambini."</p>
+                    <footer class="text-xs font-bold uppercase tracking-[0.25em] mt-5 text-sage/60">— Loris Malaguzzi</footer>
+                </blockquote>
+                <div class="grid md:grid-cols-3 gap-6">
+                    ${[
+                        { icon: 'sun', t: 'Luce naturale' },
+                        { icon: 'tree-pine', t: 'Materiali naturali' },
+                        { icon: 'maximize', t: 'Libertà di movimento' }
+                    ].map(x => `
+                        <div class="reveal bg-white/70 backdrop-blur-sm p-6 rounded-3xl border border-sage/10 text-center shadow-sm">
+                            <i data-lucide="${x.icon}" class="w-6 h-6 mx-auto mb-3 text-gold"></i>
+                            <span class="text-sm font-bold text-sage">${x.t}</span>
+                        </div>`).join('')}
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white">
+            <div class="container mx-auto px-6 max-w-5xl">
+                ${sectionHeading('Il confronto', 'In cosa ci differenziamo', '')}
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="p-10 bg-[#1A6B5A] rounded-[3rem] text-white reveal">
-                        <h4 class="text-2xl font-playfair font-bold mb-8">Scuola Sacra Famiglia</h4>
+                    <div class="p-10 bg-sage rounded-[2.5rem] text-white reveal lift">
+                        <h4 class="text-2xl font-display font-bold mb-8 flex items-center gap-3"><i data-lucide="sprout" class="text-gold"></i> Sacra Famiglia</h4>
                         <ul class="space-y-6">
                             ${data.comparison.map(c => `
                                 <li class="border-b border-white/10 pb-4">
                                     <span class="block text-xs uppercase opacity-60 mb-1">${c.label}</span>
                                     <span class="font-medium">${c.sacra}</span>
-                                </li>
-                            `).join('')}
+                                </li>`).join('')}
                         </ul>
                     </div>
-                    <div class="p-10 bg-gray-50 rounded-[3rem] text-gray-500 reveal">
-                        <h4 class="text-2xl font-playfair font-bold mb-8 text-gray-400">Scuola Statale Standard</h4>
+                    <div class="p-10 bg-cream rounded-[2.5rem] text-ink/50 reveal">
+                        <h4 class="text-2xl font-display font-bold mb-8 text-ink/40">Scuola Statale Standard</h4>
                         <ul class="space-y-6">
                             ${data.comparison.map(c => `
-                                <li class="border-b border-gray-200 pb-4">
+                                <li class="border-b border-ink/10 pb-4">
                                     <span class="block text-xs uppercase opacity-60 mb-1">${c.label}</span>
                                     <span class="font-medium">${c.statale}</span>
-                                </li>
-                            `).join('')}
+                                </li>`).join('')}
                         </ul>
                     </div>
-                </div>
-                <div class="text-center mt-16">
-                    <p class="text-gray-500 mb-8 italic">Contattaci per scoprire come viviamo questi valori ogni giorno.</p>
-                    ${renderContactButtons()}
                 </div>
             </div>
         </section>
+
+        ${ctaBanner('Vivi i nostri valori ogni giorno', 'Contattaci per scoprire come traduciamo la pedagogia in esperienza quotidiana.')}
     `;
 }
+
+/* ---------- SERVIZI ---------- */
 
 export async function renderServizi() {
     const data = await fetchData();
     return `
-        <section class="pt-40 pb-20 bg-[#FCF9F5]">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-5xl font-playfair font-bold text-[#1A6B5A] mb-6">Un'offerta completa</h1>
-                <p class="text-gray-600 max-w-2xl mx-auto">Tutto ciò che serve per la crescita armonica del bambino, dalla cucina interna ai laboratori specialistici.</p>
+        <section class="pt-40 pb-16 bg-cream text-center relative overflow-hidden">
+            <div class="blob w-72 h-72 bg-gold/15 -top-10 -left-10"></div>
+            <div class="container mx-auto px-6 relative z-10 reveal">
+                <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Offerta educativa</span>
+                <h1 class="text-5xl font-display font-bold text-sage mb-6">Un'offerta completa</h1>
+                <p class="text-ink/60 max-w-2xl mx-auto text-lg">Tutto ciò che serve per la crescita armonica del bambino, dalla cucina interna ai laboratori specialistici.</p>
             </div>
         </section>
 
-        <section class="py-24 bg-white">
+        <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     ${data.services.map(s => `
-                        <div class="reveal p-8 bg-[#FCF9F5] rounded-[2.5rem] border border-transparent hover:border-[#F5A623]/30 transition-all group">
-                            <div class="flex justify-between items-start mb-8">
-                                <div class="text-[#1A6B5A] group-hover:scale-110 transition-transform">
-                                    <i data-lucide="${s.icon}" class="w-10 h-10"></i>
+                        <div class="reveal lift p-8 bg-cream rounded-[2rem] border border-transparent hover:border-gold/30 group">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-sage group-hover:text-gold group-hover:scale-110 transition-all shadow-sm">
+                                    <i data-lucide="${s.icon}"></i>
                                 </div>
-                                ${s.isNew ? '<span class="bg-[#F5A623] text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">In Arrivo</span>' : ''}
+                                ${s.isNew ? '<span class="bg-gold text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">In Arrivo</span>' : ''}
                             </div>
-                            <div class="flex justify-between items-center mb-4">
-                                <h4 class="text-2xl font-playfair font-bold text-[#1A6B5A]">${s.title}</h4>
-                                <span class="text-[10px] uppercase font-bold text-[#F5A623] bg-[#F5A623]/10 px-3 py-1 rounded-full">${s.age}</span>
+                            <div class="flex justify-between items-center gap-2 mb-3">
+                                <h4 class="text-xl font-display font-bold text-sage">${s.title}</h4>
+                                <span class="text-[10px] uppercase font-bold text-gold bg-gold/10 px-3 py-1 rounded-full whitespace-nowrap">${s.age}</span>
                             </div>
-                            <p class="text-gray-500 text-sm mb-6">${s.desc}</p>
-                            <div class="pt-4 border-t border-gray-100 flex items-center gap-2 text-xs font-bold text-[#1A6B5A]/60">
+                            <p class="text-ink/55 text-sm mb-6 leading-relaxed">${s.desc}</p>
+                            <div class="pt-4 border-t border-sage/10 flex items-center gap-2 text-xs font-bold text-sage/60">
                                 <i data-lucide="clock" class="w-4 h-4"></i> ${s.hours}
                             </div>
-                        </div>
-                    `).join('')}
+                        </div>`).join('')}
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-[#FCF9F5]">
-            <div class="container mx-auto px-6 text-center">
-                <h3 class="text-3xl font-playfair font-bold text-[#1A6B5A] mb-12">Hai domande sui nostri servizi?</h3>
-                ${renderContactButtons()}
-            </div>
-        </section>
+        ${ctaBanner('Hai domande sui nostri servizi?', 'Siamo felici di raccontarti nel dettaglio come funziona ogni attività.')}
     `;
 }
+
+/* ---------- TEAM ---------- */
 
 export async function renderTeam() {
     const data = await fetchData();
     return `
-        <section class="pt-40 pb-20 bg-[#FCF9F5]">
+        <section class="pt-40 pb-24 bg-cream">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-5xl font-playfair font-bold text-[#1A6B5A] mb-8">Il Nostro Team</h1>
-                <p class="text-gray-600 max-w-3xl mx-auto mb-20 text-lg">"Stabilità e passione: il nostro punto di forza. Un gruppo di educatrici stabili, sulla stessa linea educativa da anni."</p>
-                <div class="grid md:grid-cols-4 gap-8">
+                <div class="reveal max-w-3xl mx-auto mb-16">
+                    <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Chi siamo</span>
+                    <h1 class="text-5xl font-display font-bold text-sage mb-6">Il Nostro Team</h1>
+                    <p class="text-ink/60 text-lg italic font-display">"Stabilità e passione: un gruppo di educatrici presenti da anni, sulla stessa linea educativa."</p>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     ${data.team.map(t => `
                         <div class="reveal group text-center">
-                            <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] mb-6 shadow-lg">
-                                <img src="${t.image}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#1A6B5A]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                                    <p class="text-white text-sm italic">"${t.quote}"</p>
+                            <div class="relative overflow-hidden rounded-[2rem] aspect-[4/5] mb-5 shadow-lg">
+                                <img src="${t.image}" alt="${t.name}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-sage/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
+                                    <p class="text-white text-sm italic text-left">"${t.quote}"</p>
                                 </div>
                             </div>
-                            <h4 class="text-xl font-playfair font-bold text-[#1A6B5A]">${t.name}</h4>
-                            <p class="text-xs uppercase font-bold text-[#F5A623] tracking-widest">${t.role}</p>
-                        </div>
-                    `).join('')}
+                            <h4 class="text-lg font-display font-bold text-sage">${t.name}</h4>
+                            <p class="text-[11px] uppercase font-bold text-gold tracking-widest">${t.role}</p>
+                        </div>`).join('')}
                 </div>
-                <div class="mt-20 p-10 bg-white rounded-3xl border border-gray-100 max-w-2xl mx-auto italic text-gray-500">
-                    <p>"Le nostre educatrici non sono solo insegnanti, ma guide attente che accompagnano ogni bambino nel suo percorso unico verso l'autonomia."</p>
+                <div class="mt-16 p-10 bg-white rounded-4xl border border-sage/10 max-w-2xl mx-auto reveal">
+                    <i data-lucide="quote" class="w-8 h-8 text-gold mx-auto mb-4"></i>
+                    <p class="italic text-ink/60 font-display text-lg">"Le nostre educatrici non sono solo insegnanti, ma guide attente che accompagnano ogni bambino nel suo percorso unico verso l'autonomia."</p>
                 </div>
             </div>
         </section>
     `;
 }
+
+/* ---------- ISCRIZIONI ---------- */
 
 export async function renderIscrizioni() {
+    const steps = [
+        { n: '1', t: 'Prenota una visita', d: 'Chiamaci per fissare un incontro personalizzato negli orari di segreteria.' },
+        { n: '2', t: 'Conosci la scuola', d: 'Visita le aule, il giardino e incontra le educatrici per parlare del metodo.' },
+        { n: '3', t: 'Iscrizione', d: "Ricevi i moduli e completa l'iscrizione con il supporto della segreteria." }
+    ];
     return `
-        <section class="pt-40 pb-24 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-5xl font-playfair font-bold text-[#1A6B5A] mb-6">Inizia il percorso con noi</h1>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg mb-16 italic">Accogliamo i bambini in un ambiente sereno, stimolante e sicuro. Scopri come far parte della nostra famiglia.</p>
+        <section class="pt-40 pb-16 bg-white text-center relative overflow-hidden">
+            <div class="blob w-72 h-72 bg-sage/10 top-10 right-0"></div>
+            <div class="container mx-auto px-6 relative z-10 reveal">
+                <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Unisciti a noi</span>
+                <h1 class="text-5xl font-display font-bold text-sage mb-6">Inizia il percorso con noi</h1>
+                <p class="text-ink/60 max-w-2xl mx-auto text-lg font-display italic">Accogliamo i bambini in un ambiente sereno, stimolante e sicuro. Scopri come far parte della nostra famiglia.</p>
+            </div>
+        </section>
 
-                <div class="bg-[#1A6B5A]/5 rounded-[3rem] p-12 md:p-16 mb-24 reveal">
-                    <h2 class="text-3xl font-playfair font-bold text-[#1A6B5A] mb-8">Scuola Aperta</h2>
-                    <div class="grid md:grid-cols-3 gap-8 text-left">
-                        <div class="bg-white p-8 rounded-2xl shadow-sm">
-                            <div class="w-12 h-12 bg-[#1A6B5A] text-white rounded-full flex items-center justify-center font-bold mb-6">1</div>
-                            <h4 class="font-bold text-[#1A6B5A] mb-3">Prenota una visita</h4>
-                            <p class="text-sm text-gray-500">Chiamaci per fissare un incontro personalizzato negli orari di segreteria.</p>
-                        </div>
-                        <div class="bg-white p-8 rounded-2xl shadow-sm">
-                            <div class="w-12 h-12 bg-[#F5A623] text-white rounded-full flex items-center justify-center font-bold mb-6">2</div>
-                            <h4 class="font-bold text-[#1A6B5A] mb-3">Conosci la scuola</h4>
-                            <p class="text-sm text-gray-500">Visita le aule, il giardino e incontra le educatrici per parlare del metodo.</p>
-                        </div>
-                        <div class="bg-white p-8 rounded-2xl shadow-sm">
-                            <div class="w-12 h-12 bg-[#1A6B5A] text-white rounded-full flex items-center justify-center font-bold mb-6">3</div>
-                            <h4 class="font-bold text-[#1A6B5A] mb-3">Iscrizione</h4>
-                            <p class="text-sm text-gray-500">Ricevi i moduli e completa l'iscrizione con il supporto della segreteria.</p>
-                        </div>
+        <section class="pb-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="bg-sage-light rounded-[2.5rem] p-10 md:p-16 reveal">
+                    <h2 class="text-3xl font-display font-bold text-sage mb-10 text-center">Scuola Aperta in 3 passi</h2>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        ${steps.map(s => `
+                            <div class="bg-white p-8 rounded-3xl shadow-sm">
+                                <div class="w-12 h-12 bg-sage text-white rounded-2xl flex items-center justify-center font-bold text-lg mb-6">${s.n}</div>
+                                <h4 class="font-bold text-sage mb-2 text-lg">${s.t}</h4>
+                                <p class="text-sm text-ink/55 leading-relaxed">${s.d}</p>
+                            </div>`).join('')}
                     </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12 text-left mb-24">
-                    <div class="space-y-8">
-                        <div>
-                            <h3 class="text-2xl font-playfair font-bold text-[#1A6B5A] mb-4">Quando iscriversi</h3>
-                            <p class="text-gray-600 leading-relaxed">La segreteria è aperta per informazioni e iscrizioni ogni mattina dalle <strong>09:00 alle 12:00</strong>. Riceviamo tutto l'anno previa disponibilità posti.</p>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-playfair font-bold text-[#1A6B5A] mb-4">A chi è rivolta</h3>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-[#F5A623] w-4 h-4"></i> Sezione Primavera: 24-36 mesi</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-[#F5A623] w-4 h-4"></i> Scuola dell'Infanzia: 3-6 anni</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="bg-[#1A6B5A] text-white p-10 rounded-[3rem]">
-                        <h3 class="text-2xl font-playfair font-bold mb-6">Quanto costa?</h3>
-                        <div class="space-y-4 text-sm opacity-90 leading-relaxed">
-                            <p>Crediamo nell'accessibilità: applichiamo <strong>rette calmierate</strong> grazie ai contributi pubblici per venire incontro alle esigenze di ogni famiglia.</p>
-                            <p>La retta include il servizio mensa interna e tutti i laboratori standard (inglese, psicomotricità).</p>
-                        </div>
-                        <div class="mt-8 pt-6 border-t border-white/20">
-                            <p class="text-xs italic opacity-80">Contattaci per avere tutte le informazioni necessarie.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-[#FCF9F5] p-12 rounded-[4rem] text-center">
-                    <h3 class="text-2xl font-playfair font-bold text-[#1A6B5A] mb-8">Siamo a tua disposizione</h3>
-                    ${renderContactButtons()}
                 </div>
             </div>
         </section>
+
+        <section class="py-20 bg-cream">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 max-w-5xl">
+                <div class="space-y-8 reveal">
+                    <div>
+                        <h3 class="text-2xl font-display font-bold text-sage mb-3 flex items-center gap-3"><i data-lucide="calendar-clock" class="text-gold"></i> Quando iscriversi</h3>
+                        <p class="text-ink/65 leading-relaxed">La segreteria è aperta per informazioni e iscrizioni ogni mattina dalle <strong class="text-sage">09:00 alle 12:00</strong>. Riceviamo tutto l'anno previa disponibilità posti.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-display font-bold text-sage mb-3 flex items-center gap-3"><i data-lucide="users" class="text-gold"></i> A chi è rivolta</h3>
+                        <ul class="space-y-2 text-ink/65">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="text-gold w-4 h-4"></i> Sezione Primavera: 24-36 mesi</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="text-gold w-4 h-4"></i> Scuola dell'Infanzia: 3-6 anni</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-sage text-white p-10 rounded-[2.5rem] reveal lift">
+                    <h3 class="text-2xl font-display font-bold mb-6 flex items-center gap-3"><i data-lucide="piggy-bank" class="text-gold"></i> Quanto costa?</h3>
+                    <div class="space-y-4 text-sm text-white/85 leading-relaxed">
+                        <p>Crediamo nell'accessibilità: applichiamo <strong class="text-white">rette calmierate</strong> grazie ai contributi pubblici, per venire incontro alle esigenze di ogni famiglia.</p>
+                        <p>La retta include il servizio mensa interna e tutti i laboratori standard (inglese, psicomotricità).</p>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-white/20">
+                        <a href="#/contatti" class="inline-flex items-center gap-2 bg-gold text-white px-6 py-3 rounded-full text-sm font-bold hover:scale-105 transition-transform">
+                            Richiedi info sui costi <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        ${ctaBanner('Siamo a tua disposizione', 'Contattaci per prenotare la tua visita o per qualsiasi informazione sull\'iscrizione.')}
     `;
 }
+
+/* ---------- FAQ ---------- */
 
 export async function renderFAQ() {
     const data = await fetchData();
     return `
         <section class="pt-40 pb-24 bg-white">
             <div class="container mx-auto px-6 max-w-3xl">
-                <div class="text-center mb-16">
-                    <h1 class="text-5xl font-playfair font-bold text-[#1A6B5A] mb-4">FAQ</h1>
-                    <p class="text-gray-500 italic">Le risposte ai dubbi più comuni dei genitori.</p>
+                <div class="text-center mb-14 reveal">
+                    <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Domande frequenti</span>
+                    <h1 class="text-5xl font-display font-bold text-sage mb-4">FAQ</h1>
+                    <p class="text-ink/50 italic font-display">Le risposte ai dubbi più comuni dei genitori.</p>
                 </div>
                 <div class="space-y-4">
-                    ${data.faq.map((item, i) => `
-                        <div class="border border-gray-100 rounded-2xl overflow-hidden faq-item bg-[#FCF9F5]/30">
-                            <button class="w-full p-6 text-left flex justify-between items-center hover:bg-[#FCF9F5] transition-colors" onclick="this.parentElement.classList.toggle('faq-open')">
-                                <span class="font-bold text-[#1A6B5A] pr-4">${item.q}</span>
-                                <i data-lucide="chevron-down" class="text-[#F5A623] transition-transform flex-shrink-0"></i>
+                    ${data.faq.map(item => `
+                        <div class="border border-sage/10 rounded-3xl overflow-hidden faq-item bg-cream/40 reveal">
+                            <button type="button" class="w-full p-6 text-left flex justify-between items-center gap-4 hover:bg-cream transition-colors" onclick="this.closest('.faq-item').classList.toggle('faq-open')">
+                                <span class="font-bold text-sage">${item.q}</span>
+                                <i data-lucide="chevron-down" class="faq-chevron text-gold shrink-0"></i>
                             </button>
-                            <div class="faq-content overflow-hidden max-h-0 transition-all duration-300">
-                                <p class="p-6 text-gray-600 border-t border-gray-100 bg-white">${item.a}</p>
+                            <div class="faq-content">
+                                <p class="px-6 pb-6 text-ink/65 leading-relaxed">${item.a}</p>
                             </div>
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="mt-20 text-center">
-                    <p class="text-gray-500 mb-8 font-medium italic">Ancora qualche dubbio? Contattaci direttamente.</p>
-                    ${renderContactButtons()}
+                        </div>`).join('')}
                 </div>
             </div>
         </section>
+
+        ${ctaBanner('Ancora qualche dubbio?', 'Contattaci direttamente: saremo felici di rispondere a ogni tua domanda.')}
     `;
 }
 
+/* ---------- CONTATTI ---------- */
+
 export async function renderContatti() {
+    const infoCards = [
+        { icon: 'map-pin', t: 'Indirizzo', v: 'Via Giacomo Leopardi, 16<br>37050 Roverchiara (VR)' },
+        { icon: 'phone', t: 'Telefono', v: '<a href="tel:044274383" class="hover:text-sage">0442 74383</a>' },
+        { icon: 'mail', t: 'Email', v: '<a href="mailto:sacrafami.roverchi@libero.it" class="hover:text-sage break-all">sacrafami.roverchi@libero.it</a>' },
+        { icon: 'clock', t: 'Orari Segreteria', v: 'Dal Lunedì al Venerdì<br>09:00 - 12:00' }
+    ];
     return `
         <section class="pt-40 pb-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-16 items-start">
                     <div>
-                        <h1 class="text-5xl font-playfair font-bold text-[#1A6B5A] mb-8">Mettiamoci in contatto</h1>
-                        <p class="text-gray-600 mb-12 text-lg">La nostra porta è sempre aperta. Passa a trovarci o chiamaci per qualsiasi informazione.</p>
-                        
-                        <div class="space-y-6 mb-12">
-                            <div class="flex items-start gap-4 p-6 bg-[#FCF9F5] rounded-3xl">
-                                <i data-lucide="map-pin" class="text-[#F5A623] w-6 h-6 mt-1"></i>
-                                <div>
-                                    <h5 class="font-bold text-[#1A6B5A]">Indirizzo</h5>
-                                    <p class="text-gray-500">Via Giacomo Leopardi, 16 - 37050 Roverchiara (VR)</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4 p-6 bg-[#FCF9F5] rounded-3xl">
-                                <i data-lucide="phone" class="text-[#F5A623] w-6 h-6 mt-1"></i>
-                                <div>
-                                    <h5 class="font-bold text-[#1A6B5A]">Telefono</h5>
-                                    <p class="text-gray-500">0442 74383</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4 p-6 bg-[#FCF9F5] rounded-3xl">
-                                <i data-lucide="mail" class="text-[#F5A623] w-6 h-6 mt-1"></i>
-                                <div>
-                                    <h5 class="font-bold text-[#1A6B5A]">Email</h5>
-                                    <p class="text-gray-500">sacrafami.roverchi@libero.it</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4 p-6 bg-[#FCF9F5] rounded-3xl">
-                                <i data-lucide="clock" class="text-[#F5A623] w-6 h-6 mt-1"></i>
-                                <div>
-                                    <h5 class="font-bold text-[#1A6B5A]">Orari Segreteria</h5>
-                                    <p class="text-gray-500">Dal Lunedì al Venerdì: 09:00 - 12:00</p>
-                                </div>
-                            </div>
+                        <div class="reveal mb-10">
+                            <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Contatti</span>
+                            <h1 class="text-5xl font-display font-bold text-sage mb-5">Mettiamoci in contatto</h1>
+                            <p class="text-ink/60 text-lg">La nostra porta è sempre aperta. Passa a trovarci o chiamaci: saremo felici di rispondere a ogni tua domanda.</p>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                            ${infoCards.map(c => `
+                                <div class="reveal flex items-start gap-4 p-5 bg-cream rounded-3xl">
+                                    <span class="w-11 h-11 rounded-2xl bg-white text-gold flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="${c.icon}" class="w-5 h-5"></i></span>
+                                    <div>
+                                        <h5 class="font-bold text-sage text-sm mb-1">${c.t}</h5>
+                                        <p class="text-ink/60 text-sm leading-relaxed">${c.v}</p>
+                                    </div>
+                                </div>`).join('')}
+                        </div>
+                        <div class="rounded-[2rem] overflow-hidden shadow-lg h-64 border border-sage/10 reveal grayscale hover:grayscale-0 transition-all duration-700">
+                            <iframe title="Mappa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.395899435889!2d11.34181831206124!3d45.267868346399185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f113400000001%3A0x6a0a09727404e3c1!2sScuola%20Materna%20Sacra%20Famiglia!5e0!3m2!1sit!2sit!4v1710320000000!5m2!1sit!2sit" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
 
-                    <div class="space-y-8">
-                        <div class="rounded-[3rem] overflow-hidden shadow-xl h-[400px] border border-gray-100 reveal grayscale hover:grayscale-0 transition-all duration-700">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.395899435889!2d11.34181831206124!3d45.267868346399185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f113400000001%3A0x6a0a09727404e3c1!2sScuola%20Materna%20Sacra%20Famiglia!5e0!3m2!1sit!2sit!4v1710320000000!5m2!1sit!2sit" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                        </div>
-                        <div class="p-10 bg-[#1A6B5A] text-white rounded-[3rem] text-center">
-                            <h3 class="text-2xl font-playfair font-bold mb-8">Contattaci Ora</h3>
-                            ${renderContactButtons()}
+                    <div class="lg:sticky lg:top-28 reveal">
+                        <div class="bg-sage text-white p-8 md:p-10 rounded-[2.5rem] shadow-xl shadow-sage/20 relative overflow-hidden">
+                            <div class="blob w-56 h-56 bg-gold/25 -top-10 -right-10"></div>
+                            <div class="relative z-10">
+                                <span class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-6">
+                                    <i data-lucide="phone-call" class="w-7 h-7 text-gold"></i>
+                                </span>
+                                <h3 class="text-2xl font-display font-bold mb-3">Chiamaci, siamo qui per te</h3>
+                                <p class="text-white/80 text-sm mb-8 leading-relaxed">Il modo più veloce per avere informazioni, prenotare una visita o parlare con la coordinatrice. Ti aspettiamo!</p>
+
+                                <a href="tel:044274383" class="flex items-center gap-4 bg-white text-sage rounded-3xl p-5 mb-4 hover:scale-[1.02] transition-transform shadow-lg">
+                                    <span class="w-12 h-12 rounded-2xl bg-gold/15 text-gold flex items-center justify-center shrink-0"><i data-lucide="phone" class="w-6 h-6"></i></span>
+                                    <span>
+                                        <span class="block text-xs uppercase tracking-widest text-ink/40 font-bold">Telefono</span>
+                                        <span class="block text-2xl font-display font-bold">0442 74383</span>
+                                    </span>
+                                </a>
+
+                                <a href="mailto:sacrafami.roverchi@libero.it" class="flex items-center gap-4 bg-white/10 rounded-3xl p-5 hover:bg-white/15 transition-colors">
+                                    <span class="w-12 h-12 rounded-2xl bg-white/10 text-gold flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-6 h-6"></i></span>
+                                    <span class="min-w-0">
+                                        <span class="block text-xs uppercase tracking-widest text-white/50 font-bold">Email</span>
+                                        <span class="block font-semibold break-all">sacrafami.roverchi@libero.it</span>
+                                    </span>
+                                </a>
+
+                                <p class="flex items-center gap-2 text-white/70 text-sm mt-8">
+                                    <i data-lucide="clock" class="w-4 h-4 text-gold shrink-0"></i> Segreteria: Lun-Ven 09:00 - 12:00
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
