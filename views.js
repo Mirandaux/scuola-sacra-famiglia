@@ -31,7 +31,9 @@ function sectionHeading(eyebrow, title, sub, dark = false) {
         </div>`;
 }
 
-function ctaBanner(title, sub) {
+const OPEN_DAY = "Ogni anno è possibile visitare la scuola a dicembre e gennaio nelle giornate di Open Day. La segreteria risponde dalle 8:30 alle 12:00 lun - ven per darvi le informazioni necessarie";
+
+function ctaBanner(title, sub = OPEN_DAY) {
     return `
         <section class="py-24 bg-sage relative overflow-hidden">
             <div class="blob w-72 h-72 bg-gold/30 -top-10 -right-10"></div>
@@ -48,7 +50,7 @@ function ctaBanner(title, sub) {
 export async function renderHome() {
     const data = await fetchData();
 
-    const trustItems = ['Iscritta FISM', 'Paritaria MIUR', 'Cucina Interna', 'Calendario Ministeriale', 'Post-orario 18:00', 'Sezione Primavera'];
+    const trustItems = ['Iscritta FISM', 'Paritaria MIUR', 'Cucina Interna', 'Calendario Ministeriale', 'Entrata anticipata 7:30', 'Post-orario 18:00', 'Sezione Primavera'];
     const marquee = trustItems.concat(trustItems).map(t => `
         <span class="flex items-center gap-2 text-sage/80 font-semibold whitespace-nowrap">
             <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i> ${t}
@@ -75,7 +77,7 @@ export async function renderHome() {
                         Dove il bambino impara ad essere <span class="hero-highlight text-gold italic">se stesso.</span>
                     </h1>
                     <p class="text-lg md:text-xl text-ink/70 mb-10 leading-relaxed max-w-xl reveal">
-                        Scuola dell'infanzia paritaria FISM a Roverchiara. Un ambiente caldo e familiare, dove il gioco diventa scoperta e ogni giornata è pensata su misura per crescere sereni.
+                        Scuola dell'infanzia paritaria FISM a Roverchiara. Un ambiente di apprendimento caldo e familiare, dove il gioco diventa scoperta e ogni giornata è pensata a misura di bambino per favorire l'autonomia.
                     </p>
                     <div class="flex flex-wrap gap-4 reveal">
                         <a href="#/iscrizioni" class="bg-sage text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl shadow-sage/20 hover:bg-sage-dark hover:scale-105 transition-all flex items-center gap-2">
@@ -110,7 +112,7 @@ export async function renderHome() {
         <!-- COUNTERS -->
         <section class="py-20 bg-sage text-white relative overflow-hidden">
             <div class="container mx-auto px-6">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-center max-w-3xl mx-auto">
                     ${counters}
                 </div>
             </div>
@@ -127,18 +129,22 @@ export async function renderHome() {
         <!-- GENITORI ATTIVI -->
         <section class="py-24 bg-cream">
             <div class="container mx-auto px-6">
-                ${sectionHeading('Comunità', 'Genitori Attivi', 'La scuola è una comunità: il coinvolgimento dei genitori è il cuore pulsante delle nostre iniziative extra-didattiche.')}
-                <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                ${sectionHeading('Comunità', 'Genitori attivi e associazioni', 'La scuola è una comunità: il coinvolgimento dei genitori e delle associazioni paesane è il cuore pulsante delle nostre iniziative didattiche ed extra-didattiche.')}
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     ${data.parents.map(p => `
-                        <div class="reveal lift bg-white p-10 rounded-4xl border border-sage/10 text-center">
+                        <div class="reveal lift bg-white p-10 rounded-4xl border border-sage/10 text-center flex flex-col">
                             <div class="w-16 h-16 mx-auto rounded-2xl bg-sage/10 text-gold flex items-center justify-center mb-6">
                                 <i data-lucide="${p.icon}" class="w-8 h-8"></i>
                             </div>
                             <h4 class="text-2xl font-display font-bold text-sage mb-3">${p.title}</h4>
                             <p class="text-ink/60 mb-6 leading-relaxed">${p.text}</p>
-                            <a href="tel:044274383" class="inline-flex items-center gap-2 border border-sage/20 text-sage px-6 py-2.5 rounded-full text-sm font-bold hover:bg-sage hover:text-white transition-all">
-                                <i data-lucide="hand-heart" class="w-4 h-4"></i> Unisciti
-                            </a>
+                            ${p.bullets
+                                ? `<ul class="mt-auto space-y-2 text-left inline-block mx-auto">
+                                    ${p.bullets.map(b => `<li class="flex items-center gap-2 text-sage font-semibold text-sm"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0"></i> ${b}</li>`).join('')}
+                                   </ul>`
+                                : `<a href="tel:044274383" class="mt-auto inline-flex items-center gap-2 border border-sage/20 text-sage px-6 py-2.5 rounded-full text-sm font-bold hover:bg-sage hover:text-white transition-all self-center">
+                                    <i data-lucide="hand-heart" class="w-4 h-4"></i> Unisciti
+                                   </a>`}
                         </div>`).join('')}
                 </div>
             </div>
@@ -161,7 +167,7 @@ export async function renderHome() {
             </div>
         </section>
 
-        ${ctaBanner('Vuoi vedere la scuola di persona?', 'Prenota una visita gratuita e senza impegno. Ti accompagniamo in ogni spazio per farti respirare il nostro metodo.')}
+        ${ctaBanner('Vuoi vedere la scuola di persona?')}
     `;
 }
 
@@ -258,8 +264,8 @@ export async function renderMetodo() {
                     <h1 class="text-5xl md:text-6xl font-display font-bold text-sage">Pedagogia Viva</h1>
                 </div>
                 <div class="space-y-6 text-lg text-ink/70 leading-relaxed reveal">
-                    <p>Alla Scuola Sacra Famiglia l'educazione non è un travaso di nozioni, ma l'accensione di un fuoco. Ci ispiriamo ai principi della <strong class="text-sage">pedagogia attiva</strong>, dove l'ambiente è il "terzo educatore".</p>
-                    <p>Rifiutiamo l'approccio standardizzato. Ogni bambino ha un "linguaggio" diverso: c'è chi apprende osservando, chi toccando, chi muovendosi. La nostra programmazione è flessibile e si adatta al gruppo.</p>
+                    <p>Alla Scuola Sacra Famiglia l'educazione non è un travaso di nozioni, ma dare nutrimento ad un seme. Ci ispiriamo ai principi della <strong class="text-sage">pedagogia attiva</strong>, dove l'ambiente è il "terzo educatore".</p>
+                    <p>Rifiutiamo l'approccio standardizzato. Ogni bambino ha tanti linguaggi diversi per apprendere: osservazione, manipolazione, movimento, musicalità, creatività. La nostra programmazione è flessibile e si adatta ai bambini.</p>
                     <p>La relazione scuola-famiglia è il nostro pilastro. Non siamo un semplice servizio di custodia, ma un partner nel percorso di crescita di tuo figlio.</p>
                 </div>
             </div>
@@ -286,9 +292,9 @@ export async function renderMetodo() {
                 ${sectionHeading('Come lavoriamo', 'Progetti in itinere', 'Non seguiamo binari prestabiliti: costruiamo il percorso insieme ai bambini, partendo dall\'ascolto.')}
                 <div class="grid md:grid-cols-3 gap-10">
                     ${[
-                        { icon: 'eye', t: 'Osservazione', d: "L'insegnante osserva gli interessi emergenti del gruppo durante il gioco libero." },
+                        { icon: 'eye', t: 'Osservazione', d: "L'insegnante osserva e ascolta gli interessi e i bisogni dei bambini durante tutta la giornata educativa." },
                         { icon: 'sparkles', t: 'Trasformazione', d: "L'interesse diventa progetto: si allestiscono spazi e materiali per approfondire la scoperta." },
-                        { icon: 'share-2', t: 'Condivisione', d: "L'esperienza viene documentata e condivisa con le famiglie per valorizzare il fare del bambino." }
+                        { icon: 'share-2', t: 'Condivisione', d: "L'esperienza viene documentata e condivisa con le famiglie e la comunità per valorizzare il fare del bambino." }
                     ].map((s, i) => `
                         <div class="text-center reveal">
                             <div class="w-16 h-16 mx-auto bg-cream rounded-full flex items-center justify-center shadow-sm text-gold mb-5 relative">
@@ -310,13 +316,30 @@ export async function renderMetodo() {
                 </blockquote>
                 <div class="grid md:grid-cols-3 gap-6">
                     ${[
-                        { icon: 'sun', t: 'Luce naturale' },
+                        { icon: 'layout-dashboard', t: 'Spazi flessibili' },
                         { icon: 'tree-pine', t: 'Materiali naturali' },
                         { icon: 'maximize', t: 'Libertà di movimento' }
                     ].map(x => `
                         <div class="reveal bg-white/70 backdrop-blur-sm p-6 rounded-3xl border border-sage/10 text-center shadow-sm">
                             <i data-lucide="${x.icon}" class="w-6 h-6 mx-auto mb-3 text-gold"></i>
                             <span class="text-sm font-bold text-sage">${x.t}</span>
+                        </div>`).join('')}
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-cream">
+            <div class="container mx-auto px-6 max-w-5xl">
+                ${sectionHeading('Eventi', 'Feste scolastiche e manifestazioni comunitarie', 'Le insegnanti organizzano feste interne dove i bambini sono protagonisti attivi e manifestazioni rivolte alla comunità.')}
+                <div class="grid md:grid-cols-3 gap-8">
+                    ${[
+                        { icon: 'party-popper', t: 'Festa dell\'accoglienza e Pranzo di Gala di Natale' },
+                        { icon: 'drama', t: 'Recita di Natale e Fine anno' },
+                        { icon: 'gift', t: 'Consegna doni ai nonni nelle case di riposo limitrofe' }
+                    ].map(e => `
+                        <div class="reveal lift bg-cream rounded-4xl p-8 border border-sage/10 flex items-start gap-4">
+                            <span class="w-12 h-12 rounded-2xl bg-white text-gold flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="${e.icon}" class="w-6 h-6"></i></span>
+                            <p class="text-sage font-semibold leading-snug pt-1.5">${e.t}</p>
                         </div>`).join('')}
                 </div>
             </div>
@@ -350,7 +373,7 @@ export async function renderMetodo() {
             </div>
         </section>
 
-        ${ctaBanner('Vivi i nostri valori ogni giorno', 'Contattaci per scoprire come traduciamo la pedagogia in esperienza quotidiana.')}
+        ${ctaBanner('Vivi i nostri valori ogni giorno')}
     `;
 }
 
@@ -364,7 +387,7 @@ export async function renderServizi() {
             <div class="container mx-auto px-6 relative z-10 reveal">
                 <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Offerta educativa</span>
                 <h1 class="text-5xl font-display font-bold text-sage mb-6">Un'offerta completa</h1>
-                <p class="text-ink/60 max-w-2xl mx-auto text-lg">Tutto ciò che serve per la crescita armonica del bambino, dalla cucina interna ai laboratori specialistici.</p>
+                <p class="text-ink/60 max-w-2xl mx-auto text-lg">Tutto ciò che serve per la crescita armonica del bambino.</p>
             </div>
         </section>
 
@@ -392,7 +415,7 @@ export async function renderServizi() {
             </div>
         </section>
 
-        ${ctaBanner('Hai domande sui nostri servizi?', 'Siamo felici di raccontarti nel dettaglio come funziona ogni attività.')}
+        ${ctaBanner('Hai domande sui nostri servizi?')}
     `;
 }
 
@@ -406,24 +429,19 @@ export async function renderTeam() {
                 <div class="reveal max-w-3xl mx-auto mb-16">
                     <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Chi siamo</span>
                     <h1 class="text-5xl font-display font-bold text-sage mb-6">Il Nostro Team</h1>
-                    <p class="text-ink/60 text-lg italic font-display">"Stabilità e passione: un gruppo di educatrici presenti da anni, sulla stessa linea educativa."</p>
+                    <p class="text-ink/60 text-lg italic font-display">"Un gruppo unito e coeso che ogni giorno concretizza il pensiero educativo che mette il bambino al centro."</p>
                 </div>
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                    ${data.team.map(t => `
-                        <div class="reveal group text-center">
-                            <div class="relative overflow-hidden rounded-[2rem] aspect-[4/5] mb-5 shadow-lg">
-                                <img src="${t.image}" alt="${t.name}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-sage/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                                    <p class="text-white text-sm italic text-left">"${t.quote}"</p>
-                                </div>
-                            </div>
-                            <h4 class="text-lg font-display font-bold text-sage">${t.name}</h4>
-                            <p class="text-[11px] uppercase font-bold text-gold tracking-widest">${t.role}</p>
-                        </div>`).join('')}
+                <div class="reveal max-w-4xl mx-auto">
+                    <div class="relative overflow-hidden rounded-[2.5rem] shadow-xl border border-sage/10 aspect-[16/10]">
+                        <img src="${data.teamPhoto}" alt="La squadra della Scuola Sacra Famiglia: maestre, segretaria e cuoche" loading="lazy" class="w-full h-full object-cover">
+                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage/80 to-transparent p-6 pt-16">
+                            <p class="text-white font-display text-lg font-bold text-left">Maestre, segreteria e cuoche</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="mt-16 p-10 bg-white rounded-4xl border border-sage/10 max-w-2xl mx-auto reveal">
                     <i data-lucide="quote" class="w-8 h-8 text-gold mx-auto mb-4"></i>
-                    <p class="italic text-ink/60 font-display text-lg">"Le nostre educatrici non sono solo insegnanti, ma guide attente che accompagnano ogni bambino nel suo percorso unico verso l'autonomia."</p>
+                    <p class="italic text-ink/60 font-display text-lg">"Le nostre insegnanti sono guide attente che accompagnano ogni bambino nella sua unicità verso l'autonomia e uno sviluppo globale."</p>
                 </div>
             </div>
         </section>
@@ -434,7 +452,7 @@ export async function renderTeam() {
 
 export async function renderIscrizioni() {
     const steps = [
-        { n: '1', t: 'Prenota una visita', d: 'Chiamaci per fissare un incontro personalizzato negli orari di segreteria.' },
+        { n: '1', t: 'Prenota una visita', d: 'Prenota la visita durante le giornate di Open Day.' },
         { n: '2', t: 'Conosci la scuola', d: 'Visita le aule, il giardino e incontra le educatrici per parlare del metodo.' },
         { n: '3', t: 'Iscrizione', d: "Ricevi i moduli e completa l'iscrizione con il supporto della segreteria." }
     ];
@@ -469,7 +487,7 @@ export async function renderIscrizioni() {
                 <div class="space-y-8 reveal">
                     <div>
                         <h3 class="text-2xl font-display font-bold text-sage mb-3 flex items-center gap-3"><i data-lucide="calendar-clock" class="text-gold"></i> Quando iscriversi</h3>
-                        <p class="text-ink/65 leading-relaxed">La segreteria è aperta per informazioni e iscrizioni ogni mattina dalle <strong class="text-sage">09:00 alle 12:00</strong>. Riceviamo tutto l'anno previa disponibilità posti.</p>
+                        <p class="text-ink/65 leading-relaxed">La segreteria è aperta per informazioni e iscrizioni ogni mattina dalle <strong class="text-sage">08:30 alle 12:00</strong>, dal lunedì al venerdì. Riceviamo tutto l'anno previa disponibilità posti.</p>
                     </div>
                     <div>
                         <h3 class="text-2xl font-display font-bold text-sage mb-3 flex items-center gap-3"><i data-lucide="users" class="text-gold"></i> A chi è rivolta</h3>
@@ -483,7 +501,6 @@ export async function renderIscrizioni() {
                     <h3 class="text-2xl font-display font-bold mb-6 flex items-center gap-3"><i data-lucide="piggy-bank" class="text-gold"></i> Quanto costa?</h3>
                     <div class="space-y-4 text-sm text-white/85 leading-relaxed">
                         <p>Crediamo nell'accessibilità: applichiamo <strong class="text-white">rette calmierate</strong> grazie ai contributi pubblici, per venire incontro alle esigenze di ogni famiglia.</p>
-                        <p>La retta include il servizio mensa interna e tutti i laboratori standard (inglese, psicomotricità).</p>
                     </div>
                     <div class="mt-8 pt-6 border-t border-white/20">
                         <a href="#/contatti" class="inline-flex items-center gap-2 bg-gold text-white px-6 py-3 rounded-full text-sm font-bold hover:scale-105 transition-transform">
@@ -494,7 +511,7 @@ export async function renderIscrizioni() {
             </div>
         </section>
 
-        ${ctaBanner('Siamo a tua disposizione', 'Contattaci per prenotare la tua visita o per qualsiasi informazione sull\'iscrizione.')}
+        ${ctaBanner('Siamo a tua disposizione')}
     `;
 }
 
@@ -525,7 +542,7 @@ export async function renderFAQ() {
             </div>
         </section>
 
-        ${ctaBanner('Ancora qualche dubbio?', 'Contattaci direttamente: saremo felici di rispondere a ogni tua domanda.')}
+        ${ctaBanner('Ancora qualche dubbio?')}
     `;
 }
 
@@ -536,7 +553,7 @@ export async function renderContatti() {
         { icon: 'map-pin', t: 'Indirizzo', v: 'Via Giacomo Leopardi, 16<br>37050 Roverchiara (VR)' },
         { icon: 'phone', t: 'Telefono', v: '<a href="tel:044274383" class="hover:text-sage">0442 74383</a>' },
         { icon: 'mail', t: 'Email', v: '<a href="mailto:sacrafami.roverchi@libero.it" class="hover:text-sage break-all">sacrafami.roverchi@libero.it</a>' },
-        { icon: 'clock', t: 'Orari Segreteria', v: 'Dal Lunedì al Venerdì<br>09:00 - 12:00' }
+        { icon: 'clock', t: 'Orari Segreteria', v: 'Dal Lunedì al Venerdì<br>08:30 - 12:00' }
     ];
     return `
         <section class="pt-40 pb-24 bg-white">
@@ -546,7 +563,7 @@ export async function renderContatti() {
                         <div class="reveal mb-10">
                             <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Contatti</span>
                             <h1 class="text-5xl font-display font-bold text-sage mb-5">Mettiamoci in contatto</h1>
-                            <p class="text-ink/60 text-lg">La nostra porta è sempre aperta. Passa a trovarci o chiamaci: saremo felici di rispondere a ogni tua domanda.</p>
+                            <p class="text-ink/60 text-lg">Ogni anno è possibile visitare la scuola a dicembre e gennaio nelle giornate di Open Day. La segreteria risponde dalle 8:30 alle 12:00 lun - ven per darvi le informazioni necessarie.</p>
                         </div>
                         <div class="grid sm:grid-cols-2 gap-4 mb-8">
                             ${infoCards.map(c => `
