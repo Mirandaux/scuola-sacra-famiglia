@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Logo Scuola Sacra Famiglia">
+  <defs>
+    <clipPath id="ring"><circle cx="100" cy="100" r="95"/></clipPath>
+  </defs>
+  <!-- white disc + outline -->
+  <circle cx="100" cy="100" r="95" fill="#ffffff" stroke="#111111" stroke-width="2.5"/>
+  <g clip-path="url(#ring)">
+    <!-- robes (tricolore) -->
+    <!-- blue figure (left) -->
+    <path d="M62 112 Q47 155 42 205 L112 205 Q104 150 92 112 Q77 100 62 112 Z" fill="#1f80c9"/>
+    <!-- red figure (right) -->
+    <path d="M100 88 Q96 150 94 205 L172 205 Q162 150 152 92 Q128 78 100 88 Z" fill="#d8431c"/>
+    <!-- white child robe (front centre) -->
+    <path d="M84 142 Q78 172 79 205 L125 205 Q126 172 118 142 Q101 132 84 142 Z" fill="#ffffff" stroke="#e2e2e2" stroke-width="1"/>
+    <!-- halos (yellow) -->
+    <circle cx="110" cy="52" r="22" fill="#f2c200" stroke="#111111" stroke-width="1.5"/>
+    <circle cx="74" cy="86" r="21" fill="#f2c200" stroke="#111111" stroke-width="1.5"/>
+    <circle cx="100" cy="118" r="17" fill="#f2c200" stroke="#111111" stroke-width="1.5"/>
+    <!-- heads (skin) -->
+    <ellipse cx="112" cy="64" rx="18" ry="21" fill="#f6cfa2" stroke="#111111" stroke-width="1.5"/>
+    <ellipse cx="74" cy="96" rx="17" ry="20" fill="#f6cfa2" stroke="#111111" stroke-width="1.5"/>
+    <ellipse cx="100" cy="126" rx="14" ry="16" fill="#f6cfa2" stroke="#111111" stroke-width="1.5"/>
+  </g>
+</svg>

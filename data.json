@@ -2,8 +2,7 @@
   "counters": [
     { "val": 24, "suffix": "+", "label": "Anni di attività", "icon": "history" },
     { "val": 80, "suffix": "+", "label": "Bambini accolti ogni anno", "icon": "baby" },
-    { "val": 4, "suffix": "", "label": "Educatrici stabili", "icon": "heart-handshake" },
-    { "val": 18, "suffix": "", "label": "Uscite didattiche / anno", "icon": "map" }
+    { "val": 5, "suffix": "+", "label": "Uscite didattiche / anno", "icon": "map" }
   ],
   "method": [
     {
@@ -19,61 +18,56 @@
     {
       "icon": "brain",
       "title": "Pensiero progettuale",
-      "text": "Incoraggiamo i bambini a porsi domande e a cercare soluzioni attraverso l'esperienza diretta."
+      "text": "Incoraggiamo i bambini a porsi domande e a cercare soluzioni attraverso l'esplorazione e l'esperienza diretta."
     },
     {
       "icon": "users",
       "title": "Crescere insieme",
-      "text": "Siamo partner della famiglia in un dialogo costante, non un semplice servizio di custodia."
+      "text": "Creiamo alleanze educative con le famiglie"
     },
     {
       "icon": "leaf",
       "title": "Natura e Spazi",
-      "text": "Ambienti caldi e materiali organici ispirati all'estetica Reggio Emilia per stimolare i sensi."
+      "text": "Ambienti curati, materiali naturali, ispirati al pensiero educativo Reggio Children per rendere l'ambiente stimolante e accogliente"
     }
   ],
   "comparison": [
-    { "label": "Rapporto Educatrice/Bambini", "sacra": "Stretto e personalizzato", "statale": "Classi più numerose" },
     { "label": "Mensa", "sacra": "Interna con cuoche e prodotti freschi", "statale": "Spesso esterna/veicolata" },
     { "label": "Metodologia", "sacra": "Attiva e flessibile", "statale": "Prevalentemente standardizzata" },
     { "label": "Servizi Extra", "sacra": "Post-scuola fino alle 18:00", "statale": "Spesso limitati o assenti" }
   ],
   "day": [
     { "icon": "sunrise", "time": "7:30 - 9:00", "label": "Accoglienza", "desc": "Entrata anticipata e gioco libero." },
-    { "icon": "sparkles", "time": "9:00 - 11:30", "label": "Attività", "desc": "Progetti, laboratori ed esperienze." },
-    { "icon": "utensils", "time": "11:30 - 12:30", "label": "Pranzo", "desc": "Cucina interna, menu freschi." },
+    { "icon": "sparkles", "time": "9:00 - 11:30", "label": "Attività", "desc": "Routine, progetti, laboratori ed esperienze." },
+    { "icon": "utensils", "time": "11:30 - 12:30", "label": "Pranzo", "desc": "Menu variegato e vidimato ASL" },
     { "icon": "moon", "time": "12:30 - 14:30", "label": "Riposo", "desc": "Relax e nanna per i più piccoli." },
-    { "icon": "palette", "time": "14:30 - 16:00", "label": "Pomeriggio", "desc": "Creatività e gioco all'aperto." },
-    { "icon": "backpack", "time": "16:00 - 18:00", "label": "Uscita", "desc": "Post-orario e saluti alle famiglie." }
+    { "icon": "palette", "time": "14:30 - 16:00", "label": "Pomeriggio", "desc": "Creatività musicale e motoria." },
+    { "icon": "backpack", "time": "16:00 - 18:00", "label": "Uscita", "desc": "Ricongiungimento e post-orario" }
   ],
   "services": [
+    { "icon": "school", "title": "Scuola Infanzia", "age": "3-6 anni", "desc": "Percorso declinato sulle linee guida delle indicazioni nazionali", "hours": "09:00 - 15:30" },
     { "icon": "sun", "title": "Sezione Primavera", "age": "24-36 mesi", "desc": "Un ponte dolce verso l'autonomia per i più piccoli.", "hours": "07:30 - 18:00" },
-    { "icon": "school", "title": "Scuola Infanzia", "age": "3-6 anni", "desc": "Percorso educativo paritario MIUR.", "hours": "09:00 - 15:30" },
-    { "icon": "palette", "title": "Educazione all'Arte", "age": "5-6 anni", "desc": "Percorsi espressivi per scoprire il mondo attraverso i colori e le forme.", "hours": "Settimanale" },
+    { "icon": "baby", "title": "Nido", "age": "0-2 anni", "desc": "Servizio nido in fase di attivazione.", "hours": "Prossimamente", "isNew": true },
     { "icon": "sunrise", "title": "Entrata Anticipata", "age": "Tutti", "desc": "Accoglienza dalle ore 07:30 per genitori che lavorano.", "hours": "07:30 - 09:00" },
     { "icon": "sunset", "title": "Post-orario", "age": "Tutti", "desc": "Supporto e attività fino alle ore 18:00.", "hours": "15:30 - 18:00" },
     { "icon": "utensils", "title": "Mensa Interna", "age": "Freschezza", "desc": "Cibo preparato in loco ogni giorno dalle nostre cuoche.", "hours": "Quotidiano" },
+    { "icon": "church", "title": "IRC", "age": "Insegnamento", "desc": "Progetto di istruzione religiosa cattolica integrato.", "hours": "Settimanale" },
+    { "icon": "palette", "title": "Educazione all'Arte", "age": "5-6 anni", "desc": "Percorsi espressivi per scoprire il mondo attraverso i colori e le forme.", "hours": "Settimanale" },
+    { "icon": "leaf", "title": "Educazione ambientale", "age": "Valori", "desc": "Educazione al rispetto della natura e degli animali con orto didattico e piccola fattoria interna", "hours": "Costante" },
+    { "icon": "activity", "title": "Psicomotricità relazionale", "age": "Sviluppo", "desc": "Consapevolezza del corpo e del movimento nella relazione con l'altro", "hours": "Settimanale" },
     { "icon": "languages", "title": "Inglese", "age": "Laboratorio", "desc": "Primo approccio ludico alla lingua straniera.", "hours": "Settimanale" },
-    { "icon": "activity", "title": "Psicomotricità", "age": "Sviluppo", "desc": "Consapevolezza del corpo e del movimento.", "hours": "Settimanale" },
-    { "icon": "bus", "title": "Uscite Didattiche", "age": "Scoperta", "desc": "Esplorazione del territorio, inclusi viaggi a Milano, Rovigo, mare e lago.", "hours": "Periodiche" },
-    { "icon": "leaf", "title": "Ecologia", "age": "Valori", "desc": "Educazione al rispetto della natura e orto didattico.", "hours": "Costante" },
-    { "icon": "church", "title": "IRC", "age": "Insegnamento", "desc": "Progetto di religione cattolica integrato.", "hours": "Settimanale" },
-    { "icon": "baby", "title": "Nido", "age": "0-2 anni", "desc": "Servizio nido in fase di attivazione.", "hours": "Prossimamente", "isNew": true }
+    { "icon": "bus", "title": "Uscite Didattiche", "age": "Scoperta", "desc": "Esplorazione del territorio, inclusi viaggi a Milano, Rovigo, mare e lago.", "hours": "Periodiche" }
   ],
-  "team": [
-    { "name": "M. Francesca", "role": "Coordinatrice", "quote": "Ogni bambino è una promessa da mantenere.", "image": "https://images.unsplash.com/photo-1544717297-fa95b3ee9625?q=80&w=400&h=500&auto=format&fit=crop" },
-    { "name": "E. Laura", "role": "Educatrice Primavera", "quote": "Nei loro occhi vedo il futuro che germoglia.", "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=500&auto=format&fit=crop" },
-    { "name": "S. Anna", "role": "Insegnante Infanzia", "quote": "Insegnare è lasciare un'impronta nel cuore.", "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=400&h=500&auto=format&fit=crop" },
-    { "name": "G. Maria", "role": "Supporto Didattico", "quote": "La pazienza è il segreto di ogni scoperta.", "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=500&auto=format&fit=crop" }
-  ],
+  "teamPhoto": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop",
   "parents": [
     { "icon": "flower", "title": "Gruppo Mamme", "text": "Sostegno reciproco, laboratori creativi e mercatini solidali per la comunità." },
-    { "icon": "hammer", "title": "Gruppo Papà", "text": "Manutenzione creativa degli spazi, allestimenti e gite comunitarie." }
+    { "icon": "hammer", "title": "Gruppo Papà", "text": "Manutenzione creativa e allestimento degli spazi." },
+    { "icon": "handshake", "title": "Associazioni", "text": "Collaborazione e supporto durante alle manifestazioni e alle uscite scolastiche", "bullets": ["Gruppo Alpini", "Comitato festeggiamenti"] }
   ],
   "contribCards": [
-    { "icon": "landmark", "title": "MIUR", "text": "Contributi statali per le scuole paritarie riconosciute." },
-    { "icon": "home", "title": "Comune Roverchiara", "text": "Convenzioni territoriali per il sostegno alle famiglie." },
-    { "icon": "users", "title": "Enti Locali", "text": "Progetti specifici per l'inclusione e il benessere infantile." }
+    { "icon": "landmark", "title": "MIUR", "text": "Contributi statali e regionali per le scuole paritarie riconosciute." },
+    { "icon": "home", "title": "Comune Roverchiara", "text": "Convenzioni territoriali per il sostegno alla scuola." },
+    { "icon": "users", "title": "Aziende Private Locali", "text": "Progetti specifici per l'inclusione e il benessere infantile." }
   ],
   "contributi": [
     { "year": "2025", "law": "Legge n. 124/2017, commi 125-129 dell'art. 1", "amount": "Somma in arrivo post approvazione del bilancio", "pdf": null },
@@ -84,10 +78,10 @@
   "faq": [
     { "q": "Posso visitare la scuola prima di iscrivermi?", "a": "Certamente! Riteniamo fondamentale il primo incontro. Potrai visitare gli spazi e parlare con la coordinatrice previo appuntamento telefonico." },
     { "q": "Qual è la differenza tra scuola paritaria e statale?", "a": "La scuola paritaria segue i programmi ministeriali ma offre maggiore flessibilità oraria, cucina interna con personale proprio e una progettualità educativa più specifica e familiare." },
-    { "q": "Cosa include la retta mensile?", "a": "La retta include tutte le attività didattiche, i laboratori (inglese, psicomotricità), i materiali scolastici e il servizio mensa curato internamente." },
-    { "q": "Quali sono gli orari? È previsto il post-orario?", "a": "L'attività standard è 09:00-15:30. Offriamo pre-scuola dalle 07:30 e post-scuola fino alle 18:00 per supportare i genitori lavoratori." },
-    { "q": "Come funziona la sezione primavera (dai 2 anni)?", "a": "È un ambiente protetto con arredi e ritmi pensati per i più piccoli, che permette un inserimento graduale nel mondo della scuola dell'infanzia." },
-    { "q": "Chi sono gli insegnanti? Cambiano ogni anno?", "a": "Il nostro punto di forza è la stabilità. Il team è composto da educatrici esperte presenti da molti anni, garantendo continuità affettiva ai bambini." },
-    { "q": "Come funziona la mensa? Il cibo è preparato in loco?", "a": "Sì, disponiamo di cucina interna. Le nostre cuoche preparano menu stagionali bilanciati approvati ATS, utilizzando ingredienti freschi e controllati." }
+    { "q": "Cosa include la retta mensile?", "a": "La retta include tutte le attività didattiche, i materiali scolastici e il servizio mensa curato internamente." },
+    { "q": "Quali sono gli orari? È previsto il post-orario?", "a": "L'attività standard è 08:00-15:30. Offriamo pre-scuola dalle 07:30 e post-scuola fino alle 18:00 per supportare i genitori lavoratori." },
+    { "q": "Come funziona la sezione primavera (dai 2 anni)?", "a": "È un ambiente protetto con materiali, spazi e tempi pensati per i più piccoli, che permette un inserimento graduale nella comunità scolastica." },
+    { "q": "Chi sono gli insegnanti? Cambiano ogni anno?", "a": "Il nostro punto di forza è la stabilità del pensiero educativo. A causa della normativa vigente, alcune insegnanti non possono essere contrattualizzate in modo stabile all'interno della scuola. Tuttavia, le competenze educative e gestionali della figura di coordinamento, permettono di mantenere alti gli standard e avere un miglioramento progressivo continuo dell'offerta formativa" },
+    { "q": "Come funziona la mensa? Il cibo è preparato in loco?", "a": "Sì, disponiamo di cucina interna. Le nostre cuoche preparano menu stagionali bilanciati e basati sulle linee guida nutrizionali specifiche per l'età pediatrica, approvati ASL, utilizzando ingredienti freschi e controllati." }
   ]
 }

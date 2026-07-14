@@ -33,7 +33,7 @@ Quasi tutto si modifica in **`data.json`** senza toccare il codice:
 
 - **Contatori** → `counters`
 - **Servizi** → `services`
-- **Team** → `team`
+- **Team** → foto di gruppo in `teamPhoto`
 - **FAQ** → `faq`
 - **Timeline "Una giornata con noi"** → `day`
 - **Contributi pubblici (Legge 124/2017)** → `contributi`
