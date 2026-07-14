@@ -47,7 +47,6 @@
   "services": [
     { "icon": "school", "title": "Scuola Infanzia", "age": "3-6 anni", "desc": "Percorso declinato sulle linee guida delle indicazioni nazionali", "hours": "09:00 - 15:30" },
     { "icon": "sun", "title": "Sezione Primavera", "age": "24-36 mesi", "desc": "Un ponte dolce verso l'autonomia per i più piccoli.", "hours": "07:30 - 18:00" },
-    { "icon": "baby", "title": "Nido", "age": "0-2 anni", "desc": "Servizio nido in fase di attivazione.", "hours": "Prossimamente", "isNew": true },
     { "icon": "sunrise", "title": "Entrata Anticipata", "age": "Tutti", "desc": "Accoglienza dalle ore 07:30 per genitori che lavorano.", "hours": "07:30 - 09:00" },
     { "icon": "sunset", "title": "Post-orario", "age": "Tutti", "desc": "Supporto e attività fino alle ore 18:00.", "hours": "15:30 - 18:00" },
     { "icon": "utensils", "title": "Mensa Interna", "age": "Freschezza", "desc": "Cibo preparato in loco ogni giorno dalle nostre cuoche.", "hours": "Quotidiano" },
@@ -58,7 +57,7 @@
     { "icon": "languages", "title": "Inglese", "age": "Laboratorio", "desc": "Primo approccio ludico alla lingua straniera.", "hours": "Settimanale" },
     { "icon": "bus", "title": "Uscite Didattiche", "age": "Scoperta", "desc": "Esplorazione del territorio, inclusi viaggi a Milano, Rovigo, mare e lago.", "hours": "Periodiche" }
   ],
-  "teamPhoto": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop",
+  "teamPhoto": "",
   "parents": [
     { "icon": "flower", "title": "Gruppo Mamme", "text": "Sostegno reciproco, laboratori creativi e mercatini solidali per la comunità." },
     { "icon": "hammer", "title": "Gruppo Papà", "text": "Manutenzione creativa e allestimento degli spazi." },
@@ -70,10 +69,8 @@
     { "icon": "users", "title": "Aziende Private Locali", "text": "Progetti specifici per l'inclusione e il benessere infantile." }
   ],
   "contributi": [
-    { "year": "2025", "law": "Legge n. 124/2017, commi 125-129 dell'art. 1", "amount": "Somma in arrivo post approvazione del bilancio", "pdf": null },
-    { "year": "2024", "law": "Legge n. 124/2017, commi 125-129 dell'art. 1", "amount": "€ 170.563,09", "pdf": null },
-    { "year": "2022", "law": "Legge n. 124/2017, commi 125-129 dell'art. 1", "amount": "€ 128.663,43", "pdf": null },
-    { "year": "2021", "law": "Legge n. 124/2017, commi 125-129 dell'art. 1", "amount": "€ 129.741,51", "pdf": null }
+    { "year": "2025", "law": "Legge n. 124/2017, commi 125-129 dell'art. 1", "pdf": "docs/contributi-2025.pdf" },
+    { "year": "2024", "law": "Legge n. 124/2017, commi 125-129 dell'art. 1", "pdf": "docs/contributi-2024.pdf" }
   ],
   "faq": [
     { "q": "Posso visitare la scuola prima di iscrivermi?", "a": "Certamente! Riteniamo fondamentale il primo incontro. Potrai visitare gli spazi e parlare con la coordinatrice previo appuntamento telefonico." },

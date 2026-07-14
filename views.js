@@ -232,7 +232,6 @@ function contributiTable(rows) {
             <div class="text-left">
                 <span class="text-gold font-bold text-sm uppercase tracking-wider">${r.year}</span>
                 <p class="font-medium mt-1 text-sm md:text-base">${r.law}</p>
-                <p class="text-sm text-white/70 mt-0.5">${r.amount}</p>
             </div>
             ${r.pdf
                 ? `<a href="${r.pdf}" target="_blank" rel="noopener" class="flex items-center gap-2 text-gold text-sm font-semibold hover:opacity-80 transition-opacity shrink-0">
@@ -335,11 +334,16 @@ export async function renderMetodo() {
                     ${[
                         { icon: 'party-popper', t: 'Festa dell\'accoglienza e Pranzo di Gala di Natale' },
                         { icon: 'drama', t: 'Recita di Natale e Fine anno' },
-                        { icon: 'gift', t: 'Consegna doni ai nonni nelle case di riposo limitrofe' }
+                        { icon: 'gift', t: 'Consegna doni', list: ['ai nonni nelle case di riposo limitrofe', 'a insegnanti e alunni delle scuole di grado superiore del paese'] }
                     ].map(e => `
                         <div class="reveal lift bg-cream rounded-4xl p-8 border border-sage/10 flex items-start gap-4">
                             <span class="w-12 h-12 rounded-2xl bg-white text-gold flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="${e.icon}" class="w-6 h-6"></i></span>
-                            <p class="text-sage font-semibold leading-snug pt-1.5">${e.t}</p>
+                            <div class="pt-1.5">
+                                <p class="text-sage font-semibold leading-snug">${e.t}</p>
+                                ${e.list ? `<ul class="mt-2 space-y-1.5">
+                                    ${e.list.map(li => `<li class="flex items-start gap-2 text-ink/60 text-sm leading-snug"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i> ${li}</li>`).join('')}
+                                </ul>` : ''}
+                            </div>
                         </div>`).join('')}
                 </div>
             </div>
@@ -381,6 +385,25 @@ export async function renderMetodo() {
 
 export async function renderServizi() {
     const data = await fetchData();
+    const serviceCard = (s) => `
+        <div class="reveal lift p-8 bg-cream rounded-[2rem] border border-transparent hover:border-gold/30 group">
+            <div class="flex justify-between items-start mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-sage group-hover:text-gold group-hover:scale-110 transition-all shadow-sm">
+                    <i data-lucide="${s.icon}"></i>
+                </div>
+                ${s.isNew ? '<span class="bg-gold text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">In Arrivo</span>' : ''}
+            </div>
+            <div class="flex justify-between items-center gap-2 mb-3">
+                <h4 class="text-xl font-display font-bold text-sage">${s.title}</h4>
+                <span class="text-[10px] uppercase font-bold text-gold bg-gold/10 px-3 py-1 rounded-full whitespace-nowrap">${s.age}</span>
+            </div>
+            <p class="text-ink/55 text-sm mb-6 leading-relaxed">${s.desc}</p>
+            <div class="pt-4 border-t border-sage/10 flex items-center gap-2 text-xs font-bold text-sage/60">
+                <i data-lucide="clock" class="w-4 h-4"></i> ${s.hours}
+            </div>
+        </div>`;
+    const featured = data.services.slice(0, 2);
+    const rest = data.services.slice(2);
     return `
         <section class="pt-40 pb-16 bg-cream text-center relative overflow-hidden">
             <div class="blob w-72 h-72 bg-gold/15 -top-10 -left-10"></div>
@@ -393,24 +416,11 @@ export async function renderServizi() {
 
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    ${featured.map(serviceCard).join('')}
+                </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    ${data.services.map(s => `
-                        <div class="reveal lift p-8 bg-cream rounded-[2rem] border border-transparent hover:border-gold/30 group">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-sage group-hover:text-gold group-hover:scale-110 transition-all shadow-sm">
-                                    <i data-lucide="${s.icon}"></i>
-                                </div>
-                                ${s.isNew ? '<span class="bg-gold text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">In Arrivo</span>' : ''}
-                            </div>
-                            <div class="flex justify-between items-center gap-2 mb-3">
-                                <h4 class="text-xl font-display font-bold text-sage">${s.title}</h4>
-                                <span class="text-[10px] uppercase font-bold text-gold bg-gold/10 px-3 py-1 rounded-full whitespace-nowrap">${s.age}</span>
-                            </div>
-                            <p class="text-ink/55 text-sm mb-6 leading-relaxed">${s.desc}</p>
-                            <div class="pt-4 border-t border-sage/10 flex items-center gap-2 text-xs font-bold text-sage/60">
-                                <i data-lucide="clock" class="w-4 h-4"></i> ${s.hours}
-                            </div>
-                        </div>`).join('')}
+                    ${rest.map(serviceCard).join('')}
                 </div>
             </div>
         </section>
@@ -432,12 +442,19 @@ export async function renderTeam() {
                     <p class="text-ink/60 text-lg italic font-display">"Un gruppo unito e coeso che ogni giorno concretizza il pensiero educativo che mette il bambino al centro."</p>
                 </div>
                 <div class="reveal max-w-4xl mx-auto">
-                    <div class="relative overflow-hidden rounded-[2.5rem] shadow-xl border border-sage/10 aspect-[16/10]">
-                        <img src="${data.teamPhoto}" alt="La squadra della Scuola Sacra Famiglia: maestre, segretaria e cuoche" loading="lazy" class="w-full h-full object-cover">
-                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage/80 to-transparent p-6 pt-16">
-                            <p class="text-white font-display text-lg font-bold text-left">Maestre, segreteria e cuoche</p>
-                        </div>
-                    </div>
+                    ${data.teamPhoto
+                        ? `<div class="relative overflow-hidden rounded-[2.5rem] shadow-xl border border-sage/10 aspect-[16/10]">
+                                <img src="${data.teamPhoto}" alt="La squadra della Scuola Sacra Famiglia: maestre, segretaria e cuoche" loading="lazy" class="w-full h-full object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage/80 to-transparent p-6 pt-16">
+                                    <p class="text-white font-display text-lg font-bold text-left">Maestre, segreteria e cuoche</p>
+                                </div>
+                           </div>`
+                        : `<div class="rounded-[2.5rem] border-2 border-dashed border-sage/25 bg-sage-light/40 aspect-[16/10] flex flex-col items-center justify-center text-center p-8">
+                                <span class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-gold shadow-sm mb-5"><i data-lucide="camera" class="w-8 h-8"></i></span>
+                                <span class="inline-block bg-gold text-white text-xs font-bold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-4">In arrivo</span>
+                                <p class="font-display text-xl font-bold text-sage">Foto della squadra in arrivo</p>
+                                <p class="text-ink/50 text-sm mt-2">Maestre, segreteria e cuoche</p>
+                           </div>`}
                 </div>
                 <div class="mt-16 p-10 bg-white rounded-4xl border border-sage/10 max-w-2xl mx-auto reveal">
                     <i data-lucide="quote" class="w-8 h-8 text-gold mx-auto mb-4"></i>
