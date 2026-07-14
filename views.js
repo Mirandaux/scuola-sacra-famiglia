@@ -335,11 +335,16 @@ export async function renderMetodo() {
                     ${[
                         { icon: 'party-popper', t: 'Festa dell\'accoglienza e Pranzo di Gala di Natale' },
                         { icon: 'drama', t: 'Recita di Natale e Fine anno' },
-                        { icon: 'gift', t: 'Consegna doni ai nonni nelle case di riposo limitrofe' }
+                        { icon: 'gift', t: 'Consegna doni', list: ['ai nonni nelle case di riposo limitrofe', 'a insegnanti e alunni delle scuole di grado superiore del paese'] }
                     ].map(e => `
                         <div class="reveal lift bg-cream rounded-4xl p-8 border border-sage/10 flex items-start gap-4">
                             <span class="w-12 h-12 rounded-2xl bg-white text-gold flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="${e.icon}" class="w-6 h-6"></i></span>
-                            <p class="text-sage font-semibold leading-snug pt-1.5">${e.t}</p>
+                            <div class="pt-1.5">
+                                <p class="text-sage font-semibold leading-snug">${e.t}</p>
+                                ${e.list ? `<ul class="mt-2 space-y-1.5">
+                                    ${e.list.map(li => `<li class="flex items-start gap-2 text-ink/60 text-sm leading-snug"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i> ${li}</li>`).join('')}
+                                </ul>` : ''}
+                            </div>
                         </div>`).join('')}
                 </div>
             </div>
