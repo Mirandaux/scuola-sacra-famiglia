@@ -442,12 +442,19 @@ export async function renderTeam() {
                     <p class="text-ink/60 text-lg italic font-display">"Un gruppo unito e coeso che ogni giorno concretizza il pensiero educativo che mette il bambino al centro."</p>
                 </div>
                 <div class="reveal max-w-4xl mx-auto">
-                    <div class="relative overflow-hidden rounded-[2.5rem] shadow-xl border border-sage/10 aspect-[16/10]">
-                        <img src="${data.teamPhoto}" alt="La squadra della Scuola Sacra Famiglia: maestre, segretaria e cuoche" loading="lazy" class="w-full h-full object-cover">
-                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage/80 to-transparent p-6 pt-16">
-                            <p class="text-white font-display text-lg font-bold text-left">Maestre, segreteria e cuoche</p>
-                        </div>
-                    </div>
+                    ${data.teamPhoto
+                        ? `<div class="relative overflow-hidden rounded-[2.5rem] shadow-xl border border-sage/10 aspect-[16/10]">
+                                <img src="${data.teamPhoto}" alt="La squadra della Scuola Sacra Famiglia: maestre, segretaria e cuoche" loading="lazy" class="w-full h-full object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage/80 to-transparent p-6 pt-16">
+                                    <p class="text-white font-display text-lg font-bold text-left">Maestre, segreteria e cuoche</p>
+                                </div>
+                           </div>`
+                        : `<div class="rounded-[2.5rem] border-2 border-dashed border-sage/25 bg-sage-light/40 aspect-[16/10] flex flex-col items-center justify-center text-center p-8">
+                                <span class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-gold shadow-sm mb-5"><i data-lucide="camera" class="w-8 h-8"></i></span>
+                                <span class="inline-block bg-gold text-white text-xs font-bold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-4">In arrivo</span>
+                                <p class="font-display text-xl font-bold text-sage">Foto della squadra in arrivo</p>
+                                <p class="text-ink/50 text-sm mt-2">Maestre, segreteria e cuoche</p>
+                           </div>`}
                 </div>
                 <div class="mt-16 p-10 bg-white rounded-4xl border border-sage/10 max-w-2xl mx-auto reveal">
                     <i data-lucide="quote" class="w-8 h-8 text-gold mx-auto mb-4"></i>

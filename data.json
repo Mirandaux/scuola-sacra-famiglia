@@ -57,7 +57,7 @@
     { "icon": "languages", "title": "Inglese", "age": "Laboratorio", "desc": "Primo approccio ludico alla lingua straniera.", "hours": "Settimanale" },
     { "icon": "bus", "title": "Uscite Didattiche", "age": "Scoperta", "desc": "Esplorazione del territorio, inclusi viaggi a Milano, Rovigo, mare e lago.", "hours": "Periodiche" }
   ],
-  "teamPhoto": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop",
+  "teamPhoto": "",
   "parents": [
     { "icon": "flower", "title": "Gruppo Mamme", "text": "Sostegno reciproco, laboratori creativi e mercatini solidali per la comunità." },
     { "icon": "hammer", "title": "Gruppo Papà", "text": "Manutenzione creativa e allestimento degli spazi." },
