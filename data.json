@@ -47,7 +47,6 @@
   "services": [
     { "icon": "school", "title": "Scuola Infanzia", "age": "3-6 anni", "desc": "Percorso declinato sulle linee guida delle indicazioni nazionali", "hours": "09:00 - 15:30" },
     { "icon": "sun", "title": "Sezione Primavera", "age": "24-36 mesi", "desc": "Un ponte dolce verso l'autonomia per i più piccoli.", "hours": "07:30 - 18:00" },
-    { "icon": "baby", "title": "Nido", "age": "0-2 anni", "desc": "Servizio nido in fase di attivazione.", "hours": "Prossimamente", "isNew": true },
     { "icon": "sunrise", "title": "Entrata Anticipata", "age": "Tutti", "desc": "Accoglienza dalle ore 07:30 per genitori che lavorano.", "hours": "07:30 - 09:00" },
     { "icon": "sunset", "title": "Post-orario", "age": "Tutti", "desc": "Supporto e attività fino alle ore 18:00.", "hours": "15:30 - 18:00" },
     { "icon": "utensils", "title": "Mensa Interna", "age": "Freschezza", "desc": "Cibo preparato in loco ogni giorno dalle nostre cuoche.", "hours": "Quotidiano" },

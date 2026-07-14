@@ -386,6 +386,25 @@ export async function renderMetodo() {
 
 export async function renderServizi() {
     const data = await fetchData();
+    const serviceCard = (s) => `
+        <div class="reveal lift p-8 bg-cream rounded-[2rem] border border-transparent hover:border-gold/30 group">
+            <div class="flex justify-between items-start mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-sage group-hover:text-gold group-hover:scale-110 transition-all shadow-sm">
+                    <i data-lucide="${s.icon}"></i>
+                </div>
+                ${s.isNew ? '<span class="bg-gold text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">In Arrivo</span>' : ''}
+            </div>
+            <div class="flex justify-between items-center gap-2 mb-3">
+                <h4 class="text-xl font-display font-bold text-sage">${s.title}</h4>
+                <span class="text-[10px] uppercase font-bold text-gold bg-gold/10 px-3 py-1 rounded-full whitespace-nowrap">${s.age}</span>
+            </div>
+            <p class="text-ink/55 text-sm mb-6 leading-relaxed">${s.desc}</p>
+            <div class="pt-4 border-t border-sage/10 flex items-center gap-2 text-xs font-bold text-sage/60">
+                <i data-lucide="clock" class="w-4 h-4"></i> ${s.hours}
+            </div>
+        </div>`;
+    const featured = data.services.slice(0, 2);
+    const rest = data.services.slice(2);
     return `
         <section class="pt-40 pb-16 bg-cream text-center relative overflow-hidden">
             <div class="blob w-72 h-72 bg-gold/15 -top-10 -left-10"></div>
@@ -398,24 +417,11 @@ export async function renderServizi() {
 
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    ${featured.map(serviceCard).join('')}
+                </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    ${data.services.map(s => `
-                        <div class="reveal lift p-8 bg-cream rounded-[2rem] border border-transparent hover:border-gold/30 group">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-sage group-hover:text-gold group-hover:scale-110 transition-all shadow-sm">
-                                    <i data-lucide="${s.icon}"></i>
-                                </div>
-                                ${s.isNew ? '<span class="bg-gold text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">In Arrivo</span>' : ''}
-                            </div>
-                            <div class="flex justify-between items-center gap-2 mb-3">
-                                <h4 class="text-xl font-display font-bold text-sage">${s.title}</h4>
-                                <span class="text-[10px] uppercase font-bold text-gold bg-gold/10 px-3 py-1 rounded-full whitespace-nowrap">${s.age}</span>
-                            </div>
-                            <p class="text-ink/55 text-sm mb-6 leading-relaxed">${s.desc}</p>
-                            <div class="pt-4 border-t border-sage/10 flex items-center gap-2 text-xs font-bold text-sage/60">
-                                <i data-lucide="clock" class="w-4 h-4"></i> ${s.hours}
-                            </div>
-                        </div>`).join('')}
+                    ${rest.map(serviceCard).join('')}
                 </div>
             </div>
         </section>
