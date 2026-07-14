@@ -232,7 +232,6 @@ function contributiTable(rows) {
             <div class="text-left">
                 <span class="text-gold font-bold text-sm uppercase tracking-wider">${r.year}</span>
                 <p class="font-medium mt-1 text-sm md:text-base">${r.law}</p>
-                <p class="text-sm text-white/70 mt-0.5">${r.amount}</p>
             </div>
             ${r.pdf
                 ? `<a href="${r.pdf}" target="_blank" rel="noopener" class="flex items-center gap-2 text-gold text-sm font-semibold hover:opacity-80 transition-opacity shrink-0">
