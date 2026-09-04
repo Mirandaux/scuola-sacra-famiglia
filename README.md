@@ -5,10 +5,21 @@ Sito statico, **senza build step**: si pubblica su Vercel così com'è.
 
 ## Stack
 
-- HTML statico + [Tailwind CSS](https://tailwindcss.com) (via CDN)
-- JavaScript vanilla in **moduli ES**, con router hash-based (SPA multi-pagina)
+- HTML statico + [Tailwind CSS](https://tailwindcss.com) **precompilato** in `tailwind.css`
+- JavaScript vanilla in **moduli ES**, router con URL reali (History API, SPA multi-pagina)
 - Animazioni con `IntersectionObserver` (reveal + contatori) — nessuna dipendenza pesante
 - Icone [Lucide](https://lucide.dev), font Playfair Display (titoli) + Manrope (corpo)
+
+### Rigenerare il CSS di Tailwind
+
+Il file `tailwind.css` è **precompilato e committato** (niente CDN a runtime → più veloce).
+Va rigenerato solo se cambi/aggiungi classi Tailwind nell'HTML o nei `.js`:
+
+```bash
+npx tailwindcss@3 -c tailwind.config.js -i tailwind.src.css -o tailwind.css --minify
+```
+
+Vercel continua a pubblicare i file così come sono (nessun build step lato server).
 
 ## Struttura dei file
 

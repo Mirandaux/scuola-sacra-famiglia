@@ -91,7 +91,7 @@ export async function renderHome() {
                 <div class="lg:col-span-5 reveal">
                     <div class="relative">
                         <div class="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5] rotate-2 hover:rotate-0 transition-transform duration-700">
-                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1000&auto=format&fit=crop" alt="Bambini che giocano" class="w-full h-full object-cover" loading="eager">
+                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=900&auto=format&fit=crop" alt="Bambini che giocano" width="900" height="1125" class="w-full h-full object-cover" loading="eager" fetchpriority="high">
                         </div>
                         <div class="absolute -bottom-6 -left-6 bg-white rounded-3xl shadow-xl p-5 flex items-center gap-4 max-w-[15rem]">
                             <span class="w-12 h-12 rounded-2xl bg-gold/15 text-gold flex items-center justify-center shrink-0">
