@@ -177,10 +177,10 @@
                     </div>
                     <div class="flex items-center gap-3 mt-6">
                         <a href="https://www.facebook.com/sacrafamigliaroverchiara" target="_blank" rel="noopener" aria-label="Facebook della scuola" class="w-9 h-9 rounded-full bg-sage/10 text-sage flex items-center justify-center hover:bg-sage hover:text-white transition-colors">
-                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" aria-hidden="true"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
                         </a>
                         <a href="https://www.instagram.com/sacrafamigliaroverchiara" target="_blank" rel="noopener" aria-label="Instagram della scuola" class="w-9 h-9 rounded-full bg-sage/10 text-sage flex items-center justify-center hover:bg-sage hover:text-white transition-colors">
-                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
                         </a>
                     </div>
                 </div>
@@ -216,17 +216,20 @@
                         <a href="/cookie" class="hover:text-sage transition-colors">Cookie Policy</a>
                     </p>
                 </div>
+                <p class="pt-3 text-ink/40">Fatto con ❤️ e 🧠 da <a href="https://mirandagiaccon.it" target="_blank" rel="noopener" class="underline hover:text-sage">mirandagiaccon.it</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- Floating buttons -->
-    <a href="tel:044274383" id="call-float" class="float-btn fixed bottom-6 right-6 z-[90] bg-sage text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform pulse-ring" aria-label="Chiama la scuola">
-        <i data-lucide="phone" class="w-6 h-6"></i>
-    </a>
-    <button id="to-top" class="float-btn fixed bottom-6 right-24 z-[90] bg-white text-sage border border-sage/15 p-4 rounded-full shadow-xl hover:scale-110 transition-transform" aria-label="Torna su">
-        <i data-lucide="arrow-up" class="w-6 h-6"></i>
-    </button>
+    <!-- Floating buttons (centrati in basso per non coprire i link del footer) -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-3">
+        <button id="to-top" class="float-btn bg-white text-sage border border-sage/15 p-4 rounded-full shadow-xl hover:scale-110 transition-transform" aria-label="Torna su">
+            <i data-lucide="arrow-up" class="w-6 h-6"></i>
+        </button>
+        <a href="tel:044274383" id="call-float" class="float-btn bg-sage text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform pulse-ring" aria-label="Chiama la scuola">
+            <i data-lucide="phone" class="w-6 h-6"></i>
+        </a>
+    </div>
 
     <script type="module" src="main.js"></script>
 </body>
