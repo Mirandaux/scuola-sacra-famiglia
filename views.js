@@ -14,7 +14,7 @@ function contactButtons() {
             <a href="tel:044274383" class="bg-white text-sage px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform flex items-center gap-2">
                 <i data-lucide="phone" class="w-5 h-5"></i> 0442 74383
             </a>
-            <a href="mailto:sacrafami.roverchi@libero.it" class="bg-gold text-white px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform flex items-center gap-2">
+            <a href="mailto:info@infanziaroverchiara.it" class="bg-gold text-white px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform flex items-center gap-2">
                 <i data-lucide="mail" class="w-5 h-5"></i> Scrivici una mail
             </a>
         </div>`;
@@ -569,7 +569,7 @@ export async function renderContatti() {
     const infoCards = [
         { icon: 'map-pin', t: 'Indirizzo', v: 'Via Giacomo Leopardi, 16<br>37050 Roverchiara (VR)' },
         { icon: 'phone', t: 'Telefono', v: '<a href="tel:044274383" class="hover:text-sage">0442 74383</a>' },
-        { icon: 'mail', t: 'Email', v: '<a href="mailto:sacrafami.roverchi@libero.it" class="hover:text-sage break-all">sacrafami.roverchi@libero.it</a>' },
+        { icon: 'mail', t: 'Email', v: '<a href="mailto:info@infanziaroverchiara.it" class="hover:text-sage break-all">info@infanziaroverchiara.it</a>' },
         { icon: 'clock', t: 'Orari Segreteria', v: 'Dal Lunedì al Venerdì<br>08:30 - 12:00' }
     ];
     return `
@@ -615,11 +615,11 @@ export async function renderContatti() {
                                     </span>
                                 </a>
 
-                                <a href="mailto:sacrafami.roverchi@libero.it" class="flex items-center gap-4 bg-white/10 rounded-3xl p-5 hover:bg-white/15 transition-colors">
+                                <a href="mailto:info@infanziaroverchiara.it" class="flex items-center gap-4 bg-white/10 rounded-3xl p-5 hover:bg-white/15 transition-colors">
                                     <span class="w-12 h-12 rounded-2xl bg-white/10 text-gold flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-6 h-6"></i></span>
                                     <span class="min-w-0">
                                         <span class="block text-xs uppercase tracking-widest text-white/50 font-bold">Email</span>
-                                        <span class="block font-semibold break-all">sacrafami.roverchi@libero.it</span>
+                                        <span class="block font-semibold break-all">info@infanziaroverchiara.it</span>
                                     </span>
                                 </a>
 

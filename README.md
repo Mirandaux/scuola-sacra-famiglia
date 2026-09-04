@@ -42,7 +42,7 @@ Quasi tutto si modifica in **`data.json`** senza toccare il codice:
 ## Contatti
 
 La pagina Contatti invita a chiamare la scuola (**0442 74383**) o a scrivere
-via email (`sacrafami.roverchi@libero.it`). Non è previsto un form da compilare.
+via email (`info@infanziaroverchiara.it`). Non è previsto un form da compilare.
 
 ## Pubblicare su Vercel
 
