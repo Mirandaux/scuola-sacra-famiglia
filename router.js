@@ -18,13 +18,48 @@ const routes = {
 let currentObserver = null;
 
 export function initRouter() {
-    window.addEventListener('hashchange', handleRouteChange);
+    // Compatibilità con i vecchi link hash (#/servizi -> /servizi)
+    if (location.hash.startsWith('#/')) {
+        history.replaceState(null, '', location.hash.slice(1) + location.search);
+    }
+
+    // Navigazione con i pulsanti avanti/indietro del browser
+    window.addEventListener('popstate', handleRouteChange);
+
+    // Intercetta i click sui link interni per non ricaricare la pagina
+    document.addEventListener('click', onLinkClick);
+
+    handleRouteChange();
+}
+
+function onLinkClick(e) {
+    // ignora click modificati, tasto destro, ecc.
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    const a = e.target.closest('a');
+    if (!a) return;
+
+    const href = a.getAttribute('href');
+    if (!href) return;
+
+    // solo link interni assoluti (/servizi). Esclude tel:, mailto:, http(s), #, target esterni, download
+    if (a.target === '_blank' || a.hasAttribute('download')) return;
+    if (!href.startsWith('/') || href.startsWith('//')) return;
+
+    e.preventDefault();
+    navigate(href);
+}
+
+export function navigate(path) {
+    if (path !== location.pathname) {
+        history.pushState(null, '', path);
+    }
     handleRouteChange();
 }
 
 async function handleRouteChange() {
-    const hash = window.location.hash.replace('#', '') || '/';
-    const route = routes[hash] || routes['/'];
+    const path = normalizePath(location.pathname);
+    const route = routes[path] || routes['/'];
     const app = document.getElementById('app');
 
     app.classList.add('is-leaving');
@@ -38,17 +73,22 @@ async function handleRouteChange() {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', route.desc);
 
-    updateActiveLinks(hash);
+    updateActiveLinks(path);
     if (window.lucide) lucide.createIcons();
     initScrollAnimations();
 
-    // Force reflow, then reveal
     requestAnimationFrame(() => app.classList.remove('is-leaving'));
 }
 
-function updateActiveLinks(currentHash) {
+function normalizePath(pathname) {
+    // rimuove uno slash finale (tranne la root)
+    if (pathname.length > 1 && pathname.endsWith('/')) return pathname.slice(0, -1);
+    return pathname || '/';
+}
+
+function updateActiveLinks(currentPath) {
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('is-active', link.getAttribute('data-route') === currentHash);
+        link.classList.toggle('is-active', link.getAttribute('data-route') === currentPath);
     });
 }
 
@@ -71,7 +111,6 @@ function initScrollAnimations() {
     }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 
     document.querySelectorAll('.reveal, .counter-val').forEach((el, i) => {
-        // subtle stagger via inline delay
         if (el.classList.contains('reveal') && !el.style.transitionDelay) {
             el.style.transitionDelay = `${Math.min(i % 6, 5) * 60}ms`;
         }
@@ -89,7 +128,7 @@ function animateCounter(el, reduce) {
     const start = performance.now();
     const step = (now) => {
         const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        const eased = 1 - Math.pow(1 - p, 3);
         el.textContent = Math.floor(eased * target) + suffix;
         if (p < 1) requestAnimationFrame(step);
         else el.textContent = target + suffix;

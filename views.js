@@ -80,10 +80,10 @@ export async function renderHome() {
                         Scuola dell'infanzia paritaria FISM a Roverchiara. Un ambiente di apprendimento caldo e familiare, dove il gioco diventa scoperta e ogni giornata è pensata a misura di bambino per favorire l'autonomia.
                     </p>
                     <div class="flex flex-wrap gap-4 reveal">
-                        <a href="#/iscrizioni" class="bg-sage text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl shadow-sage/20 hover:bg-sage-dark hover:scale-105 transition-all flex items-center gap-2">
+                        <a href="/iscrizioni" class="bg-sage text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl shadow-sage/20 hover:bg-sage-dark hover:scale-105 transition-all flex items-center gap-2">
                             Prenota una visita <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </a>
-                        <a href="#/metodo" class="border-2 border-sage/20 text-sage px-8 py-4 rounded-full text-lg font-semibold hover:border-sage hover:bg-sage hover:text-white transition-all">
+                        <a href="/metodo" class="border-2 border-sage/20 text-sage px-8 py-4 rounded-full text-lg font-semibold hover:border-sage hover:bg-sage hover:text-white transition-all">
                             Scopri il metodo
                         </a>
                     </div>
@@ -521,7 +521,7 @@ export async function renderIscrizioni() {
                         <p>Crediamo nell'accessibilità: applichiamo <strong class="text-white">rette calmierate</strong> grazie ai contributi pubblici, per venire incontro alle esigenze di ogni famiglia.</p>
                     </div>
                     <div class="mt-8 pt-6 border-t border-white/20">
-                        <a href="#/contatti" class="inline-flex items-center gap-2 bg-gold text-white px-6 py-3 rounded-full text-sm font-bold hover:scale-105 transition-transform">
+                        <a href="/contatti" class="inline-flex items-center gap-2 bg-gold text-white px-6 py-3 rounded-full text-sm font-bold hover:scale-105 transition-transform">
                             Richiedi info sui costi <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
                     </div>
