@@ -136,7 +136,7 @@ export async function renderHome() {
                             <div class="w-16 h-16 mx-auto rounded-2xl bg-sage/10 text-gold flex items-center justify-center mb-6">
                                 <i data-lucide="${p.icon}" class="w-8 h-8"></i>
                             </div>
-                            <h4 class="text-2xl font-display font-bold text-sage mb-3">${p.title}</h4>
+                            <h3 class="text-2xl font-display font-bold text-sage mb-3">${p.title}</h3>
                             <p class="text-ink/60 mb-6 leading-relaxed">${p.text}</p>
                             ${p.bullets
                                 ? `<ul class="mt-auto space-y-2 text-left inline-block mx-auto">
@@ -159,7 +159,7 @@ export async function renderHome() {
                     ${data.contribCards.map(c => `
                         <div class="reveal lift p-8 border border-white/15 rounded-4xl bg-white/5 text-center backdrop-blur-sm">
                             <i data-lucide="${c.icon}" class="w-11 h-11 text-gold mx-auto mb-5"></i>
-                            <h4 class="font-bold text-xl mb-3">${c.title}</h4>
+                            <h3 class="font-bold text-xl mb-3">${c.title}</h3>
                             <p class="text-sm text-white/75 leading-relaxed">${c.text}</p>
                         </div>`).join('')}
                 </div>
@@ -300,7 +300,7 @@ export async function renderMetodo() {
                                 <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-sage text-white text-xs font-bold flex items-center justify-center">${i + 1}</span>
                                 <i data-lucide="${s.icon}" class="w-7 h-7"></i>
                             </div>
-                            <h4 class="font-bold text-sage text-lg mb-2">${s.t}</h4>
+                            <h3 class="font-bold text-sage text-lg mb-2">${s.t}</h3>
                             <p class="text-sm text-ink/55 leading-relaxed">${s.d}</p>
                         </div>`).join('')}
                 </div>
@@ -354,7 +354,7 @@ export async function renderMetodo() {
                 ${sectionHeading('Il confronto', 'In cosa ci differenziamo', '')}
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="p-10 bg-sage rounded-[2.5rem] text-white reveal lift">
-                        <h4 class="text-2xl font-display font-bold mb-8 flex items-center gap-3"><i data-lucide="sprout" class="text-gold"></i> Sacra Famiglia</h4>
+                        <h3 class="text-2xl font-display font-bold mb-8 flex items-center gap-3"><i data-lucide="sprout" class="text-gold"></i> Sacra Famiglia</h3>
                         <ul class="space-y-6">
                             ${data.comparison.map(c => `
                                 <li class="border-b border-white/10 pb-4">
@@ -364,7 +364,7 @@ export async function renderMetodo() {
                         </ul>
                     </div>
                     <div class="p-10 bg-cream rounded-[2.5rem] text-ink/50 reveal">
-                        <h4 class="text-2xl font-display font-bold mb-8 text-ink/40">Scuola Statale Standard</h4>
+                        <h3 class="text-2xl font-display font-bold mb-8 text-ink/40">Scuola Statale Standard</h3>
                         <ul class="space-y-6">
                             ${data.comparison.map(c => `
                                 <li class="border-b border-ink/10 pb-4">
@@ -394,7 +394,7 @@ export async function renderServizi() {
                 ${s.isNew ? '<span class="bg-gold text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">In Arrivo</span>' : ''}
             </div>
             <div class="flex justify-between items-center gap-2 mb-3">
-                <h4 class="text-xl font-display font-bold text-sage">${s.title}</h4>
+                <h3 class="text-xl font-display font-bold text-sage">${s.title}</h3>
                 <span class="text-[10px] uppercase font-bold text-gold bg-gold/10 px-3 py-1 rounded-full whitespace-nowrap">${s.age}</span>
             </div>
             <p class="text-ink/55 text-sm mb-6 leading-relaxed">${s.desc}</p>
@@ -416,6 +416,7 @@ export async function renderServizi() {
 
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
+                <h2 class="sr-only">I nostri servizi</h2>
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
                     ${featured.map(serviceCard).join('')}
                 </div>
@@ -491,7 +492,7 @@ export async function renderIscrizioni() {
                         ${steps.map(s => `
                             <div class="bg-white p-8 rounded-3xl shadow-sm">
                                 <div class="w-12 h-12 bg-sage text-white rounded-2xl flex items-center justify-center font-bold text-lg mb-6">${s.n}</div>
-                                <h4 class="font-bold text-sage mb-2 text-lg">${s.t}</h4>
+                                <h3 class="font-bold text-sage mb-2 text-lg">${s.t}</h3>
                                 <p class="text-sm text-ink/55 leading-relaxed">${s.d}</p>
                             </div>`).join('')}
                     </div>
@@ -587,7 +588,7 @@ export async function renderContatti() {
                                 <div class="reveal flex items-start gap-4 p-5 bg-cream rounded-3xl">
                                     <span class="w-11 h-11 rounded-2xl bg-white text-gold flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="${c.icon}" class="w-5 h-5"></i></span>
                                     <div>
-                                        <h5 class="font-bold text-sage text-sm mb-1">${c.t}</h5>
+                                        <p class="font-bold text-sage text-sm mb-1">${c.t}</p>
                                         <p class="text-ink/60 text-sm leading-relaxed">${c.v}</p>
                                     </div>
                                 </div>`).join('')}
@@ -604,7 +605,7 @@ export async function renderContatti() {
                                 <span class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-6">
                                     <i data-lucide="phone-call" class="w-7 h-7 text-gold"></i>
                                 </span>
-                                <h3 class="text-2xl font-display font-bold mb-3">Chiamaci, siamo qui per te</h3>
+                                <h2 class="text-2xl font-display font-bold mb-3">Chiamaci, siamo qui per te</h2>
                                 <p class="text-white/80 text-sm mb-8 leading-relaxed">Il modo più veloce per avere informazioni, prenotare una visita o parlare con la coordinatrice. Ti aspettiamo!</p>
 
                                 <a href="tel:044274383" class="flex items-center gap-4 bg-white text-sage rounded-3xl p-5 mb-4 hover:scale-[1.02] transition-transform shadow-lg">
