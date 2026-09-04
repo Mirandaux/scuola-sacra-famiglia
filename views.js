@@ -31,7 +31,7 @@ function sectionHeading(eyebrow, title, sub, dark = false) {
         </div>`;
 }
 
-const OPEN_DAY = "Ogni anno è possibile visitare la scuola a dicembre e gennaio nelle giornate di Open Day. La segreteria risponde dalle 8:30 alle 12:00 lun - ven per darvi le informazioni necessarie";
+const OPEN_DAY = "Ogni anno è possibile visitare la scuola a dicembre e gennaio nelle giornate di Open Day. La segreteria risponde dalle 8:30 alle 12:00, dal lunedì al venerdì, per darvi le informazioni necessarie.";
 
 function ctaBanner(title, sub = OPEN_DAY) {
     return `
@@ -50,7 +50,7 @@ function ctaBanner(title, sub = OPEN_DAY) {
 export async function renderHome() {
     const data = await fetchData();
 
-    const trustItems = ['Iscritta FISM', 'Paritaria MIUR', 'Cucina Interna', 'Calendario Ministeriale', 'Entrata anticipata 7:30', 'Post-orario 18:00', 'Sezione Primavera'];
+    const trustItems = ['Associata FISM', 'Paritaria riconosciuta dal Ministero dell\'Istruzione', 'Cucina interna', 'Calendario scolastico regionale', 'Entrata anticipata 7:30', 'Post-orario 18:00', 'Sezione Primavera'];
     const marquee = trustItems.concat(trustItems).map(t => `
         <span class="flex items-center gap-2 text-sage/80 font-semibold whitespace-nowrap">
             <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i> ${t}
@@ -58,9 +58,9 @@ export async function renderHome() {
 
     const counters = data.counters.map(c => `
         <div class="reveal">
-            <i data-lucide="${c.icon}" class="w-7 h-7 text-gold mx-auto mb-3"></i>
-            <div class="text-4xl md:text-5xl font-display font-bold mb-2 counter-val" data-target="${c.val}" data-suffix="${c.suffix}">${c.val}${c.suffix}</div>
-            <p class="text-xs md:text-sm opacity-80 uppercase tracking-widest">${c.label}</p>
+            <i data-lucide="${c.icon}" class="w-7 h-7 text-gold mx-auto mb-3" aria-hidden="true"></i>
+            <div class="text-4xl md:text-5xl font-display font-bold mb-2 counter-val" data-target="${c.val}" data-suffix="${c.suffix}" aria-hidden="true">${c.val}${c.suffix}</div>
+            <p class="text-xs md:text-sm opacity-80 uppercase tracking-widest"><span class="sr-only">${c.val}${c.suffix} </span>${c.label}</p>
         </div>`).join('');
 
     return `
@@ -71,7 +71,7 @@ export async function renderHome() {
             <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7">
                     <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage/10 text-sage text-sm font-semibold mb-6 reveal">
-                        <i data-lucide="sparkles" class="w-4 h-4 text-gold"></i> Paritaria FISM dal 2000
+                        <i data-lucide="sparkles" class="w-4 h-4 text-gold"></i> Scuola paritaria dal 2000 · Associata FISM
                     </span>
                     <h1 class="text-5xl md:text-7xl font-display font-bold text-sage leading-[1.05] mb-6 reveal">
                         Dove il bambino impara ad essere <span class="hero-highlight text-gold italic">se stesso.</span>
@@ -91,13 +91,13 @@ export async function renderHome() {
                 <div class="lg:col-span-5 reveal">
                     <div class="relative">
                         <div class="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5] rotate-2 hover:rotate-0 transition-transform duration-700">
-                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=900&auto=format&fit=crop" alt="Bambini che giocano" width="900" height="1125" class="w-full h-full object-cover" loading="eager" fetchpriority="high">
+                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=900&auto=format&fit=crop" alt="Bambini che giocano insieme alla scuola dell'infanzia Sacra Famiglia" width="900" height="1125" class="w-full h-full object-cover" loading="eager" fetchpriority="high">
                         </div>
                         <div class="absolute -bottom-6 -left-6 bg-white rounded-3xl shadow-xl p-5 flex items-center gap-4 max-w-[15rem]">
                             <span class="w-12 h-12 rounded-2xl bg-gold/15 text-gold flex items-center justify-center shrink-0">
                                 <i data-lucide="utensils"></i>
                             </span>
-                            <p class="text-sm font-semibold text-sage leading-snug">Cucina interna con menu freschi ogni giorno</p>
+                            <p class="text-sm font-semibold text-sage leading-snug">Cucina interna con menù preparato ogni giorno.</p>
                         </div>
                     </div>
                 </div>
@@ -154,16 +154,32 @@ export async function renderHome() {
         <section class="py-24 bg-sage text-white relative overflow-hidden">
             <div class="blob w-80 h-80 bg-gold/20 bottom-0 -left-20"></div>
             <div class="container mx-auto px-6 relative z-10">
-                ${sectionHeading('Trasparenza', 'I contributi che ci sostengono', 'Il nostro impegno è reso possibile anche grazie al supporto delle istituzioni che credono nel valore dell\'educazione paritaria.', true)}
-                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                ${sectionHeading('Trasparenza', 'I contributi pubblici che ci sostengono', 'Come previsto dalla Legge 124/2017, pubblichiamo i contributi ricevuti da enti pubblici a sostegno della scuola.', true)}
+                <div class="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto mb-16">
                     ${data.contribCards.map(c => `
                         <div class="reveal lift p-8 border border-white/15 rounded-4xl bg-white/5 text-center backdrop-blur-sm">
-                            <i data-lucide="${c.icon}" class="w-11 h-11 text-gold mx-auto mb-5"></i>
+                            <i data-lucide="${c.icon}" class="w-11 h-11 text-gold mx-auto mb-5" aria-hidden="true"></i>
                             <h3 class="font-bold text-xl mb-3">${c.title}</h3>
                             <p class="text-sm text-white/75 leading-relaxed">${c.text}</p>
                         </div>`).join('')}
                 </div>
                 ${contributiTable(data.contributi)}
+                <p class="text-center text-xs text-white/50 mt-6">Sezione aggiornata a settembre 2026.</p>
+            </div>
+        </section>
+
+        <!-- SOSTENITORI PRIVATI -->
+        <section class="py-24 bg-cream">
+            <div class="container mx-auto px-6">
+                ${sectionHeading('Sostenitori', 'Collaborazioni e sostenitori della scuola', 'Realtà del territorio che affiancano la scuola con contributi, donazioni e collaborazioni.')}
+                <div class="grid gap-8 max-w-xl mx-auto">
+                    ${data.supporters.map(s => `
+                        <div class="reveal lift bg-white p-8 rounded-4xl border border-sage/10 text-center">
+                            <i data-lucide="${s.icon}" class="w-11 h-11 text-gold mx-auto mb-5" aria-hidden="true"></i>
+                            <h3 class="font-display font-bold text-xl text-sage mb-3">${s.title}</h3>
+                            <p class="text-sm text-ink/60 leading-relaxed">${s.text}</p>
+                        </div>`).join('')}
+                </div>
             </div>
         </section>
 
@@ -518,7 +534,7 @@ export async function renderIscrizioni() {
                 <div class="bg-sage text-white p-10 rounded-[2.5rem] reveal lift">
                     <h3 class="text-2xl font-display font-bold mb-6 flex items-center gap-3"><i data-lucide="piggy-bank" class="text-gold"></i> Quanto costa?</h3>
                     <div class="space-y-4 text-sm text-white/85 leading-relaxed">
-                        <p>Crediamo nell'accessibilità: applichiamo <strong class="text-white">rette calmierate</strong> grazie ai contributi pubblici, per venire incontro alle esigenze di ogni famiglia.</p>
+                        <p>Grazie ai contributi pubblici, la scuola può applicare <strong class="text-white">rette calmierate</strong>, con l'obiettivo di rendere la propria offerta educativa accessibile al maggior numero possibile di famiglie.</p>
                     </div>
                     <div class="mt-8 pt-6 border-t border-white/20">
                         <a href="/contatti" class="inline-flex items-center gap-2 bg-gold text-white px-6 py-3 rounded-full text-sm font-bold hover:scale-105 transition-transform">
@@ -593,8 +609,12 @@ export async function renderContatti() {
                                     </div>
                                 </div>`).join('')}
                         </div>
-                        <div class="rounded-[2rem] overflow-hidden shadow-lg h-64 border border-sage/10 reveal grayscale hover:grayscale-0 transition-all duration-700">
-                            <iframe title="Mappa" src="https://maps.google.com/maps?q=Via+Giacomo+Leopardi+16,+37050+Roverchiara+VR&amp;hl=it&amp;z=16&amp;output=embed" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="map-embed rounded-[2rem] overflow-hidden shadow-lg h-64 border border-sage/10 reveal" data-src="https://maps.google.com/maps?q=Via+Giacomo+Leopardi+16,+37050+Roverchiara+VR&amp;hl=it&amp;z=16&amp;output=embed" data-title="Mappa Scuola dell'Infanzia Sacra Famiglia">
+                            <div class="map-placeholder h-full bg-sage-light/40 flex flex-col items-center justify-center text-center gap-2 p-6">
+                                <i data-lucide="map-pin" class="w-8 h-8 text-gold"></i>
+                                <button type="button" class="map-consent bg-sage text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-sage-dark transition-colors">Carica la mappa</button>
+                                <span class="text-xs text-ink/50 max-w-xs px-2">Caricando la mappa accetti i cookie di Google Maps. Vedi la <a href="/cookie" class="underline hover:text-sage">Cookie Policy</a>.</span>
+                            </div>
                         </div>
                     </div>
 
@@ -634,4 +654,79 @@ export async function renderContatti() {
             </div>
         </section>
     `;
+}
+
+/* ---------- Pagine legali ---------- */
+
+function legalPage(title, intro, bodyHtml) {
+    return `
+        <section class="pt-40 pb-24 bg-white">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="reveal mb-10">
+                    <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">Informativa</span>
+                    <h1 class="text-4xl md:text-5xl font-display font-bold text-sage mb-5">${title}</h1>
+                    <p class="text-ink/60 text-lg leading-relaxed">${intro}</p>
+                    <p class="text-xs text-ink/40 mt-4">Ultimo aggiornamento: settembre 2026</p>
+                </div>
+                <div class="space-y-8 text-ink/70 leading-relaxed reveal">
+                    ${bodyHtml}
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+function legalBlock(heading, html) {
+    return `
+        <div>
+            <h2 class="text-xl font-display font-bold text-sage mb-3">${heading}</h2>
+            ${html}
+        </div>`;
+}
+
+const TITOLARE_HTML = `
+    <p class="not-italic">
+        <strong>Scuola dell'Infanzia Paritaria «Sacra Famiglia»</strong><br>
+        Via Leopardi, 16 — 37050 Roverchiara (VR)<br>
+        C.F. e P.IVA 02404960235<br>
+        Tel. <a href="tel:044274383" class="text-sage underline">0442 74383</a> —
+        Email <a href="mailto:info@infanziaroverchiara.it" class="text-sage underline">info@infanziaroverchiara.it</a>
+    </p>`;
+
+export async function renderPrivacy() {
+    return legalPage(
+        'Privacy Policy',
+        'Informativa sul trattamento dei dati personali ai sensi del Regolamento (UE) 2016/679 (GDPR) per gli utenti del sito infanziaroverchiara.it.',
+        [
+            legalBlock('Titolare del trattamento', TITOLARE_HTML),
+            legalBlock('Dati raccolti dal sito', `<p>Questo sito ha finalità informative e <strong>non raccoglie dati personali tramite moduli online</strong>. Se ci contatti via telefono o email, i dati che ci fornisci (es. nome, recapiti, contenuto del messaggio) vengono trattati esclusivamente per rispondere alla tua richiesta e non sono diffusi a terzi.</p>`),
+            legalBlock('Dati di navigazione', `<p>Il sito è ospitato su <strong>Vercel Inc.</strong>, che in qualità di fornitore di hosting può trattare dati tecnici (es. indirizzo IP, tipo di browser, data e ora della richiesta) nei log del server, per finalità di funzionamento e sicurezza.</p>`),
+            legalBlock('Servizi di terze parti', `
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Google Maps</strong> (Google Ireland Ltd.): la mappa viene caricata <strong>solo dopo un tuo clic esplicito</strong>. Attivandola, Google può trattare il tuo indirizzo IP e impostare cookie.</li>
+                    <li><strong>Google Fonts</strong> (Google Ireland Ltd.): i caratteri tipografici sono caricati dai server di Google; ciò può comportare la comunicazione del tuo indirizzo IP a Google.</li>
+                </ul>`),
+            legalBlock('Base giuridica e conservazione', `<p>Il trattamento dei dati di contatto si fonda sul consenso e sul legittimo interesse a rispondere alle richieste. I dati sono conservati per il tempo necessario a gestire la richiesta e ad adempiere agli obblighi di legge.</p>`),
+            legalBlock('Diritti dell\'interessato', `<p>Puoi esercitare in ogni momento i diritti previsti dagli artt. 15-22 del GDPR (accesso, rettifica, cancellazione, limitazione, opposizione, portabilità) scrivendo al Titolare ai recapiti sopra indicati. Hai inoltre il diritto di proporre reclamo al Garante per la protezione dei dati personali.</p>`),
+            legalBlock('Cookie', `<p>Per informazioni sui cookie utilizzati consulta la <a href="/cookie" class="text-sage underline">Cookie Policy</a>.</p>`)
+        ].join('')
+    );
+}
+
+export async function renderCookie() {
+    return legalPage(
+        'Cookie Policy',
+        'Informativa sull\'uso dei cookie e delle tecnologie simili sul sito infanziaroverchiara.it.',
+        [
+            legalBlock('Cosa sono i cookie', `<p>I cookie sono piccoli file di testo che i siti salvano sul dispositivo dell'utente. Questo sito è realizzato per ridurre al minimo l'uso di cookie.</p>`),
+            legalBlock('Cookie tecnici', `<p>Il sito <strong>non installa cookie di profilazione</strong> propri. Può utilizzare la memoria locale del browser solo per finalità tecniche (ricordare piccole preferenze di navigazione), senza tracciare l'utente.</p>`),
+            legalBlock('Cookie di terze parti', `
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Google Maps</strong>: la mappa non viene caricata automaticamente. Solo se premi «Carica la mappa» Google può impostare cookie sul tuo dispositivo. Per non attivarli, è sufficiente non caricare la mappa.</li>
+                    <li><strong>Google Fonts</strong>: non imposta cookie, ma comporta una richiesta ai server di Google per il caricamento dei caratteri.</li>
+                </ul>`),
+            legalBlock('Come gestire i cookie', `<p>Puoi gestire o disabilitare i cookie dalle impostazioni del tuo browser. La disattivazione di alcuni cookie di terze parti potrebbe limitare alcune funzionalità (es. la visualizzazione della mappa).</p>`),
+            legalBlock('Titolare del trattamento', TITOLARE_HTML)
+        ].join('')
+    );
 }

@@ -13,7 +13,22 @@ document.addEventListener('DOMContentLoaded', () => {
     initRouter();
 
     setupScrollEffects();
+    setupMapConsent();
 });
+
+// Google Maps caricato solo dopo consenso esplicito (GDPR): nessun dato a
+// Google prima del click dell'utente.
+function setupMapConsent() {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.map-consent');
+        if (!btn) return;
+        const box = btn.closest('.map-embed');
+        if (!box) return;
+        const src = box.getAttribute('data-src');
+        const title = box.getAttribute('data-title') || 'Mappa';
+        box.innerHTML = `<iframe title="${title}" src="${src}" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+    });
+}
 
 function setupScrollEffects() {
     const header = document.getElementById('main-nav');
