@@ -92,8 +92,19 @@ function updateActiveLinks(currentPath) {
     });
 }
 
+function revealAll() {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    document.querySelectorAll('.counter-val').forEach(el => {
+        el.textContent = el.getAttribute('data-target') + (el.getAttribute('data-suffix') || '');
+    });
+}
+
 function initScrollAnimations() {
     if (currentObserver) currentObserver.disconnect();
+
+    // Fallback: se IntersectionObserver non è disponibile, mostra tutto subito
+    // (i contenuti non restano mai invisibili).
+    if (!('IntersectionObserver' in window)) { revealAll(); return; }
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -113,6 +124,11 @@ function initScrollAnimations() {
     document.querySelectorAll('.reveal, .counter-val').forEach((el, i) => {
         if (el.classList.contains('reveal') && !el.style.transitionDelay) {
             el.style.transitionDelay = `${Math.min(i % 6, 5) * 60}ms`;
+        }
+        // I contatori partono dal valore finale nell'HTML (visibili senza JS):
+        // se JS è attivo e le animazioni sono consentite, li azzero prima di animarli.
+        if (el.classList.contains('counter-val') && !reduce) {
+            el.textContent = '0';
         }
         currentObserver.observe(el);
     });

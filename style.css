@@ -70,7 +70,8 @@ body {
 }
 
 /* ---------- Reveal on scroll ---------- */
-.reveal {
+/* Nascoste solo se JS è attivo: senza JS restano visibili (progressive enhancement) */
+.js .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity .8s cubic-bezier(.25,1,.5,1), transform .8s cubic-bezier(.25,1,.5,1);
@@ -78,7 +79,7 @@ body {
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* ---------- Hero decorative blobs ---------- */

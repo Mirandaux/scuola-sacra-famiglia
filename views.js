@@ -59,7 +59,7 @@ export async function renderHome() {
     const counters = data.counters.map(c => `
         <div class="reveal">
             <i data-lucide="${c.icon}" class="w-7 h-7 text-gold mx-auto mb-3"></i>
-            <div class="text-4xl md:text-5xl font-display font-bold mb-2 counter-val" data-target="${c.val}" data-suffix="${c.suffix}">0</div>
+            <div class="text-4xl md:text-5xl font-display font-bold mb-2 counter-val" data-target="${c.val}" data-suffix="${c.suffix}">${c.val}${c.suffix}</div>
             <p class="text-xs md:text-sm opacity-80 uppercase tracking-widest">${c.label}</p>
         </div>`).join('');
 

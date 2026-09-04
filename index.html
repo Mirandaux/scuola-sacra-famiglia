@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/">
+    <script>document.documentElement.classList.add('js')</script>
     <title>Scuola Infanzia Paritaria Sacra Famiglia | Roverchiara (VR)</title>
     <meta name="description" content="Scuola dell'infanzia paritaria FISM a Roverchiara (VR). Dove il bambino impara ad essere se stesso.">
     <meta name="keywords" content="scuola infanzia Roverchiara Verona, asilo Roverchiara, scuola paritaria Verona, FISM Verona, sezione primavera">
@@ -56,12 +57,22 @@
         "latitude": 45.267868,
         "longitude": 11.341818
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:30",
-        "closes": "12:00"
-      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "name": "Scuola",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "07:30",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "name": "Segreteria",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:30",
+          "closes": "12:00"
+        }
+      ],
       "areaServed": "Roverchiara, Verona"
     }
     </script>
