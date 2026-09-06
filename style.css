@@ -210,6 +210,24 @@ textarea:focus-visible {
   border-radius: 4px;
 }
 
+/* Skip link: nascosto finché non riceve il focus da tastiera */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3.5rem;
+  z-index: 200;
+  background: var(--sage);
+  color: #fff;
+  padding: .6rem 1.1rem;
+  border-radius: .6rem;
+  font-weight: 600;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Il focus programmatico (cambio pagina) non mostra un contorno */
+#app:focus, #app h1:focus { outline: none; }
+
 /* Screen-reader-only helper */
 .sr-only {
   position: absolute;
