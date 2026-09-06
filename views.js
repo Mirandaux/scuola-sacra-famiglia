@@ -562,13 +562,13 @@ export async function renderFAQ() {
                     <p class="text-ink/50 italic font-display">Le risposte ai dubbi più comuni dei genitori.</p>
                 </div>
                 <div class="space-y-4">
-                    ${data.faq.map(item => `
+                    ${data.faq.map((item, i) => `
                         <div class="border border-sage/10 rounded-3xl overflow-hidden faq-item bg-cream/40 reveal">
-                            <button type="button" class="w-full p-6 text-left flex justify-between items-center gap-4 hover:bg-cream transition-colors" onclick="this.closest('.faq-item').classList.toggle('faq-open')">
+                            <button type="button" class="w-full p-6 text-left flex justify-between items-center gap-4 hover:bg-cream transition-colors" aria-expanded="false" aria-controls="faq-a-${i}" onclick="const i=this.closest('.faq-item');const o=i.classList.toggle('faq-open');this.setAttribute('aria-expanded',o)">
                                 <span class="font-bold text-sage">${item.q}</span>
-                                <i data-lucide="chevron-down" class="faq-chevron text-gold shrink-0"></i>
+                                <i data-lucide="chevron-down" class="faq-chevron text-gold shrink-0" aria-hidden="true"></i>
                             </button>
-                            <div class="faq-content">
+                            <div class="faq-content" id="faq-a-${i}" role="region">
                                 <p class="px-6 pb-6 text-ink/65 leading-relaxed">${item.a}</p>
                             </div>
                         </div>`).join('')}

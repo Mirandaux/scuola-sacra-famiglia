@@ -33,6 +33,7 @@ const notFound = {
 };
 
 let currentObserver = null;
+let firstRender = true;
 
 export function initRouter() {
     // Compatibilità con i vecchi link hash (#/servizi -> /servizi)
@@ -101,6 +102,19 @@ async function handleRouteChange() {
     updateActiveLinks(path);
     if (window.lucide) lucide.createIcons();
     initScrollAnimations();
+
+    // Accessibilità: alla navigazione (non al primo caricamento) sposta il
+    // focus sul titolo della pagina e annuncia il cambio agli screen reader.
+    if (!firstRender) {
+        const heading = app.querySelector('h1');
+        if (heading) {
+            heading.setAttribute('tabindex', '-1');
+            heading.focus({ preventScroll: true });
+        }
+        const announcer = document.getElementById('route-announcer');
+        if (announcer) announcer.textContent = route.title.split('|')[0].trim() + ' — pagina caricata';
+    }
+    firstRender = false;
 
     requestAnimationFrame(() => app.classList.remove('is-leaving'));
 }
