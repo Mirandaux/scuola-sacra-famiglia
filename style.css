@@ -2,7 +2,8 @@
   --sage: #1A6B5A;
   --sage-dark: #135245;
   --sage-light: #E8F5F1;
-  --gold: #D98514;
+  --gold: #A66208;
+  --gold-light: #FFD98F;
   --cream: #FCF9F5;
   --ink: #2D3436;
 }
@@ -168,7 +169,7 @@ body {
 /* ---------- Mobile menu ---------- */
 #mobile-menu { transition: transform .5s cubic-bezier(.65,.05,.36,1); }
 .mobile-nav-link { transition: transform .25s ease, color .25s ease; }
-.mobile-nav-link:hover { transform: scale(1.08); color: var(--gold); }
+.mobile-nav-link:hover { transform: scale(1.08); color: var(--gold-light); }
 
 /* ---------- Marquee (trust strip) ---------- */
 .marquee-track {

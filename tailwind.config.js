@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       colors: {
         sage: { DEFAULT: '#1A6B5A', dark: '#135245', light: '#E8F5F1' },
-        gold: { DEFAULT: '#D98514', dark: '#B86D0C' },
+        gold: { DEFAULT: '#A66208', light: '#FFD98F', dark: '#8A5207' },
         cream: '#FCF9F5',
         ink: '#2D3436'
       },

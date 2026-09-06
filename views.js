@@ -25,7 +25,7 @@ function sectionHeading(eyebrow, title, sub, dark = false) {
     const subColor = dark ? 'text-white/80' : 'text-ink/50';
     return `
         <div class="max-w-2xl mx-auto text-center mb-16 reveal">
-            <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4">${eyebrow}</span>
+            <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] ${dark ? 'text-gold-light' : 'text-gold'} mb-4">${eyebrow}</span>
             <h2 class="text-3xl md:text-5xl font-display font-bold ${titleColor} mb-5">${title}</h2>
             ${sub ? `<p class="${subColor} text-lg leading-relaxed">${sub}</p>` : ''}
         </div>`;
@@ -58,7 +58,7 @@ export async function renderHome() {
 
     const counters = data.counters.map(c => `
         <div class="reveal">
-            <i data-lucide="${c.icon}" class="w-7 h-7 text-gold mx-auto mb-3" aria-hidden="true"></i>
+            <i data-lucide="${c.icon}" class="w-7 h-7 text-gold-light mx-auto mb-3" aria-hidden="true"></i>
             <div class="text-4xl md:text-5xl font-display font-bold mb-2 counter-val" data-target="${c.val}" data-suffix="${c.suffix}" aria-hidden="true">${c.val}${c.suffix}</div>
             <p class="text-xs md:text-sm opacity-80 uppercase tracking-widest"><span class="sr-only">${c.val}${c.suffix} </span>${c.label}</p>
         </div>`).join('');
@@ -158,7 +158,7 @@ export async function renderHome() {
                 <div class="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto mb-16">
                     ${data.contribCards.map(c => `
                         <div class="reveal lift p-8 border border-white/15 rounded-4xl bg-white/5 text-center backdrop-blur-sm">
-                            <i data-lucide="${c.icon}" class="w-11 h-11 text-gold mx-auto mb-5" aria-hidden="true"></i>
+                            <i data-lucide="${c.icon}" class="w-11 h-11 text-gold-light mx-auto mb-5" aria-hidden="true"></i>
                             <h3 class="font-bold text-xl mb-3">${c.title}</h3>
                             <p class="text-sm text-white/75 leading-relaxed">${c.text}</p>
                         </div>`).join('')}
@@ -246,11 +246,11 @@ function contributiTable(rows) {
     const body = rows.map(r => `
         <div class="flex items-center justify-between gap-4 px-6 md:px-8 py-5 hover:bg-white/5 transition-colors">
             <div class="text-left">
-                <span class="text-gold font-bold text-sm uppercase tracking-wider">${r.year}</span>
+                <span class="text-gold-light font-bold text-sm uppercase tracking-wider">${r.year}</span>
                 <p class="font-medium mt-1 text-sm md:text-base">${r.law}</p>
             </div>
             ${r.pdf
-                ? `<a href="${r.pdf}" target="_blank" rel="noopener" class="flex items-center gap-2 text-gold text-sm font-semibold hover:opacity-80 transition-opacity shrink-0">
+                ? `<a href="${r.pdf}" target="_blank" rel="noopener" class="flex items-center gap-2 text-gold-light text-sm font-semibold hover:opacity-80 transition-opacity shrink-0">
                        <i data-lucide="download" class="w-4 h-4"></i> <span class="hidden sm:inline">Scarica</span> PDF
                    </a>`
                 : `<span class="text-xs text-white/40 shrink-0">PDF non disponibile</span>`}
@@ -259,7 +259,7 @@ function contributiTable(rows) {
     return `
         <div class="max-w-3xl mx-auto border border-white/15 rounded-4xl bg-white/5 overflow-hidden reveal">
             <div class="px-6 md:px-8 py-5 border-b border-white/10 flex items-center gap-3">
-                <i data-lucide="scale" class="w-5 h-5 text-gold"></i>
+                <i data-lucide="scale" class="w-5 h-5 text-gold-light"></i>
                 <h3 class="font-bold text-base md:text-lg tracking-wide text-left">Erogazioni pubbliche — Legge n. 124/2017, art. 1 commi 125-129</h3>
             </div>
             <div class="divide-y divide-white/10">${body}</div>
@@ -532,7 +532,7 @@ export async function renderIscrizioni() {
                     </div>
                 </div>
                 <div class="bg-sage text-white p-10 rounded-[2.5rem] reveal lift">
-                    <h3 class="text-2xl font-display font-bold mb-6 flex items-center gap-3"><i data-lucide="piggy-bank" class="text-gold"></i> Quanto costa?</h3>
+                    <h3 class="text-2xl font-display font-bold mb-6 flex items-center gap-3"><i data-lucide="piggy-bank" class="text-gold-light"></i> Quanto costa?</h3>
                     <div class="space-y-4 text-sm text-white/85 leading-relaxed">
                         <p>Grazie ai contributi pubblici, la scuola può applicare <strong class="text-white">rette calmierate</strong>, con l'obiettivo di rendere la propria offerta educativa accessibile al maggior numero possibile di famiglie.</p>
                     </div>
@@ -623,7 +623,7 @@ export async function renderContatti() {
                             <div class="blob w-56 h-56 bg-gold/25 -top-10 -right-10"></div>
                             <div class="relative z-10">
                                 <span class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-6">
-                                    <i data-lucide="phone-call" class="w-7 h-7 text-gold"></i>
+                                    <i data-lucide="phone-call" class="w-7 h-7 text-gold-light"></i>
                                 </span>
                                 <h2 class="text-2xl font-display font-bold mb-3">Chiamaci, siamo qui per te</h2>
                                 <p class="text-white/80 text-sm mb-8 leading-relaxed">Il modo più veloce per avere informazioni, prenotare una visita o parlare con la coordinatrice. Ti aspettiamo!</p>
@@ -637,7 +637,7 @@ export async function renderContatti() {
                                 </a>
 
                                 <a href="mailto:info@infanziaroverchiara.it" class="flex items-center gap-4 bg-white/10 rounded-3xl p-5 hover:bg-white/15 transition-colors">
-                                    <span class="w-12 h-12 rounded-2xl bg-white/10 text-gold flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-6 h-6"></i></span>
+                                    <span class="w-12 h-12 rounded-2xl bg-white/10 text-gold-light flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-6 h-6"></i></span>
                                     <span class="min-w-0">
                                         <span class="block text-xs uppercase tracking-widest text-white/50 font-bold">Email</span>
                                         <span class="block font-semibold break-all">info@infanziaroverchiara.it</span>
@@ -645,7 +645,7 @@ export async function renderContatti() {
                                 </a>
 
                                 <p class="flex items-center gap-2 text-white/70 text-sm mt-8">
-                                    <i data-lucide="clock" class="w-4 h-4 text-gold shrink-0"></i> Segreteria: Lun-Ven 09:00 - 12:00
+                                    <i data-lucide="clock" class="w-4 h-4 text-gold-light shrink-0"></i> Segreteria: Lun-Ven 09:00 - 12:00
                                 </p>
                             </div>
                         </div>
