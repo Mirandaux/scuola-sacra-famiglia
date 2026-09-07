@@ -460,7 +460,7 @@ export async function renderTeam() {
                 </div>
                 <div class="reveal max-w-4xl mx-auto">
                     ${data.teamPhoto
-                        ? `<div class="relative overflow-hidden rounded-[2.5rem] shadow-xl border border-sage/10 aspect-[16/10]">
+                        ? `<div class="relative overflow-hidden rounded-[2.5rem] shadow-xl border border-sage/10 aspect-[1400/1028]">
                                 <img src="${data.teamPhoto}" alt="La squadra della Scuola Sacra Famiglia: maestre, segretaria e cuoche" loading="lazy" class="w-full h-full object-cover">
                                 <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage/80 to-transparent p-6 pt-16">
                                     <p class="text-white font-display text-lg font-bold text-left">Maestre, segreteria e cuoche</p>
