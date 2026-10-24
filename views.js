@@ -54,7 +54,7 @@ function spaceBadge(n) {
 }
 
 function spaceImage(space, cls) {
-    return `<img data-zoom src="${space.img}" alt="${space.caption} — ${space.zone}. Scuola dell'Infanzia Sacra Famiglia, Roverchiara" loading="lazy" class="cursor-zoom-in ${cls}">`;
+    return `<img data-zoom data-space="${space.caption}" src="${space.img}" alt="${space.caption} — ${space.zone}. Scuola dell'Infanzia Sacra Famiglia, Roverchiara" loading="lazy" class="cursor-zoom-in ${cls}">`;
 }
 
 function spaceZone(space, dark = false) {
@@ -63,9 +63,9 @@ function spaceZone(space, dark = false) {
 
 function spaceNudge(next) {
     if (!next) {
-        return `<p class="text-lg font-display font-bold text-sage">Il giro degli spazi finisce qui. <a href="/iscrizioni" data-route="/iscrizioni" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage">Ti aspettiamo per scoprirli di persona</a>.</p>`;
+        return `<p class="text-lg font-display font-bold text-sage">Il giro degli spazi finisce qui. <a href="/iscrizioni" data-route="/iscrizioni" data-giro="finale" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage">Ti aspettiamo per scoprirli di persona</a>.</p>`;
     }
-    return `<p class="text-sage font-semibold leading-relaxed">👣 Continua il giro: un altro spazio ti aspetta in <a href="${next.href}" data-route="${next.href}" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage whitespace-nowrap">${next.label} →</a></p>`;
+    return `<p class="text-sage font-semibold leading-relaxed">👣 Continua il giro: un altro spazio ti aspetta in <a href="${next.href}" data-route="${next.href}" data-giro="next" data-giro-to="${next.label}" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage whitespace-nowrap">${next.label} →</a></p>`;
 }
 
 function spaceDesc(space, cls) {
@@ -803,6 +803,7 @@ export async function renderPrivacy() {
             legalBlock('Titolare del trattamento', TITOLARE_HTML),
             legalBlock('Dati raccolti dal sito', `<p>Questo sito ha finalità informative e <strong>non raccoglie dati personali tramite moduli online</strong>. Se ci contatti via telefono o email, i dati che ci fornisci (es. nome, recapiti, contenuto del messaggio) vengono trattati esclusivamente per rispondere alla tua richiesta e non sono diffusi a terzi.</p>`),
             legalBlock('Dati di navigazione', `<p>Il sito è ospitato su <strong>Vercel Inc.</strong>, che in qualità di fornitore di hosting può trattare dati tecnici (es. indirizzo IP, tipo di browser, data e ora della richiesta) nei log del server, per finalità di funzionamento e sicurezza.</p>`),
+            legalBlock('Statistiche di utilizzo', `<p>Per capire come viene usato il sito utilizziamo <strong>Vercel Web Analytics</strong>, uno strumento di statistiche <strong>aggregate e anonime</strong> che <strong>non utilizza cookie</strong> e non traccia né profila i singoli utenti. Raccoglie dati non identificativi (es. pagine viste, provenienza e tipo di dispositivo) per misurare l'utilizzo complessivo del sito.</p>`),
             legalBlock('Servizi di terze parti', `
                 <ul class="list-disc pl-5 space-y-2">
                     <li><strong>Google Maps</strong> (Google Ireland Ltd.): la mappa viene caricata <strong>solo dopo un tuo clic esplicito</strong>. Attivandola, Google può trattare il tuo indirizzo IP e impostare cookie.</li>
@@ -827,6 +828,7 @@ export async function renderCookie() {
                     <li><strong>Google Maps</strong>: la mappa non viene caricata automaticamente. Solo se premi «Carica la mappa» Google può impostare cookie sul tuo dispositivo. Per non attivarli, è sufficiente non caricare la mappa.</li>
                     <li><strong>Google Fonts</strong>: non imposta cookie, ma comporta una richiesta ai server di Google per il caricamento dei caratteri.</li>
                 </ul>`),
+            legalBlock('Statistiche senza cookie', `<p>Per le statistiche di utilizzo usiamo <strong>Vercel Web Analytics</strong>, che <strong>non imposta cookie</strong> e raccoglie esclusivamente dati aggregati e anonimi, senza tracciare i singoli utenti.</p>`),
             legalBlock('Come gestire i cookie', `<p>Puoi gestire o disabilitare i cookie dalle impostazioni del tuo browser. La disattivazione di alcuni cookie di terze parti potrebbe limitare alcune funzionalità (es. la visualizzazione della mappa).</p>`),
             legalBlock('Titolare del trattamento', TITOLARE_HTML)
         ].join('')
