@@ -220,9 +220,13 @@ export async function renderHome() {
                                 ? `<ul class="mt-auto space-y-2 text-left inline-block mx-auto">
                                     ${p.bullets.map(b => `<li class="flex items-center gap-2 text-sage font-semibold text-sm"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0"></i> ${b}</li>`).join('')}
                                    </ul>`
-                                : `<a href="tel:044274383" class="mt-auto inline-flex items-center gap-2 border border-sage/20 text-sage px-6 py-2.5 rounded-full text-sm font-bold hover:bg-sage hover:text-white transition-all self-center">
-                                    <i data-lucide="hand-heart" class="w-4 h-4"></i> Unisciti
-                                   </a>`}
+                                : p.cta
+                                ? `<a href="${p.cta.href}" target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 bg-sage text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-sage-dark transition-all self-center">
+                                    <i data-lucide="${p.cta.icon || 'message-circle'}" class="w-4 h-4"></i> ${p.cta.label}
+                                   </a>`
+                                : p.note
+                                ? `<p class="mt-auto text-sm text-ink/55 bg-sage/5 border border-sage/10 rounded-2xl px-5 py-4 leading-relaxed">${p.note}</p>`
+                                : ''}
                         </div>`).join('')}
                 </div>
             </div>
