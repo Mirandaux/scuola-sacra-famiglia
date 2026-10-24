@@ -86,7 +86,7 @@ function spaceFeature(space, next, { bg = 'bg-cream', flip = false, lead = '' } 
                 ${lead}
                 <div class="grid md:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
                     <figure class="reveal ${flip ? 'md:order-2' : ''}">
-                        ${spaceImage(space, 'w-full h-auto rounded-[2rem] shadow-xl border border-sage/10')}
+                        ${spaceImage(space, 'w-full aspect-[4/3] object-cover rounded-[2rem] shadow-xl border border-sage/10')}
                     </figure>
                     <div class="reveal text-center md:text-left ${flip ? 'md:order-1' : ''}">
                         ${spaceBadge(space.n)}
@@ -103,7 +103,7 @@ function spaceFeature(space, next, { bg = 'bg-cream', flip = false, lead = '' } 
 function spaceDuo(a, b, next, bg = 'bg-cream') {
     const card = (s) => `
         <figure class="reveal lift bg-white rounded-[2rem] overflow-hidden shadow-lg border border-sage/10">
-            ${spaceImage(s, 'w-full h-auto block')}
+            ${spaceImage(s, 'w-full aspect-[4/3] object-cover block')}
             <figcaption class="p-6 text-center">
                 ${spaceBadge(s.n)}
                 <h3 class="text-xl font-display font-bold text-sage mt-3">${s.caption}</h3>
