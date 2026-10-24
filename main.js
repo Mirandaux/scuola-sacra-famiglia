@@ -15,7 +15,30 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollEffects();
     setupMapConsent();
     setupLightbox();
+    setupGiroAnalytics();
 });
+
+// Eventi del "giro degli spazi" per Vercel Web Analytics:
+// misurano quanti seguono il percorso (clic "Continua il giro"), aprono le
+// foto e arrivano al finale. Nessun dato personale, solo conteggi aggregati.
+function track(name, data) {
+    if (typeof window.va === 'function') window.va('event', data ? { name, data } : { name });
+}
+
+function setupGiroAnalytics() {
+    document.addEventListener('click', (e) => {
+        const giro = e.target.closest('[data-giro]');
+        if (giro) {
+            if (giro.getAttribute('data-giro') === 'next') {
+                track('giro_continua', { verso: giro.getAttribute('data-giro-to') || '' });
+            } else if (giro.getAttribute('data-giro') === 'finale') {
+                track('giro_finale');
+            }
+        }
+        const zoom = e.target.closest('img[data-zoom]');
+        if (zoom) track('spazio_aperto', { spazio: zoom.getAttribute('data-space') || '' });
+    });
+}
 
 // Lightbox: clic su una foto degli spazi (img[data-zoom]) la apre a tutto schermo.
 function setupLightbox() {
