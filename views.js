@@ -45,6 +45,70 @@ function ctaBanner(title, sub = OPEN_DAY) {
         </section>`;
 }
 
+/* ---------- "I nostri spazi": il giro di scoperta tra le pagine ---------- */
+
+const SPAZI_TOTALE = 8;
+
+function spaceBadge(n) {
+    return `<span class="inline-flex items-center gap-2 bg-gold text-white text-xs font-bold uppercase tracking-[0.18em] px-4 py-1.5 rounded-full"><i data-lucide="search" class="w-3.5 h-3.5"></i> Spazio ${n} di ${SPAZI_TOTALE}</span>`;
+}
+
+function spaceImage(space, cls) {
+    return `<img data-zoom src="${space.img}" alt="${space.caption} — ${space.zone}. Scuola dell'Infanzia Sacra Famiglia, Roverchiara" loading="lazy" class="cursor-zoom-in ${cls}">`;
+}
+
+function spaceZone(space, dark = false) {
+    return `<p class="inline-flex items-center gap-1.5 text-sm ${dark ? 'text-white/70' : 'text-ink/55'} mt-2"><i data-lucide="map-pin" class="w-4 h-4 ${dark ? 'text-gold-light' : 'text-gold'}"></i> ${space.zone}</p>`;
+}
+
+function spaceNudge(next) {
+    if (!next) {
+        return `<p class="text-lg font-display font-bold text-sage">🎉 Hai scoperto tutti i nostri ${SPAZI_TOTALE} spazi! <a href="/iscrizioni" data-route="/iscrizioni" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage">Vieni a viverli di persona</a>.</p>`;
+    }
+    return `<p class="text-sage font-semibold leading-relaxed">👣 Continua il giro: un altro spazio ti aspetta in <a href="${next.href}" data-route="${next.href}" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage whitespace-nowrap">${next.label} →</a></p>`;
+}
+
+// Blocco "feature" (una sola foto, immagine + testo affiancati, alternati)
+function spaceFeature(space, next, { bg = 'bg-cream', flip = false } = {}) {
+    return `
+        <section class="py-16 ${bg} border-t border-sage/10 overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
+                    <figure class="reveal ${flip ? 'md:order-2' : ''}">
+                        ${spaceImage(space, 'w-full h-auto rounded-[2rem] shadow-xl border border-sage/10')}
+                    </figure>
+                    <div class="reveal text-center md:text-left ${flip ? 'md:order-1' : ''}">
+                        ${spaceBadge(space.n)}
+                        <h2 class="text-3xl font-display font-bold text-sage mt-4">${space.caption}</h2>
+                        ${spaceZone(space)}
+                        <div class="mt-6">${spaceNudge(next)}</div>
+                    </div>
+                </div>
+            </div>
+        </section>`;
+}
+
+// Blocco "duo" (due foto affiancate nella stessa pagina)
+function spaceDuo(a, b, next, bg = 'bg-cream') {
+    const card = (s) => `
+        <figure class="reveal lift bg-white rounded-[2rem] overflow-hidden shadow-lg border border-sage/10">
+            ${spaceImage(s, 'w-full h-auto block')}
+            <figcaption class="p-6 text-center">
+                ${spaceBadge(s.n)}
+                <h3 class="text-xl font-display font-bold text-sage mt-3">${s.caption}</h3>
+                ${spaceZone(s)}
+            </figcaption>
+        </figure>`;
+    return `
+        <section class="py-16 ${bg} border-t border-sage/10">
+            <div class="container mx-auto px-6">
+                <p class="text-center text-xs font-bold uppercase tracking-[0.25em] text-gold mb-10 reveal"><i data-lucide="search" class="inline w-4 h-4 -mt-1"></i> I nostri spazi · gira il sito per scoprirli tutti</p>
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-start">${card(a)}${card(b)}</div>
+                <div class="text-center mt-10 reveal">${spaceNudge(next)}</div>
+            </div>
+        </section>`;
+}
+
 /* ---------- HOME ---------- */
 
 export async function renderHome() {
@@ -182,6 +246,8 @@ export async function renderHome() {
                 </div>
             </div>
         </section>
+
+        ${spaceFeature(data.spaces[0], { href: '/metodo', label: 'Il Metodo' }, { bg: 'bg-white' })}
 
         ${ctaBanner('Vuoi vedere la scuola di persona?')}
     `;
@@ -393,6 +459,8 @@ export async function renderMetodo() {
             </div>
         </section>
 
+        ${spaceFeature(data.spaces[1], { href: '/servizi', label: 'Servizi' }, { bg: 'bg-cream', flip: true })}
+
         ${ctaBanner('Vivi i nostri valori ogni giorno')}
     `;
 }
@@ -442,6 +510,8 @@ export async function renderServizi() {
             </div>
         </section>
 
+        ${spaceDuo(data.spaces[2], data.spaces[3], { href: '/team', label: 'Il Team' }, 'bg-cream')}
+
         ${ctaBanner('Hai domande sui nostri servizi?')}
     `;
 }
@@ -479,12 +549,15 @@ export async function renderTeam() {
                 </div>
             </div>
         </section>
+
+        ${spaceFeature(data.spaces[4], { href: '/iscrizioni', label: 'Iscrizioni' }, { bg: 'bg-white' })}
     `;
 }
 
 /* ---------- ISCRIZIONI ---------- */
 
 export async function renderIscrizioni() {
+    const data = await fetchData();
     const steps = [
         { n: '1', t: 'Prenota una visita', d: 'Prenota la visita durante le giornate di Open Day.' },
         { n: '2', t: 'Conosci la scuola', d: 'Visita le aule, il giardino e incontra le educatrici per parlare del metodo.' },
@@ -545,6 +618,8 @@ export async function renderIscrizioni() {
             </div>
         </section>
 
+        ${spaceFeature(data.spaces[5], { href: '/faq', label: 'le Domande frequenti' }, { bg: 'bg-white', flip: true })}
+
         ${ctaBanner('Siamo a tua disposizione')}
     `;
 }
@@ -576,6 +651,8 @@ export async function renderFAQ() {
             </div>
         </section>
 
+        ${spaceFeature(data.spaces[6], { href: '/contatti', label: 'Contatti' }, { bg: 'bg-cream' })}
+
         ${ctaBanner('Ancora qualche dubbio?')}
     `;
 }
@@ -583,6 +660,7 @@ export async function renderFAQ() {
 /* ---------- CONTATTI ---------- */
 
 export async function renderContatti() {
+    const data = await fetchData();
     const infoCards = [
         { icon: 'map-pin', t: 'Indirizzo', v: 'Via Giacomo Leopardi, 16<br>37050 Roverchiara (VR)' },
         { icon: 'phone', t: 'Telefono', v: '<a href="tel:044274383" class="hover:text-sage">0442 74383</a>' },
@@ -653,6 +731,8 @@ export async function renderContatti() {
                 </div>
             </div>
         </section>
+
+        ${spaceFeature(data.spaces[7], null, { bg: 'bg-cream' })}
     `;
 }
 

@@ -38,6 +38,16 @@
     { "icon": "bus", "title": "Uscite didattiche", "age": "Scoperta", "desc": "Esplorazione del territorio, inclusi viaggi a Milano, Rovigo, mare e lago.", "hours": "Periodiche" }
   ],
   "teamPhoto": "/team.jpg",
+  "spaces": [
+    { "n": 1, "img": "/spazi/atelier-materiali-naturali.jpg", "caption": "L'atelier dei materiali naturali", "zone": "Infanzia" },
+    { "n": 2, "img": "/spazi/gioco-destrutturato.jpg", "caption": "L'angolo del gioco destrutturato", "zone": "Infanzia e Primavera" },
+    { "n": 3, "img": "/spazi/sezione-primavera-sensi.jpg", "caption": "Sezione Primavera", "zone": "Esperienze sensoriali" },
+    { "n": 4, "img": "/spazi/gioco-simbolico-casetta.jpg", "caption": "L'angolo del gioco simbolico (la casetta)", "zone": "Sezione Primavera" },
+    { "n": 5, "img": "/spazi/angolo-scientifico.jpg", "caption": "L'angolo scientifico — osservare la natura", "zone": "Infanzia" },
+    { "n": 6, "img": "/spazi/angolo-lettura-bosco.jpg", "caption": "L'angolo morbido della lettura (il bosco)", "zone": "Angolo lettura · corridoio comune" },
+    { "n": 7, "img": "/spazi/paesaggi-naturali.jpg", "caption": "Il tavolo dei paesaggi naturali (small world)", "zone": "Infanzia" },
+    { "n": 8, "img": "/spazi/ingresso-area-stagionale.jpg", "caption": "Ingresso con area stagionale", "zone": "Ingresso" }
+  ],
   "parents": [
     { "icon": "flower", "title": "Gruppo Mamme", "text": "Sostegno reciproco, laboratori creativi e mercatini solidali per la comunità." },
     { "icon": "hammer", "title": "Gruppo Papà", "text": "Manutenzione creativa e allestimento degli spazi." },
