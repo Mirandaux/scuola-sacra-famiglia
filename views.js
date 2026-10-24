@@ -68,11 +68,22 @@ function spaceNudge(next) {
     return `<p class="text-sage font-semibold leading-relaxed">👣 Continua il giro: un altro spazio ti aspetta in <a href="${next.href}" data-route="${next.href}" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage whitespace-nowrap">${next.label} →</a></p>`;
 }
 
+// Introduzione al "giro" (usata una volta, in Home)
+function spaceIntro() {
+    return `
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+            <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-gold mb-3"><i data-lucide="search" class="inline w-4 h-4 -mt-1"></i> Un gioco per voi</span>
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-sage">Gira il sito e scopri i nostri spazi</h2>
+            <p class="text-ink/60 mt-4 text-lg">Abbiamo nascosto la foto di un nostro ambiente in ogni pagina: segui gli inviti e scoprili tutti e ${SPAZI_TOTALE}. 🧭</p>
+        </div>`;
+}
+
 // Blocco "feature" (una sola foto, immagine + testo affiancati, alternati)
-function spaceFeature(space, next, { bg = 'bg-cream', flip = false } = {}) {
+function spaceFeature(space, next, { bg = 'bg-cream', flip = false, lead = '' } = {}) {
     return `
         <section class="py-16 ${bg} border-t border-sage/10 overflow-hidden">
             <div class="container mx-auto px-6">
+                ${lead}
                 <div class="grid md:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
                     <figure class="reveal ${flip ? 'md:order-2' : ''}">
                         ${spaceImage(space, 'w-full h-auto rounded-[2rem] shadow-xl border border-sage/10')}
@@ -168,6 +179,9 @@ export async function renderHome() {
             </div>
         </section>
 
+        <!-- I NOSTRI SPAZI: inizio del giro -->
+        ${spaceFeature(data.spaces[0], { href: '/metodo', label: 'Il Metodo' }, { bg: 'bg-cream', lead: spaceIntro() })}
+
         <!-- TRUST MARQUEE -->
         <div class="marquee overflow-hidden border-y border-sage/10 bg-white/60 py-5">
             <div class="marquee-track">${marquee}</div>
@@ -246,8 +260,6 @@ export async function renderHome() {
                 </div>
             </div>
         </section>
-
-        ${spaceFeature(data.spaces[0], { href: '/metodo', label: 'Il Metodo' }, { bg: 'bg-white' })}
 
         ${ctaBanner('Vuoi vedere la scuola di persona?')}
     `;
