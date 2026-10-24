@@ -14,7 +14,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupScrollEffects();
     setupMapConsent();
+    setupLightbox();
 });
+
+// Lightbox: clic su una foto degli spazi (img[data-zoom]) la apre a tutto schermo.
+function setupLightbox() {
+    let box = null;
+
+    const close = () => {
+        if (!box) return;
+        box.classList.remove('is-open');
+        document.body.style.overflow = '';
+        const onEnd = () => { if (box) box.remove(); box = null; };
+        setTimeout(onEnd, 250);
+    };
+
+    document.addEventListener('click', (e) => {
+        const img = e.target.closest('img[data-zoom]');
+        if (!img) return;
+        e.preventDefault();
+
+        box = document.createElement('div');
+        box.className = 'lightbox';
+        box.setAttribute('role', 'dialog');
+        box.setAttribute('aria-modal', 'true');
+        box.setAttribute('aria-label', img.getAttribute('alt') || 'Immagine ingrandita');
+        box.innerHTML = `
+            <button type="button" class="lightbox-close" aria-label="Chiudi">&times;</button>
+            <img src="${img.currentSrc || img.src}" alt="${img.getAttribute('alt') || ''}">`;
+        document.body.appendChild(box);
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => box.classList.add('is-open'));
+
+        box.querySelector('.lightbox-close').focus();
+        box.addEventListener('click', (ev) => {
+            if (ev.target === box || ev.target.closest('.lightbox-close')) close();
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+    });
+}
 
 // Google Maps caricato solo dopo consenso esplicito (GDPR): nessun dato a
 // Google prima del click dell'utente.
