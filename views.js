@@ -63,9 +63,13 @@ function spaceZone(space, dark = false) {
 
 function spaceNudge(next) {
     if (!next) {
-        return `<p class="text-lg font-display font-bold text-sage">🎉 Hai scoperto tutti i nostri ${SPAZI_TOTALE} spazi! <a href="/iscrizioni" data-route="/iscrizioni" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage">Vieni a viverli di persona</a>.</p>`;
+        return `<p class="text-lg font-display font-bold text-sage">Il giro degli spazi finisce qui. <a href="/iscrizioni" data-route="/iscrizioni" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage">Ti aspettiamo per scoprirli di persona</a>.</p>`;
     }
     return `<p class="text-sage font-semibold leading-relaxed">👣 Continua il giro: un altro spazio ti aspetta in <a href="${next.href}" data-route="${next.href}" class="text-gold underline underline-offset-4 decoration-2 hover:text-sage whitespace-nowrap">${next.label} →</a></p>`;
+}
+
+function spaceDesc(space, cls) {
+    return space.desc ? `<p class="${cls}">${space.desc}</p>` : '';
 }
 
 // Introduzione al "giro" (usata una volta, in Home)
@@ -92,6 +96,7 @@ function spaceFeature(space, next, { bg = 'bg-cream', flip = false, lead = '' } 
                         ${spaceBadge(space.n)}
                         <h2 class="text-3xl font-display font-bold text-sage mt-4">${space.caption}</h2>
                         ${spaceZone(space)}
+                        ${spaceDesc(space, 'text-ink/70 leading-relaxed mt-4 max-w-md mx-auto md:mx-0')}
                         <div class="mt-6">${spaceNudge(next)}</div>
                     </div>
                 </div>
@@ -108,6 +113,7 @@ function spaceDuo(a, b, next, bg = 'bg-cream') {
                 ${spaceBadge(s.n)}
                 <h3 class="text-xl font-display font-bold text-sage mt-3">${s.caption}</h3>
                 ${spaceZone(s)}
+                ${spaceDesc(s, 'text-sm text-ink/60 leading-relaxed mt-3')}
             </figcaption>
         </figure>`;
     return `
@@ -166,7 +172,7 @@ export async function renderHome() {
                 <div class="lg:col-span-5 reveal">
                     <div class="relative">
                         <div class="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5] rotate-2 hover:rotate-0 transition-transform duration-700">
-                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=900&auto=format&fit=crop" alt="Bambini che giocano insieme alla scuola dell'infanzia Sacra Famiglia" width="900" height="1125" class="w-full h-full object-cover" loading="eager" fetchpriority="high">
+                            <img src="/spazi/angolo-lettura-bosco.jpg" alt="L'angolo morbido della lettura della scuola dell'infanzia Sacra Famiglia: veli verdi, lucine e cuscini per leggere e ascoltare storie" width="1200" height="1600" class="w-full h-full object-cover" loading="eager" fetchpriority="high">
                         </div>
                         <div class="absolute -bottom-6 -left-6 bg-white rounded-3xl shadow-xl p-5 flex items-center gap-4 max-w-[15rem]">
                             <span class="w-12 h-12 rounded-2xl bg-gold/15 text-gold flex items-center justify-center shrink-0">

@@ -39,14 +39,14 @@
   ],
   "teamPhoto": "/team.jpg",
   "spaces": [
-    { "n": 1, "img": "/spazi/atelier-materiali-naturali.jpg", "caption": "L'atelier dei materiali naturali", "zone": "Infanzia" },
-    { "n": 2, "img": "/spazi/gioco-destrutturato.jpg", "caption": "L'angolo del gioco destrutturato", "zone": "Infanzia e Primavera" },
-    { "n": 3, "img": "/spazi/sezione-primavera-sensi.jpg", "caption": "Sezione Primavera", "zone": "Esperienze sensoriali" },
-    { "n": 4, "img": "/spazi/gioco-simbolico-casetta.jpg", "caption": "L'angolo del gioco simbolico (la casetta)", "zone": "Sezione Primavera" },
-    { "n": 5, "img": "/spazi/angolo-scientifico.jpg", "caption": "L'angolo scientifico — osservare la natura", "zone": "Infanzia" },
-    { "n": 6, "img": "/spazi/angolo-lettura-bosco.jpg", "caption": "L'angolo morbido della lettura (il bosco)", "zone": "Angolo lettura · corridoio comune" },
-    { "n": 7, "img": "/spazi/paesaggi-naturali.jpg", "caption": "Il tavolo dei paesaggi naturali (small world)", "zone": "Infanzia" },
-    { "n": 8, "img": "/spazi/ingresso-area-stagionale.jpg", "caption": "Ingresso con area stagionale", "zone": "Ingresso" }
+    { "n": 1, "img": "/spazi/atelier-materiali-naturali.jpg", "caption": "L'atelier dei materiali naturali", "zone": "Infanzia", "desc": "Pigne, conchiglie, legnetti e un tavolo luminoso da toccare, osservare e combinare liberamente." },
+    { "n": 2, "img": "/spazi/gioco-destrutturato.jpg", "caption": "L'angolo del gioco destrutturato", "zone": "Infanzia e Primavera", "desc": "Tubi e scatole di cartone diventano ciò che i bambini immaginano: costruzioni aperte che allenano creatività e progettualità." },
+    { "n": 3, "img": "/spazi/sezione-primavera-sensi.jpg", "caption": "Sezione Primavera", "zone": "Esperienze sensoriali", "desc": "Caffè, agrumi essiccati e sali profumati: esplorare il mondo attraverso olfatto e tatto." },
+    { "n": 4, "img": "/spazi/gioco-simbolico-casetta.jpg", "caption": "L'angolo del gioco simbolico (la casetta)", "zone": "Sezione Primavera", "desc": "La cucina e la casetta in legno: vestire i ruoli dei grandi per raccontarsi e collaborare." },
+    { "n": 5, "img": "/spazi/angolo-scientifico.jpg", "caption": "L'angolo scientifico — osservare la natura", "zone": "Infanzia", "desc": "Lenti, reperti e materiali naturali invitano i bambini a osservare, confrontare e fare domande." },
+    { "n": 6, "img": "/spazi/angolo-lettura-bosco.jpg", "caption": "L'angolo morbido della lettura (il bosco)", "zone": "Angolo lettura · corridoio comune", "desc": "Un rifugio, per sfogliare libri e ascoltare ed esplorare storie in autonomia e tranquillità." },
+    { "n": 7, "img": "/spazi/paesaggi-naturali.jpg", "caption": "Il tavolo dei paesaggi naturali (small world)", "zone": "Infanzia", "desc": "Alberi, rocce e acqua in miniatura: un piccolo mondo da manipolare per scoprire gli ambienti naturali." },
+    { "n": 8, "img": "/spazi/ingresso-area-stagionale.jpg", "caption": "Ingresso con area stagionale", "zone": "Ingresso", "desc": "L'accoglienza che cambia con le stagioni, con materiali e prodotti raccolti dai bambini o portati dalle famiglie seguendo il ritmo della natura e dell'anno." }
   ],
   "parents": [
     { "icon": "flower", "title": "Gruppo Mamme", "text": "Uno spazio di sostegno reciproco e iniziative per la comunità scolastica.", "note": "Al momento il gruppo non è ancora stato creato. Per informazioni e per partecipare, contatta le rappresentanti di classe." },
